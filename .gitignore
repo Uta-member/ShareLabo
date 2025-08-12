@@ -7,6 +7,9 @@
 *.rsuser
 *.suo
 *.user
+!ShareLabo.*.user
+*.slnLaunch.user
+*.csproj.user
 *.userosscache
 *.sln.docstates
 
