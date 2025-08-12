@@ -1,0 +1,4 @@
+﻿@inherits LayoutComponentBase
+
+<p>@(OperatingSystem.IsBrowser() ? "WASM" : "Server")</p>
+@Body

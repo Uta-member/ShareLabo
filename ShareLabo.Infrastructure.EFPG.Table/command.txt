@@ -1,0 +1,5 @@
+﻿# マイグレーション
+Add-Migration [MigrationName] -Project ShareLabo.Infrastructure.EFPG.Table -StartupProject ShareLabo.Infrastructure.EFPG.Table
+
+# DB適用
+Update-Database -Project ShareLabo.Infrastructure.EFPG.Table -StartupProject ShareLabo.Infrastructure.EFPG.Table
