@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Components.Authorization;
 using ShareLabo.Presentation.AppBuilder.MagicOnion.Client;
 using ShareLabo.Presentation.Blazor.Auth;
 using ShareLabo.Presentation.Blazor.Client;
-using ShareLabo.Presentation.Blazor.Client.Services;
 using ShareLabo.Presentation.Blazor.Components;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -34,14 +33,16 @@ builder.Services
 
 builder.Services.AddPrimeBlazorBootstrap();
 
+var magicOnionHost = builder.Configuration.GetConnectionString("MagicOnionHost") ??
+    throw new InvalidOperationException("MagicOnionHost connection string is not configured.");
+
 builder.Services
     .AddShareLaboMagicOnionClient(
         new ShareLaboMagicOnionClientBuilder.BuildOption()
         {
-            HostUrl = "https://localhost:7202",
+            HostUrl = magicOnionHost,
             IsGrpcWeb = false,
         });
-builder.Services.AddScoped<LoginedUserStorageService>();
 
 var app = builder.Build();
 

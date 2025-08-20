@@ -20,4 +20,14 @@
     <ProjectReference Include="..\..\ShareLabo.Presentation.AppBuilder.MagicOnion.Client\ShareLabo.Presentation.AppBuilder.MagicOnion.Client.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

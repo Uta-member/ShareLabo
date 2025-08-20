@@ -7,11 +7,17 @@
         <link rel="stylesheet" href="_content/CSStack.PrimeBlazor.Bootstrap/style/standard.css" />
         <link rel="stylesheet" href="app.css" />
         <link rel="stylesheet" href="ShareLabo.Presentation.Blazor.styles.css" />
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
         <HeadOutlet @rendermode="RenderModeForPage" />
     </head>
 
     <body>
         <Routes @rendermode="RenderModeForPage" />
+        <div id="blazor-error-ui">
+            An unhandled error has occurred.
+            <a href="" class="reload">Reload</a>
+            <a class="dismiss">🗙</a>
+        </div>
         <script src="_framework/blazor.web.js"></script>
         <script src="_content/CSStack.PrimeBlazor.Bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="app.js"></script>

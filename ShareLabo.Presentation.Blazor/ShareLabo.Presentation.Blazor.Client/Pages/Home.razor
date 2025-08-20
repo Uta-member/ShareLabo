@@ -3,11 +3,3 @@
 
 <PageTitle>Home</PageTitle>
 
-<button class="btn btn-secondary" @onclick="Logout">Logout</button>
-
-@code {
-    private void Logout()
-    {
-        NavigationManager.NavigateTo("Account/Logout",  true);
-    }
-}

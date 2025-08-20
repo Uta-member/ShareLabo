@@ -1,0 +1,27 @@
+﻿@inherits ShareLaboComponentBase
+
+<div class="d-flex flex-row align-items-center justify-content-between px-3 py-1 border-bottom">
+    <div class="d-flex flex-row align-items-center">
+        <h1 class="h3 m-0">
+            <a class="h3 m-0" style="text-decoration: none;" href="@(ShareLaboPagePath.Helper.Home())">ShareLabo</a>
+        </h1>
+    </div>
+    <div class="d-flex flex-row align-items-center gap-2">
+        @if(_userDetail != null)
+        {
+            <div class="dropdown">
+                <button class="btn dropdown-toggle d-flex flex-row align-items-center gap-1" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <Icon IconName="account_circle" />
+                    @_userDetail?.UserName
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="dropdown-item d-flex flex-row align-items-center gap-1" href="@(ShareLaboPagePath.Helper.Logout())">
+                            <Icon IconName="logout" />ログアウト
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        }
+    </div>
+</div>
