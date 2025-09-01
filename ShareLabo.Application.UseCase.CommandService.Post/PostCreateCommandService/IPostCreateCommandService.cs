@@ -1,7 +1,6 @@
 ﻿using CSStack.TADA;
 using ShareLabo.Domain.Aggregate.Toolkit;
 using ShareLabo.Domain.ValueObject;
-using System.Collections.Immutable;
 
 namespace ShareLabo.Application.UseCase.CommandService.Post
 {
@@ -20,8 +19,6 @@ namespace ShareLabo.Application.UseCase.CommandService.Post
             public required PostTitle PostTitle { get; init; }
 
             public required UserId PostUserId { get; init; }
-
-            public required ImmutableList<GroupId> PublicationGroups { get; init; }
         }
     }
 }

@@ -3,3 +3,22 @@
 
 <PageTitle>Home</PageTitle>
 
+<input @bind-value="_postId" placeholder="PostId" />
+
+<button @onclick="GetPostDetailAsync">投稿取得</button>
+
+@if(_postDetail is not null)
+{
+    <div>
+        <h4>@_postDetail.Title</h4>
+        <p>@_postDetail.Content</p>
+    </div>
+}
+else
+{
+    <div>投稿の取得に失敗しました</div>
+}
+
+<p>
+    @_errorMessage
+</p>

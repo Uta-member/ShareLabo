@@ -9,11 +9,6 @@ namespace ShareLabo.Presentation.Blazor.Client.Parts
     {
         private UserDetailReadModel? _userDetail;
 
-        private void Logout()
-        {
-            NavigationManager.NavigateTo(ShareLaboPagePath.Helper.Logout(), true);
-        }
-
         private async void OnAuthenticationStateChanged(Task<AuthenticationState> authenticationStateTask)
         {
             var authenticationState = await AuthenticationState;
@@ -27,7 +22,7 @@ namespace ShareLabo.Presentation.Blazor.Client.Parts
             }
 
             var userFindRes = await FindUserDetailByUserIdQueryService.ExecuteAsync(
-                new IFindUserDetailByUserIdQueryService.Req()
+                new IUserDetailFindByUserIdQueryService.Req()
                 {
                     UserId = userIdStr,
                 });
@@ -50,7 +45,6 @@ namespace ShareLabo.Presentation.Blazor.Client.Parts
             AuthenticationStateProvider.AuthenticationStateChanged += OnAuthenticationStateChanged;
         }
 
-
         [CascadingParameter]
         public required Task<AuthenticationState> AuthenticationState { get; set; }
 
@@ -58,6 +52,6 @@ namespace ShareLabo.Presentation.Blazor.Client.Parts
         public required AuthenticationStateProvider AuthenticationStateProvider { get; set; }
 
         [Inject]
-        public required IFindUserDetailByUserIdQueryService FindUserDetailByUserIdQueryService { get; set; }
+        public required IUserDetailFindByUserIdQueryService FindUserDetailByUserIdQueryService { get; set; }
     }
 }

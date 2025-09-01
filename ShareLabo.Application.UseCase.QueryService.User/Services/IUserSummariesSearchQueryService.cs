@@ -4,8 +4,8 @@ using System.Collections.Immutable;
 
 namespace ShareLabo.Application.UseCase.QueryService.User
 {
-    public interface ISearchUserSummariesQueryService
-        : IQueryService<ISearchUserSummariesQueryService.Req, ISearchUserSummariesQueryService.Res>
+    public interface IUserSummariesSearchQueryService
+        : IQueryService<IUserSummariesSearchQueryService.Req, IUserSummariesSearchQueryService.Res>
     {
         public sealed record Req : IQueryServiceDTO
         {

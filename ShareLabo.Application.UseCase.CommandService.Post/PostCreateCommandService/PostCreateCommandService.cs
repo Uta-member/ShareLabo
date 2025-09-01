@@ -1,5 +1,4 @@
-﻿
-using CSStack.TADA;
+﻿using CSStack.TADA;
 using ShareLabo.Domain.DomainService.Post;
 
 namespace ShareLabo.Application.UseCase.CommandService.Post
@@ -37,7 +36,6 @@ namespace ShareLabo.Application.UseCase.CommandService.Post
                     PostSession = sessions.GetSession<TPostSession>(),
                     PostTitle = req.PostTitle,
                     PostUser = req.PostUserId,
-                    PublicationGroups = req.PublicationGroups,
                     UserSession = sessions.GetSession<TUserSession>()
                 },
                     cancellationToken));

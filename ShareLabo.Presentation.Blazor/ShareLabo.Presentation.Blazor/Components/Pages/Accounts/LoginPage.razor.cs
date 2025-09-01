@@ -42,7 +42,7 @@ namespace ShareLabo.Presentation.Blazor.Components.Pages.Accounts
                 }
 
                 var userRes = await FindUserDetailByAccountIdQueryService.ExecuteAsync(
-                    new IFindUserDetailByAccountIdQueryService.Req() { AccountId = _loginViewModel.AccountId });
+                    new IUserDetailFindByAccountIdQueryService.Req() { AccountId = _loginViewModel.AccountId });
                 if(!userRes.User.TryGetValue(out var user))
                 {
                     throw new Exception();
@@ -87,7 +87,7 @@ namespace ShareLabo.Presentation.Blazor.Components.Pages.Accounts
         protected override string PageTitleCore => "ログイン";
 
         [Inject]
-        public required IFindUserDetailByAccountIdQueryService FindUserDetailByAccountIdQueryService { get; set; }
+        public required IUserDetailFindByAccountIdQueryService FindUserDetailByAccountIdQueryService { get; set; }
 
         [SupplyParameterFromQuery(Name = "returnUrl")]
         public string? ReturnUrl { get; set; }

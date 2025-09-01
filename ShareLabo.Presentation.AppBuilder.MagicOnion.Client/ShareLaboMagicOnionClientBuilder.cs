@@ -4,6 +4,7 @@ using Grpc.Net.Client.Web;
 using Microsoft.Extensions.DependencyInjection;
 using ShareLabo.Application.UseCase.CommandService.Post;
 using ShareLabo.Application.UseCase.CommandService.User;
+using ShareLabo.Application.UseCase.QueryService.Post;
 using ShareLabo.Application.UseCase.QueryService.User;
 using ShareLabo.Presentation.MagicOnion.Client;
 
@@ -44,10 +45,12 @@ namespace ShareLabo.Presentation.AppBuilder.MagicOnion.Client
 
         private static void AddQueryServices(this IServiceCollection services)
         {
-            services.AddTransient<ISearchUserSummariesQueryService, MOSearchUserSummariesQueryServiceClient>();
-            services.AddTransient<IFindUserDetailByAccountIdQueryService, MOFindUserDetailByAccountIdQueryServiceClient>(
+            services.AddTransient<IUserSummariesSearchQueryService, MOUserSummariesSearchQueryServiceClient>();
+            services.AddTransient<IUserDetailFindByAccountIdQueryService, MOUserDetailFindByAccountIdQueryServiceClient>(
                 );
-            services.AddTransient<IFindUserDetailByUserIdQueryService, MOFindUserDetailByUserIdQueryServiceClient>();
+            services.AddTransient<IUserDetailFindByUserIdQueryService, MOUserDetailFindByUserIdQueryServiceClient>();
+
+            services.AddTransient<IPostDetailFindByIdQueryService, MOPostDetailFindByIdQueryServiceClient>();
         }
 
         public static IServiceCollection AddShareLaboMagicOnionClient(

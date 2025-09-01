@@ -4,7 +4,6 @@ using ShareLabo.Domain.Aggregate.Post;
 using ShareLabo.Domain.Aggregate.Toolkit;
 using ShareLabo.Domain.Aggregate.User;
 using ShareLabo.Domain.ValueObject;
-using System.Collections.Immutable;
 
 namespace ShareLabo.Domain.DomainService.Post
 {
@@ -39,18 +38,6 @@ namespace ShareLabo.Domain.DomainService.Post
                 throw new ObjectNotFoundException("投稿者のユーザが見つかりません");
             }
 
-            foreach(var group in req.PublicationGroups)
-            {
-                var groupEntityOptional = await _groupAggregateService.GetEntityByIdentifierAsync(
-                    req.GroupSession,
-                    group,
-                    cancellationToken);
-                if(!groupEntityOptional.HasValue)
-                {
-                    throw new ObjectNotFoundException($"公開先グループ {group} が見つかりません");
-                }
-            }
-
             await _postAggregateService.CreateAsync(
                 new PostAggregateService<TPostSession>.CreateReq()
                 {
@@ -61,7 +48,6 @@ namespace ShareLabo.Domain.DomainService.Post
                                 Id = req.PostId,
                                 PostDateTime = req.PostDateTime,
                                 PostUser = req.PostUser,
-                                PublicationGroups = req.PublicationGroups,
                                 Title = req.PostTitle,
                             },
                     OperateInfo = req.OperateInfo,
@@ -87,8 +73,6 @@ namespace ShareLabo.Domain.DomainService.Post
             public required PostTitle PostTitle { get; init; }
 
             public required UserId PostUser { get; init; }
-
-            public required ImmutableList<GroupId> PublicationGroups { get; init; }
 
             public required TUserSession UserSession { get; init; }
         }

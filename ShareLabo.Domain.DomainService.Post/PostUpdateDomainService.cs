@@ -3,7 +3,6 @@ using ShareLabo.Domain.Aggregate.Group;
 using ShareLabo.Domain.Aggregate.Post;
 using ShareLabo.Domain.Aggregate.Toolkit;
 using ShareLabo.Domain.ValueObject;
-using System.Collections.Immutable;
 
 namespace ShareLabo.Domain.DomainService.Post
 {
@@ -25,21 +24,6 @@ namespace ShareLabo.Domain.DomainService.Post
 
         public async ValueTask ExecuteAsync(Req req, CancellationToken cancellationToken = default)
         {
-            if(req.PublicationGroupsOptional.TryGetValue(out var publicationGroups))
-            {
-                foreach(var group in publicationGroups)
-                {
-                    var groupEntityOptional = await _groupAggregateService.GetEntityByIdentifierAsync(
-                        req.GroupSession,
-                        group,
-                        cancellationToken);
-                    if(!groupEntityOptional.HasValue)
-                    {
-                        throw new ObjectNotFoundException($"公開先グループ {group} が見つかりません");
-                    }
-                }
-            }
-
             await _postAggregateService.UpdateAsync(
                 new PostAggregateService<TPostSession>.UpdateReq()
                 {
@@ -48,7 +32,6 @@ namespace ShareLabo.Domain.DomainService.Post
                             {
                                 ContentOptional = req.PostContentOptional,
                                 TitleOptional = req.PostTitleOptional,
-                                PublicationGroupsOptional = req.PublicationGroupsOptional,
                             },
                     OperateInfo = req.OperateInfo,
                     Session = req.PostSession,
@@ -68,8 +51,6 @@ namespace ShareLabo.Domain.DomainService.Post
             public required TPostSession PostSession { get; init; }
 
             public required Optional<PostTitle> PostTitleOptional { get; init; }
-
-            public required Optional<ImmutableList<GroupId>> PublicationGroupsOptional { get; init; }
 
             public required PostId TargetPostId { get; init; }
         }

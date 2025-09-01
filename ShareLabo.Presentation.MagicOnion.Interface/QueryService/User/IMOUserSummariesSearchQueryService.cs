@@ -6,13 +6,13 @@ using System.Collections.Immutable;
 
 namespace ShareLabo.Presentation.MagicOnion.Interface
 {
-    public interface IMOSearchUserSummariesQueryService
-        : IMOQueryService<IMOSearchUserSummariesQueryService, IMOSearchUserSummariesQueryService.Req, ISearchUserSummariesQueryService.Req, IMOSearchUserSummariesQueryService.Res, ISearchUserSummariesQueryService.Res>
+    public interface IMOUserSummariesSearchQueryService
+        : IMOQueryService<IMOUserSummariesSearchQueryService, IMOUserSummariesSearchQueryService.Req, IUserSummariesSearchQueryService.Req, IMOUserSummariesSearchQueryService.Res, IUserSummariesSearchQueryService.Res>
     {
         [MessagePackObject]
-        public sealed record Req : IMPDTO<ISearchUserSummariesQueryService.Req, Req>
+        public sealed record Req : IMPDTO<IUserSummariesSearchQueryService.Req, Req>
         {
-            public static Req FromDTO(ISearchUserSummariesQueryService.Req dto)
+            public static Req FromDTO(IUserSummariesSearchQueryService.Req dto)
             {
                 return new Req()
                 {
@@ -28,9 +28,9 @@ namespace ShareLabo.Presentation.MagicOnion.Interface
                 };
             }
 
-            public ISearchUserSummariesQueryService.Req ToDTO()
+            public IUserSummariesSearchQueryService.Req ToDTO()
             {
-                return new ISearchUserSummariesQueryService.Req()
+                return new IUserSummariesSearchQueryService.Req()
                 {
                     AccountIdStrOptional = AccountIdStrOptional.ToOptional(),
                     LimitOptional = LimitOptional.ToOptional(),
@@ -65,9 +65,9 @@ namespace ShareLabo.Presentation.MagicOnion.Interface
         }
 
         [MessagePackObject]
-        public sealed record Res : IMPDTO<ISearchUserSummariesQueryService.Res, Res>
+        public sealed record Res : IMPDTO<IUserSummariesSearchQueryService.Res, Res>
         {
-            public static Res FromDTO(ISearchUserSummariesQueryService.Res dto)
+            public static Res FromDTO(IUserSummariesSearchQueryService.Res dto)
             {
                 return new Res()
                 {
@@ -75,9 +75,9 @@ namespace ShareLabo.Presentation.MagicOnion.Interface
                 };
             }
 
-            public ISearchUserSummariesQueryService.Res ToDTO()
+            public IUserSummariesSearchQueryService.Res ToDTO()
             {
-                return new ISearchUserSummariesQueryService.Res()
+                return new IUserSummariesSearchQueryService.Res()
                 {
                     Users = Users.Select(x => x.ToDTO()).ToImmutableList(),
                 };

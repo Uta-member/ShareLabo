@@ -15,8 +15,6 @@ namespace ShareLabo.Infrastructure.EFPG.Table
 
         public DbSet<DbGroup> Groups { get; set; }
 
-        public DbSet<DbPostPublication> PostPublications { get; set; }
-
         public DbSet<DbPost> Posts { get; set; }
 
         public DbSet<DbUser> Users { get; set; }

@@ -1,6 +1,5 @@
 ﻿using CSStack.TADA;
 using ShareLabo.Domain.ValueObject;
-using System.Collections.Immutable;
 
 namespace ShareLabo.Domain.Aggregate.Post
 {
@@ -11,15 +10,13 @@ namespace ShareLabo.Domain.Aggregate.Post
             PostTitle title,
             PostContent content,
             UserId postUser,
-            DateTime postDateTime,
-            ImmutableList<GroupId> publicationGroups)
+            DateTime postDateTime)
         {
             Id = id;
             Title = title;
             PostUser = postUser;
             PostDateTime = postDateTime;
             Content = content;
-            PublicationGroups = publicationGroups;
         }
 
         public static PostEntity Create(CreateCommand command)
@@ -29,8 +26,7 @@ namespace ShareLabo.Domain.Aggregate.Post
                 command.Title,
                 command.Content,
                 command.PostUser,
-                command.PostDateTime,
-                command.PublicationGroups);
+                command.PostDateTime);
             entity.Validate();
             return entity;
         }
@@ -42,8 +38,7 @@ namespace ShareLabo.Domain.Aggregate.Post
                 command.Title,
                 command.Content,
                 command.PostUser,
-                command.PostDateTime,
-                command.PublicationGroups);
+                command.PostDateTime);
             return entity;
         }
 
@@ -54,8 +49,7 @@ namespace ShareLabo.Domain.Aggregate.Post
                 command.TitleOptional.GetValue(Title),
                 command.ContentOptional.GetValue(Content),
                 PostUser,
-                command.PostDateTimeOptional.GetValue(PostDateTime),
-                command.PublicationGroupsOptional.GetValue(PublicationGroups));
+                command.PostDateTimeOptional.GetValue(PostDateTime));
             entity.Validate();
             return entity;
         }
@@ -78,8 +72,6 @@ namespace ShareLabo.Domain.Aggregate.Post
 
         public UserId PostUser { get; }
 
-        public ImmutableList<GroupId> PublicationGroups { get; }
-
         public PostTitle Title { get; }
 
         public enum ValidateTypeEnum
@@ -99,8 +91,6 @@ namespace ShareLabo.Domain.Aggregate.Post
 
             public required UserId PostUser { get; init; }
 
-            public required ImmutableList<GroupId> PublicationGroups { get; init; }
-
             public required PostTitle Title { get; init; }
         }
 
@@ -114,8 +104,6 @@ namespace ShareLabo.Domain.Aggregate.Post
 
             public required UserId PostUser { get; init; }
 
-            public required ImmutableList<GroupId> PublicationGroups { get; init; }
-
             public required PostTitle Title { get; init; }
         }
 
@@ -124,12 +112,6 @@ namespace ShareLabo.Domain.Aggregate.Post
             public Optional<PostContent> ContentOptional { get; init; } = Optional<PostContent>.Empty;
 
             public Optional<DateTime> PostDateTimeOptional { get; init; } = Optional<DateTime>.Empty;
-
-            public Optional<ImmutableList<GroupId>> PublicationGroupsOptional
-            {
-                get;
-                init;
-            } = Optional<ImmutableList<GroupId>>.Empty;
 
             public Optional<PostTitle> TitleOptional { get; init; } = Optional<PostTitle>.Empty;
         }

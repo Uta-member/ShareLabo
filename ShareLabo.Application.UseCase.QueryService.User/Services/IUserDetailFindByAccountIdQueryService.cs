@@ -2,12 +2,12 @@
 
 namespace ShareLabo.Application.UseCase.QueryService.User
 {
-    public interface IFindUserDetailByUserIdQueryService
-        : IQueryService<IFindUserDetailByUserIdQueryService.Req, IFindUserDetailByUserIdQueryService.Res>
+    public interface IUserDetailFindByAccountIdQueryService
+     : IQueryService<IUserDetailFindByAccountIdQueryService.Req, IUserDetailFindByAccountIdQueryService.Res>
     {
         public sealed record Req : IQueryServiceDTO
         {
-            public required string UserId { get; init; }
+            public required string AccountId { get; init; }
         }
 
         public sealed record Res : IQueryServiceDTO

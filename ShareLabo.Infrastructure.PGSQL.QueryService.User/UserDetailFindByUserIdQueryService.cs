@@ -8,17 +8,17 @@ using SqlKata.Execution;
 
 namespace ShareLabo.Infrastructure.PGSQL.QueryService.User
 {
-    public sealed class FindUserDetailByUserIdQueryService : IFindUserDetailByUserIdQueryService
+    public sealed class UserDetailFindByUserIdQueryService : IUserDetailFindByUserIdQueryService
     {
         private readonly ShareLaboPGSQLConnectionFactory _connectionFactory;
 
-        public FindUserDetailByUserIdQueryService(ShareLaboPGSQLConnectionFactory connectionFactory)
+        public UserDetailFindByUserIdQueryService(ShareLaboPGSQLConnectionFactory connectionFactory)
         {
             _connectionFactory = connectionFactory;
         }
 
-        public async ValueTask<IFindUserDetailByUserIdQueryService.Res> ExecuteAsync(
-            IFindUserDetailByUserIdQueryService.Req req,
+        public async ValueTask<IUserDetailFindByUserIdQueryService.Res> ExecuteAsync(
+            IUserDetailFindByUserIdQueryService.Req req,
             CancellationToken cancellationToken = default)
         {
             using var connection = _connectionFactory.OpenConnection();
@@ -35,13 +35,13 @@ namespace ShareLabo.Infrastructure.PGSQL.QueryService.User
             var dbUser = await query.FirstOrDefaultAsync<DbUserDetail>(cancellationToken: cancellationToken);
             if(dbUser == null)
             {
-                return new IFindUserDetailByUserIdQueryService.Res()
+                return new IUserDetailFindByUserIdQueryService.Res()
                 {
                     User = Optional<UserDetailReadModel>.Empty,
                 };
             }
 
-            return new IFindUserDetailByUserIdQueryService.Res()
+            return new IUserDetailFindByUserIdQueryService.Res()
             {
                 User =
                     new UserDetailReadModel()

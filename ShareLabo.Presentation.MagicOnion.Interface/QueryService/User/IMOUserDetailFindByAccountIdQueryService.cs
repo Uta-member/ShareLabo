@@ -4,13 +4,13 @@ using ShareLabo.Application.UseCase.QueryService.User;
 
 namespace ShareLabo.Presentation.MagicOnion.Interface
 {
-    public interface IMOFindUserDetailByAccountIdQueryService
-        : IMOQueryService<IMOFindUserDetailByAccountIdQueryService, IMOFindUserDetailByAccountIdQueryService.Req, IFindUserDetailByAccountIdQueryService.Req, IMOFindUserDetailByAccountIdQueryService.Res, IFindUserDetailByAccountIdQueryService.Res>
+    public interface IMOUserDetailFindByAccountIdQueryService
+        : IMOQueryService<IMOUserDetailFindByAccountIdQueryService, IMOUserDetailFindByAccountIdQueryService.Req, IUserDetailFindByAccountIdQueryService.Req, IMOUserDetailFindByAccountIdQueryService.Res, IUserDetailFindByAccountIdQueryService.Res>
     {
         [MessagePackObject]
-        public sealed record Req : IMPDTO<IFindUserDetailByAccountIdQueryService.Req, Req>
+        public sealed record Req : IMPDTO<IUserDetailFindByAccountIdQueryService.Req, Req>
         {
-            public static Req FromDTO(IFindUserDetailByAccountIdQueryService.Req dto)
+            public static Req FromDTO(IUserDetailFindByAccountIdQueryService.Req dto)
             {
                 return new Req()
                 {
@@ -18,9 +18,9 @@ namespace ShareLabo.Presentation.MagicOnion.Interface
                 };
             }
 
-            public IFindUserDetailByAccountIdQueryService.Req ToDTO()
+            public IUserDetailFindByAccountIdQueryService.Req ToDTO()
             {
-                return new IFindUserDetailByAccountIdQueryService.Req()
+                return new IUserDetailFindByAccountIdQueryService.Req()
                 {
                     AccountId = AccountId,
                 };
@@ -31,9 +31,9 @@ namespace ShareLabo.Presentation.MagicOnion.Interface
         }
 
         [MessagePackObject]
-        public sealed record Res : IMPDTO<IFindUserDetailByAccountIdQueryService.Res, Res>
+        public sealed record Res : IMPDTO<IUserDetailFindByAccountIdQueryService.Res, Res>
         {
-            public static Res FromDTO(IFindUserDetailByAccountIdQueryService.Res dto)
+            public static Res FromDTO(IUserDetailFindByAccountIdQueryService.Res dto)
             {
                 return new Res()
                 {
@@ -42,9 +42,9 @@ namespace ShareLabo.Presentation.MagicOnion.Interface
                 };
             }
 
-            public IFindUserDetailByAccountIdQueryService.Res ToDTO()
+            public IUserDetailFindByAccountIdQueryService.Res ToDTO()
             {
-                return new IFindUserDetailByAccountIdQueryService.Res()
+                return new IUserDetailFindByAccountIdQueryService.Res()
                 {
                     User = User.ToOptional(x => x.ToDTO()),
                 };

@@ -8,17 +8,17 @@ using System.Collections.Immutable;
 
 namespace ShareLabo.Infrastructure.PGSQL.QueryService.User
 {
-    public sealed class SearchUserSummariesQueryService : ISearchUserSummariesQueryService
+    public sealed class UserSummariesSearchQueryService : IUserSummariesSearchQueryService
     {
         private readonly ShareLaboPGSQLConnectionFactory _connectionFactory;
 
-        public SearchUserSummariesQueryService(ShareLaboPGSQLConnectionFactory connectionFactory)
+        public UserSummariesSearchQueryService(ShareLaboPGSQLConnectionFactory connectionFactory)
         {
             _connectionFactory = connectionFactory;
         }
 
-        public async ValueTask<ISearchUserSummariesQueryService.Res> ExecuteAsync(
-            ISearchUserSummariesQueryService.Req req,
+        public async ValueTask<IUserSummariesSearchQueryService.Res> ExecuteAsync(
+            IUserSummariesSearchQueryService.Req req,
             CancellationToken cancellationToken = default)
         {
             using var connection = _connectionFactory.OpenConnection();
@@ -66,7 +66,7 @@ namespace ShareLabo.Infrastructure.PGSQL.QueryService.User
 
             var dbUsers = await query.GetAsync<DbUser>(cancellationToken: cancellationToken);
 
-            return new ISearchUserSummariesQueryService.Res()
+            return new IUserSummariesSearchQueryService.Res()
             {
                 Users =
                     dbUsers.Select(

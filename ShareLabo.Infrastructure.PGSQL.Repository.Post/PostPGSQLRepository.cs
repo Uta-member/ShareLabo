@@ -6,7 +6,6 @@ using ShareLabo.Infrastructure.EFPG.Table;
 using ShareLabo.Infrastructure.PGSQL.Toolkit;
 using SqlKata.Compilers;
 using SqlKata.Execution;
-using System.Collections.Immutable;
 
 namespace ShareLabo.Infrastructure.PGSQL.Repository.Post
 {
@@ -46,10 +45,6 @@ namespace ShareLabo.Infrastructure.PGSQL.Repository.Post
                 return Optional<PostEntity>.Empty;
             }
 
-            var dbPostPublications = await factory.Query("post_publications")
-                .Where("post_id", dbPost.PostId)
-                .GetAsync<DbPostPublication>(cancellationToken: cancellationToken);
-
             return PostEntity.Reconstruct(
                 new PostEntity.ReconstructCommand()
                 {
@@ -58,10 +53,6 @@ namespace ShareLabo.Infrastructure.PGSQL.Repository.Post
                     PostDateTime = dbPost.PostDateTime,
                     PostUser = UserId.Reconstruct(dbPost.PostUserId),
                     Title = PostTitle.Reconstruct(dbPost.PostTitle),
-                    PublicationGroups =
-                        dbPostPublications
-                        .Select(x => GroupId.Reconstruct(x.GroupId))
-                                .ToImmutableList()
                 });
         }
 
@@ -107,33 +98,6 @@ namespace ShareLabo.Infrastructure.PGSQL.Repository.Post
                             PostUserId = entity.PostUser.Value,
                             UpdateTimeStamp = operateInfo.OperatedDateTime,
                             UpdateUserId = operateInfo.Operator.Value,
-                        }.ToSnakeCaseDictionary(),
-                        cancellationToken: cancellationToken);
-            }
-
-            await factory.Query("post_publications")
-                .Where("post_id", entity.Identifier.Value)
-                .WhereNotIn("group_id", entity.PublicationGroups.Select(x => x.Value))
-                .DeleteAsync(cancellationToken: cancellationToken);
-
-            var currentDbPostPublications = await factory.Query("post_publications")
-                .Where("post_id", entity.Identifier.Value)
-                .GetAsync<DbPostPublication>(cancellationToken: cancellationToken);
-
-            foreach(var postPublicationGroup in entity.PublicationGroups)
-            {
-                if(currentDbPostPublications.Any(x => x.GroupId == postPublicationGroup.Value))
-                {
-                    continue;
-                }
-                await factory.Query("post_publications")
-                    .InsertAsync(
-                        new DbPostPublication()
-                        {
-                            PostId = entity.Id.Value,
-                            GroupId = postPublicationGroup.Value,
-                            InsertTimeStamp = operateInfo.OperatedDateTime,
-                            InsertUserId = operateInfo.Operator.Value,
                         }.ToSnakeCaseDictionary(),
                         cancellationToken: cancellationToken);
             }

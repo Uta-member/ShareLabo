@@ -2,7 +2,6 @@
 using MessagePack;
 using ShareLabo.Application.UseCase.CommandService.Post;
 using ShareLabo.Domain.ValueObject;
-using System.Collections.Immutable;
 
 namespace ShareLabo.Presentation.MagicOnion.Interface
 {
@@ -22,7 +21,6 @@ namespace ShareLabo.Presentation.MagicOnion.Interface
                     PostId = dto.PostId.Value,
                     PostTitle = dto.PostTitle.Value,
                     PostUserId = dto.PostUserId.Value,
-                    PublicationGroups = dto.PublicationGroups.Select(g => g.Value).ToList()
                 };
             }
 
@@ -36,7 +34,6 @@ namespace ShareLabo.Presentation.MagicOnion.Interface
                     PostId = Domain.ValueObject.PostId.Reconstruct(PostId),
                     PostTitle = Domain.ValueObject.PostTitle.Reconstruct(PostTitle),
                     PostUserId = UserId.Reconstruct(PostUserId),
-                    PublicationGroups = PublicationGroups.Select(g => GroupId.Reconstruct(g)).ToImmutableList()
                 };
             }
 
@@ -57,9 +54,6 @@ namespace ShareLabo.Presentation.MagicOnion.Interface
 
             [Key(5)]
             public required string PostUserId { get; init; }
-
-            [Key(6)]
-            public required List<string> PublicationGroups { get; init; }
         }
     }
 }

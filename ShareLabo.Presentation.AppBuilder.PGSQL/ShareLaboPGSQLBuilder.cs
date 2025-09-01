@@ -35,9 +35,9 @@ namespace ShareLabo.Presentation.AppBuilder.PGSQL
 
         private static void AddQueryServices(this IServiceCollection services)
         {
-            services.AddTransient<ISearchUserSummariesQueryService, SearchUserSummariesQueryService>();
-            services.AddTransient<IFindUserDetailByAccountIdQueryService, FindUserDetailByAccountIdQueryService>();
-            services.AddTransient<IFindUserDetailByUserIdQueryService, FindUserDetailByUserIdQueryService>();
+            services.AddTransient<IUserSummariesSearchQueryService, UserSummariesSearchQueryService>();
+            services.AddTransient<IUserDetailFindByAccountIdQueryService, UserDetailFindByAccountIdQueryService>();
+            services.AddTransient<IUserDetailFindByUserIdQueryService, UserDetailFindByUserIdQueryService>();
         }
 
         private static void AddRepositories(this IServiceCollection services)
