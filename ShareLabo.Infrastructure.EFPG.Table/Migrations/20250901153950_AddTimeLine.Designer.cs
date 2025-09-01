@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using ShareLabo.Infrastructure.EFPG.Table;
@@ -11,9 +12,11 @@ using ShareLabo.Infrastructure.EFPG.Table;
 namespace ShareLabo.Infrastructure.EFPG.Table.Migrations
 {
     [DbContext(typeof(ShareLaboDbContext))]
-    partial class ShareLaboDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250901153950_AddTimeLine")]
+    partial class AddTimeLine
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

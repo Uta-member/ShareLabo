@@ -17,6 +17,10 @@ namespace ShareLabo.Infrastructure.EFPG.Table
 
         public DbSet<DbPost> Posts { get; set; }
 
+        public DbSet<DbTimeLineFilter> TimeLineFilters { get; set; }
+
+        public DbSet<DbTimeLine> TimeLines { get; set; }
+
         public DbSet<DbUser> Users { get; set; }
     }
 }
