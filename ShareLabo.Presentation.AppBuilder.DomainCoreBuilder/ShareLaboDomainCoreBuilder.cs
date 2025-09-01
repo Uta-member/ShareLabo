@@ -21,15 +21,16 @@ namespace ShareLabo.Presentation.AppBuilder.DomainCoreBuilder
             services.AddTransient<PostAggregateService<TPostSession>>();
         }
 
-        private static void AddDomainServices<TUserSession, TGroupSession, TPostSession>(
+        private static void AddDomainServices<TUserSession, TGroupSession, TPostSession, TTimeLineSession>(
             this IServiceCollection services)
             where TUserSession : IDisposable
             where TGroupSession : IDisposable
             where TPostSession : IDisposable
+            where TTimeLineSession : IDisposable
         {
-            services.AddTransient<UserCreateDomainService<TUserSession>>();
+            services.AddTransient<UserCreateDomainService<TUserSession, TTimeLineSession>>();
             services.AddTransient<UserUpdateDomainService<TUserSession>>();
-            services.AddTransient<UserDeleteDomainService<TUserSession, TGroupSession>>();
+            services.AddTransient<UserDeleteDomainService<TUserSession, TGroupSession, TTimeLineSession>>();
 
             services.AddTransient<GroupCreateDomainService<TGroupSession, TUserSession>>();
             services.AddTransient<GroupUpdateDomainService<TGroupSession, TUserSession>>();
@@ -40,14 +41,15 @@ namespace ShareLabo.Presentation.AppBuilder.DomainCoreBuilder
             services.AddTransient<PostDeleteDomainService<TPostSession>>();
         }
 
-        public static IServiceCollection AddShareLaboDomainCore<TUserSession, TGroupSession, TPostSession>(
+        public static IServiceCollection AddShareLaboDomainCore<TUserSession, TGroupSession, TPostSession, TTimeLineSession>(
             this IServiceCollection services)
             where TUserSession : IDisposable
             where TGroupSession : IDisposable
             where TPostSession : IDisposable
+            where TTimeLineSession : IDisposable
         {
             services.AddAggregateServices<TUserSession, TGroupSession, TPostSession>();
-            services.AddDomainServices<TUserSession, TGroupSession, TPostSession>();
+            services.AddDomainServices<TUserSession, TGroupSession, TPostSession, TTimeLineSession>();
             return services;
         }
     }

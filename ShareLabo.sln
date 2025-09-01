@@ -103,6 +103,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Application.UseCa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Infrastructure.PGSQL.QueryService.Post", "ShareLabo.Infrastructure.PGSQL.QueryService.Post\ShareLabo.Infrastructure.PGSQL.QueryService.Post.csproj", "{11A3055D-0B3E-484C-80E5-57122478EB45}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Domain.Aggregate.TimeLine", "ShareLabo.Domain.Aggregate.TimeLine\ShareLabo.Domain.Aggregate.TimeLine.csproj", "{C23A654B-17DE-48B9-B4C6-532B09A11B40}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -237,6 +239,10 @@ Global
 		{11A3055D-0B3E-484C-80E5-57122478EB45}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11A3055D-0B3E-484C-80E5-57122478EB45}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11A3055D-0B3E-484C-80E5-57122478EB45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C23A654B-17DE-48B9-B4C6-532B09A11B40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C23A654B-17DE-48B9-B4C6-532B09A11B40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C23A654B-17DE-48B9-B4C6-532B09A11B40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C23A654B-17DE-48B9-B4C6-532B09A11B40}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -287,6 +293,7 @@ Global
 		{08B8D324-F708-4AD9-BDA1-F01C63B4701D} = {5F6C9CD6-800B-443A-ACDE-DE3C91BF22AF}
 		{8EE9DD96-FB76-4976-836C-D68CD2BF6E89} = {0CC6DBA6-8A62-4BA5-97F3-046778138C0E}
 		{11A3055D-0B3E-484C-80E5-57122478EB45} = {7274F359-4CCC-4754-86F7-F853271262D8}
+		{C23A654B-17DE-48B9-B4C6-532B09A11B40} = {5CE2C8E4-8859-4B84-9506-1B81762CDE26}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FF4DA580-1568-4D1C-B696-3AE5FDB023A3}

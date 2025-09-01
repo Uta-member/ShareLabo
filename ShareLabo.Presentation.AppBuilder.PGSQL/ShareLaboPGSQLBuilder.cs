@@ -49,7 +49,7 @@ namespace ShareLabo.Presentation.AppBuilder.PGSQL
 
         public static IServiceCollection AddShareLaboPGSQL(this IServiceCollection services, BuildOption option)
         {
-            services.AddShareLaboApplication<ShareLaboPGSQLTransaction, ShareLaboPGSQLTransaction, ShareLaboPGSQLTransaction, ShareLaboPGSQLTransaction>(
+            services.AddShareLaboApplication<ShareLaboPGSQLTransaction, ShareLaboPGSQLTransaction, ShareLaboPGSQLTransaction, ShareLaboPGSQLTransaction, ShareLaboPGSQLTransaction>(
                 );
             services.AddPGSQL(option.ShareLaboPGSQLConnectionString);
             services.AddRepositories();
