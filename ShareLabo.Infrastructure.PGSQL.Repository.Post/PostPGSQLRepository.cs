@@ -23,9 +23,6 @@ namespace ShareLabo.Infrastructure.PGSQL.Repository.Post
             await factory.Query("posts")
                 .Where("post_id", entity.Id.Value)
                 .DeleteAsync(cancellationToken: cancellationToken);
-            await factory.Query("post_publications")
-                .Where("post_id", entity.Id.Value)
-                .DeleteAsync(cancellationToken: cancellationToken);
         }
 
         public async ValueTask<Optional<PostEntity>> FindByIdentifierAsync(

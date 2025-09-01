@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using ShareLabo.Domain.Aggregate.Group;
 using ShareLabo.Domain.Aggregate.Post;
+using ShareLabo.Domain.Aggregate.TimeLine;
 using ShareLabo.Domain.Aggregate.User;
 using ShareLabo.Domain.DomainService.Group;
 using ShareLabo.Domain.DomainService.Post;
@@ -10,15 +11,17 @@ namespace ShareLabo.Presentation.AppBuilder.DomainCoreBuilder
 {
     public static class ShareLaboDomainCoreBuilder
     {
-        private static void AddAggregateServices<TUserSession, TGroupSession, TPostSession>(
+        private static void AddAggregateServices<TUserSession, TGroupSession, TPostSession, TTimeLineSession>(
             this IServiceCollection services)
             where TUserSession : IDisposable
             where TGroupSession : IDisposable
             where TPostSession : IDisposable
+            where TTimeLineSession : IDisposable
         {
             services.AddTransient<UserAggregateService<TUserSession>>();
             services.AddTransient<GroupAggregateService<TGroupSession>>();
             services.AddTransient<PostAggregateService<TPostSession>>();
+            services.AddTransient<TimeLineAggregateService<TTimeLineSession>>();
         }
 
         private static void AddDomainServices<TUserSession, TGroupSession, TPostSession, TTimeLineSession>(
@@ -48,7 +51,7 @@ namespace ShareLabo.Presentation.AppBuilder.DomainCoreBuilder
             where TPostSession : IDisposable
             where TTimeLineSession : IDisposable
         {
-            services.AddAggregateServices<TUserSession, TGroupSession, TPostSession>();
+            services.AddAggregateServices<TUserSession, TGroupSession, TPostSession, TTimeLineSession>();
             services.AddDomainServices<TUserSession, TGroupSession, TPostSession, TTimeLineSession>();
             return services;
         }

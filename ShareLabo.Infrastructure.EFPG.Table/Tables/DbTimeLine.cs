@@ -5,6 +5,11 @@ namespace ShareLabo.Infrastructure.EFPG.Table
 {
     public sealed class DbTimeLine : TableBase
     {
+        [Comment("所有ユーザID")]
+        [Required]
+        [MinLength(1)]
+        public required string OwnerId { get; set; }
+
         [Comment("タイムラインID")]
         [Required]
         [MinLength(1)]

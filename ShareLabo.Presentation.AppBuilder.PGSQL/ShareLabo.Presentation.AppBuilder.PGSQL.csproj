@@ -12,6 +12,7 @@
     <ProjectReference Include="..\ShareLabo.Infrastructure.PGSQL.QueryService.User\ShareLabo.Infrastructure.PGSQL.QueryService.User.csproj" />
     <ProjectReference Include="..\ShareLabo.Infrastructure.PGSQL.Repository.Group\ShareLabo.Infrastructure.PGSQL.Repository.Group.csproj" />
     <ProjectReference Include="..\ShareLabo.Infrastructure.PGSQL.Repository.Post\ShareLabo.Infrastructure.PGSQL.Repository.Post.csproj" />
+    <ProjectReference Include="..\ShareLabo.Infrastructure.PGSQL.Repository.TimeLine\ShareLabo.Infrastructure.PGSQL.Repository.TimeLine.csproj" />
     <ProjectReference Include="..\ShareLabo.Infrastructure.PGSQL.Repository.User\ShareLabo.Infrastructure.PGSQL.Repository.User.csproj" />
     <ProjectReference Include="..\ShareLabo.Presentation.AppBuilder.Application\ShareLabo.Presentation.AppBuilder.Application.csproj" />
   </ItemGroup>
