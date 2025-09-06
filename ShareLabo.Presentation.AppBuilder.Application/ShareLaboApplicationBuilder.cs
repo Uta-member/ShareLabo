@@ -28,7 +28,7 @@ namespace ShareLabo.Presentation.AppBuilder.Application
             where TAuthSession : IDisposable
             where TTimeLineSession : IDisposable
         {
-            services.AddTransient<ISelfAuthUserCreateCommandService, SelfAuthUserCreateCommandService<TUserSession, TAuthSession, TTimeLineSession>>(
+            services.AddTransient<ISelfAuthUserCreateCommandService, SelfAuthUserCreateCommandService<TUserSession, TAuthSession>>(
                 );
             services.AddTransient<IUserDeleteCommandService, UserDeleteCommandService<TUserSession, TGroupSession, TAuthSession, TTimeLineSession>>(
                 );

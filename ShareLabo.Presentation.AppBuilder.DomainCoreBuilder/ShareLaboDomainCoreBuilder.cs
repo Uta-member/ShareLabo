@@ -31,7 +31,7 @@ namespace ShareLabo.Presentation.AppBuilder.DomainCoreBuilder
             where TPostSession : IDisposable
             where TTimeLineSession : IDisposable
         {
-            services.AddTransient<UserCreateDomainService<TUserSession, TTimeLineSession>>();
+            services.AddTransient<UserCreateDomainService<TUserSession>>();
             services.AddTransient<UserUpdateDomainService<TUserSession>>();
             services.AddTransient<UserDeleteDomainService<TUserSession, TGroupSession, TTimeLineSession>>();
 

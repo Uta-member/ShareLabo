@@ -4,19 +4,18 @@ using ShareLabo.Domain.DomainService.User;
 
 namespace ShareLabo.Application.UseCase.CommandService.User
 {
-    public sealed class SelfAuthUserCreateCommandService<TUserSession, TAuthSession, TTimeLineSession>
+    public sealed class SelfAuthUserCreateCommandService<TUserSession, TAuthSession>
         : ISelfAuthUserCreateCommandService
         where TUserSession : IDisposable
         where TAuthSession : IDisposable
-        where TTimeLineSession : IDisposable
     {
         private readonly ITransactionManager _transactionManager;
         private readonly UserAccountCreateService<TAuthSession> _userAccountCreateService;
-        private readonly UserCreateDomainService<TUserSession, TTimeLineSession> _userCreateDomainService;
+        private readonly UserCreateDomainService<TUserSession> _userCreateDomainService;
 
         public SelfAuthUserCreateCommandService(
             ITransactionManager transactionManager,
-            UserCreateDomainService<TUserSession, TTimeLineSession> userCreateDomainService,
+            UserCreateDomainService<TUserSession> userCreateDomainService,
             UserAccountCreateService<TAuthSession> userAccountCreateService)
         {
             _transactionManager = transactionManager;
@@ -29,18 +28,17 @@ namespace ShareLabo.Application.UseCase.CommandService.User
             CancellationToken cancellationToken = default)
         {
             await _transactionManager.ExecuteTransactionAsync(
-                [typeof(TUserSession), typeof(TAuthSession), typeof(TTimeLineSession)],
+                [typeof(TUserSession), typeof(TAuthSession)],
                 async sessions =>
                 {
                     await _userCreateDomainService.ExecuteAsync(
-                        new UserCreateDomainService<TUserSession, TTimeLineSession>.Req()
+                        new UserCreateDomainService<TUserSession>.Req()
                         {
                             UserAccountId = req.UserAccountId,
                             OperateInfo = req.OperateInfo,
                             UserId = req.UserId,
                             UserName = req.UserName,
                             UserSession = sessions.GetSession<TUserSession>(),
-                            TimeLineSession = sessions.GetSession<TTimeLineSession>(),
                         },
                         cancellationToken);
 
