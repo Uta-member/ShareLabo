@@ -2,8 +2,10 @@
 using Grpc.Net.Client;
 using Grpc.Net.Client.Web;
 using Microsoft.Extensions.DependencyInjection;
+using ShareLabo.Application.UseCase.CommandService.Follow;
 using ShareLabo.Application.UseCase.CommandService.Post;
 using ShareLabo.Application.UseCase.CommandService.User;
+using ShareLabo.Application.UseCase.CommanService.TimeLine;
 using ShareLabo.Application.UseCase.QueryService.Post;
 using ShareLabo.Application.UseCase.QueryService.User;
 using ShareLabo.Presentation.MagicOnion.Client;
@@ -24,6 +26,13 @@ namespace ShareLabo.Presentation.AppBuilder.MagicOnion.Client
             services.AddTransient<IPostCreateCommandService, MOPostCreateCommandServiceClient>();
             services.AddTransient<IPostUpdateCommandService, MOPostUpdateCommandServiceClient>();
             services.AddTransient<IPostDeleteCommandService, MOPostDeleteCommandServiceClient>();
+
+            services.AddTransient<IFollowCreateCommandService, MOFollowCreateCommandServiceClient>();
+            services.AddTransient<IFollowDeleteCommandService, MOFollowDeleteCommandServiceClient>();
+
+            services.AddTransient<ITimeLineCreateCommandService, MOTimeLineCreateCommandServiceClient>();
+            services.AddTransient<ITimeLineUpdateCommandService, MOTimeLineUpdateCommandServiceClient>();
+            services.AddTransient<ITimeLineDeleteCommandService, MOTimeLineDeleteCommandServiceClient>();
         }
 
         private static void AddGrpcChannel(this IServiceCollection services, string hostUrl, bool isGrpcWeb)

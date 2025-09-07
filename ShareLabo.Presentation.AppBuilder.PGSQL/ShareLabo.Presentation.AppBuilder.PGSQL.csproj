@@ -10,6 +10,7 @@
     <ProjectReference Include="..\ShareLabo.Infrastructure.PGSQL.Application.Authentication\ShareLabo.Infrastructure.PGSQL.Application.Authentication.csproj" />
     <ProjectReference Include="..\ShareLabo.Infrastructure.PGSQL.QueryService.Post\ShareLabo.Infrastructure.PGSQL.QueryService.Post.csproj" />
     <ProjectReference Include="..\ShareLabo.Infrastructure.PGSQL.QueryService.User\ShareLabo.Infrastructure.PGSQL.QueryService.User.csproj" />
+    <ProjectReference Include="..\ShareLabo.Infrastructure.PGSQL.Repository.Follow\ShareLabo.Infrastructure.PGSQL.Repository.Follow.csproj" />
     <ProjectReference Include="..\ShareLabo.Infrastructure.PGSQL.Repository.Group\ShareLabo.Infrastructure.PGSQL.Repository.Group.csproj" />
     <ProjectReference Include="..\ShareLabo.Infrastructure.PGSQL.Repository.Post\ShareLabo.Infrastructure.PGSQL.Repository.Post.csproj" />
     <ProjectReference Include="..\ShareLabo.Infrastructure.PGSQL.Repository.TimeLine\ShareLabo.Infrastructure.PGSQL.Repository.TimeLine.csproj" />

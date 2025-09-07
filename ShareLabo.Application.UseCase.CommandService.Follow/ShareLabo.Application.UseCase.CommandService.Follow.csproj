@@ -7,8 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ShareLabo.Domain.Aggregate.Follow\ShareLabo.Domain.Aggregate.Follow.csproj" />
-    <ProjectReference Include="..\ShareLabo.Domain.Aggregate.User\ShareLabo.Domain.Aggregate.User.csproj" />
+    <ProjectReference Include="..\ShareLabo.Domain.DomeinService.Follow\ShareLabo.Domain.DomeinService.Follow.csproj" />
   </ItemGroup>
 
 </Project>

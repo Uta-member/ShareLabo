@@ -7,12 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ShareLabo.Domain.Aggregate.Follow\ShareLabo.Domain.Aggregate.Follow.csproj" />
     <ProjectReference Include="..\ShareLabo.Domain.Aggregate.Group\ShareLabo.Domain.Aggregate.Group.csproj" />
     <ProjectReference Include="..\ShareLabo.Domain.Aggregate.Post\ShareLabo.Domain.Aggregate.Post.csproj" />
+    <ProjectReference Include="..\ShareLabo.Domain.Aggregate.TimeLine\ShareLabo.Domain.Aggregate.TimeLine.csproj" />
     <ProjectReference Include="..\ShareLabo.Domain.Aggregate.User\ShareLabo.Domain.Aggregate.User.csproj" />
     <ProjectReference Include="..\ShareLabo.Domain.DomainService.Group\ShareLabo.Domain.DomainService.Group.csproj" />
     <ProjectReference Include="..\ShareLabo.Domain.DomainService.Post\ShareLabo.Domain.DomainService.Post.csproj" />
+    <ProjectReference Include="..\ShareLabo.Domain.DomainService.TimeLine\ShareLabo.Domain.DomainService.TimeLine.csproj" />
     <ProjectReference Include="..\ShareLabo.Domain.DomainService.User\ShareLabo.Domain.DomainService.User.csproj" />
+    <ProjectReference Include="..\ShareLabo.Domain.DomeinService.Follow\ShareLabo.Domain.DomeinService.Follow.csproj" />
   </ItemGroup>
 
 </Project>

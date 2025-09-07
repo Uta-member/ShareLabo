@@ -1,8 +1,10 @@
 ﻿using CSStack.TADA;
 using Microsoft.Extensions.DependencyInjection;
 using ShareLabo.Application.Authentication;
+using ShareLabo.Application.UseCase.CommandService.Follow;
 using ShareLabo.Application.UseCase.CommandService.Post;
 using ShareLabo.Application.UseCase.CommandService.User;
+using ShareLabo.Application.UseCase.CommanService.TimeLine;
 using ShareLabo.Presentation.AppBuilder.DomainCoreBuilder;
 
 namespace ShareLabo.Presentation.AppBuilder.Application
@@ -46,6 +48,16 @@ namespace ShareLabo.Presentation.AppBuilder.Application
                 );
             services.AddTransient<IPostUpdateCommandService, PostUpdateCommandService<TPostSession>>();
             services.AddTransient<IPostDeleteCommandService, PostDeleteCommandService<TPostSession>>();
+
+            services.AddTransient<IFollowCreateCommandService, FollowCreateCommandService<TFollowSession, TUserSession>>(
+                );
+            services.AddTransient<IFollowDeleteCommandService, FollowDeleteCommandService<TFollowSession>>();
+
+            services.AddTransient<ITimeLineCreateCommandService, TimeLineCreateCommandService<TTimeLineSession, TUserSession>>(
+                );
+            services.AddTransient<ITimeLineUpdateCommandService, TimeLineUpdateCommandService<TTimeLineSession, TUserSession>>(
+                );
+            services.AddTransient<ITimeLineDeleteCommandService, TimeLineDeleteCommandService<TTimeLineSession>>();
         }
 
         public static IServiceCollection AddShareLaboApplication<TUserSession,

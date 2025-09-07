@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using ShareLabo.Application.Authentication;
 using ShareLabo.Application.UseCase.QueryService.Post;
 using ShareLabo.Application.UseCase.QueryService.User;
+using ShareLabo.Domain.Aggregate.Follow;
 using ShareLabo.Domain.Aggregate.Group;
 using ShareLabo.Domain.Aggregate.Post;
 using ShareLabo.Domain.Aggregate.TimeLine;
@@ -12,6 +13,7 @@ using ShareLabo.Domain.Aggregate.User;
 using ShareLabo.Infrastructure.PGSQL.Application.Authentication;
 using ShareLabo.Infrastructure.PGSQL.QueryService.Post;
 using ShareLabo.Infrastructure.PGSQL.QueryService.User;
+using ShareLabo.Infrastructure.PGSQL.Repository.Follow;
 using ShareLabo.Infrastructure.PGSQL.Repository.Group;
 using ShareLabo.Infrastructure.PGSQL.Repository.Post;
 using ShareLabo.Infrastructure.PGSQL.Repository.TimeLine;
@@ -60,6 +62,7 @@ namespace ShareLabo.Presentation.AppBuilder.PGSQL
             services.AddTransient<IUserRepository<ShareLaboPGSQLTransaction>, UserPGSQLRepository>();
             services.AddTransient<IGroupRepository<ShareLaboPGSQLTransaction>, GroupPGSQLRepository>();
             services.AddTransient<IPostRepository<ShareLaboPGSQLTransaction>, PostPGSQLRepository>();
+            services.AddTransient<IFollowRepository<ShareLaboPGSQLTransaction>, FollowPGSQLRepository>();
             services.AddTransient<ITimeLineRepository<ShareLaboPGSQLTransaction>, TimeLinePGSQLRepository>();
         }
 
