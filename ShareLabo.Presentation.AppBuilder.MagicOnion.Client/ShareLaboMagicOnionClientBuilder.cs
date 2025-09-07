@@ -22,6 +22,8 @@ namespace ShareLabo.Presentation.AppBuilder.MagicOnion.Client
             services.AddTransient<ISelfAuthUserLoginCommandService, MOSelfAuthUserLoginCommandServiceClient>();
 
             services.AddTransient<IPostCreateCommandService, MOPostCreateCommandServiceClient>();
+            services.AddTransient<IPostUpdateCommandService, MOPostUpdateCommandServiceClient>();
+            services.AddTransient<IPostDeleteCommandService, MOPostDeleteCommandServiceClient>();
         }
 
         private static void AddGrpcChannel(this IServiceCollection services, string hostUrl, bool isGrpcWeb)

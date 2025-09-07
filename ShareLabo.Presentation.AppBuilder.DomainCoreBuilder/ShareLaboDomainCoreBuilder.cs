@@ -45,7 +45,7 @@ namespace ShareLabo.Presentation.AppBuilder.DomainCoreBuilder
             services.AddTransient<GroupDeleteDomainService<TGroupSession>>();
 
             services.AddTransient<PostCreateDomainService<TPostSession, TUserSession, TGroupSession>>();
-            services.AddTransient<PostUpdateDomainService<TPostSession, TGroupSession>>();
+            services.AddTransient<PostUpdateDomainService<TPostSession>>();
             services.AddTransient<PostDeleteDomainService<TPostSession>>();
         }
 

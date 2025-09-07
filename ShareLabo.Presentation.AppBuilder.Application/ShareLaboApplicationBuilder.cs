@@ -44,6 +44,8 @@ namespace ShareLabo.Presentation.AppBuilder.Application
 
             services.AddTransient<IPostCreateCommandService, PostCreateCommandService<TPostSession, TUserSession, TGroupSession>>(
                 );
+            services.AddTransient<IPostUpdateCommandService, PostUpdateCommandService<TPostSession>>();
+            services.AddTransient<IPostDeleteCommandService, PostDeleteCommandService<TPostSession>>();
         }
 
         public static IServiceCollection AddShareLaboApplication<TUserSession,

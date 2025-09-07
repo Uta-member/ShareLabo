@@ -1,25 +1,20 @@
 ﻿using CSStack.TADA;
-using ShareLabo.Domain.Aggregate.Group;
 using ShareLabo.Domain.Aggregate.Post;
 using ShareLabo.Domain.Aggregate.Toolkit;
 using ShareLabo.Domain.ValueObject;
 
 namespace ShareLabo.Domain.DomainService.Post
 {
-    public sealed class PostUpdateDomainService<TPostSession, TGroupSession>
-        : IDomainService<PostUpdateDomainService<TPostSession, TGroupSession>.Req>
+    public sealed class PostUpdateDomainService<TPostSession>
+        : IDomainService<PostUpdateDomainService<TPostSession>.Req>
         where TPostSession : IDisposable
-        where TGroupSession : IDisposable
     {
-        private readonly GroupAggregateService<TGroupSession> _groupAggregateService;
         private readonly PostAggregateService<TPostSession> _postAggregateService;
 
         public PostUpdateDomainService(
-            PostAggregateService<TPostSession> postAggregateService,
-            GroupAggregateService<TGroupSession> groupAggregateService)
+            PostAggregateService<TPostSession> postAggregateService)
         {
             _postAggregateService = postAggregateService;
-            _groupAggregateService = groupAggregateService;
         }
 
         public async ValueTask ExecuteAsync(Req req, CancellationToken cancellationToken = default)
@@ -42,8 +37,6 @@ namespace ShareLabo.Domain.DomainService.Post
 
         public sealed record Req : IDomainServiceDTO
         {
-            public required TGroupSession GroupSession { get; init; }
-
             public required OperateInfo OperateInfo { get; init; }
 
             public required Optional<PostContent> PostContentOptional { get; init; }
