@@ -50,6 +50,35 @@ namespace ShareLabo.Infrastructure.PGSQL.Repository.Post
                     PostDateTime = dbPost.PostDateTime,
                     PostUser = UserId.Reconstruct(dbPost.PostUserId),
                     Title = PostTitle.Reconstruct(dbPost.PostTitle),
+                    SequenceId = dbPost.SequenceId,
+                });
+        }
+
+        public async ValueTask<Optional<PostEntity>> FindLatestPostAsync(
+            ShareLaboPGSQLTransaction session,
+            CancellationToken cancellationToken = default)
+        {
+            var connection = session.Transaction.Connection;
+            var factory = new QueryFactory(connection, new PostgresCompiler());
+
+            var dbPost = await factory.Query("posts")
+                .OrderBy("sequence_id desc")
+                .FirstOrDefaultAsync<DbPost>(cancellationToken: cancellationToken);
+
+            if(dbPost == null)
+            {
+                return Optional<PostEntity>.Empty;
+            }
+
+            return PostEntity.Reconstruct(
+                new PostEntity.ReconstructCommand()
+                {
+                    Content = PostContent.Reconstruct(dbPost.PostContent),
+                    Id = PostId.Reconstruct(dbPost.PostId),
+                    PostDateTime = dbPost.PostDateTime,
+                    PostUser = UserId.Reconstruct(dbPost.PostUserId),
+                    Title = PostTitle.Reconstruct(dbPost.PostTitle),
+                    SequenceId = dbPost.SequenceId,
                 });
         }
 
@@ -79,6 +108,7 @@ namespace ShareLabo.Infrastructure.PGSQL.Repository.Post
                             PostId = entity.Id.Value,
                             PostTitle = entity.Title.Value,
                             PostUserId = entity.PostUser.Value,
+                            SequenceId = entity.SequenceId,
                         }.ToSnakeCaseDictionary(),
                         cancellationToken: cancellationToken);
             }
@@ -87,7 +117,7 @@ namespace ShareLabo.Infrastructure.PGSQL.Repository.Post
                 await factory.Query("posts")
                     .Where("post_id", entity.Identifier.Value)
                     .UpdateAsync(
-                        new
+                        new DbPost()
                         {
                             PostContent = entity.Content.Value,
                             PostDateTime = entity.PostDateTime,
@@ -95,6 +125,10 @@ namespace ShareLabo.Infrastructure.PGSQL.Repository.Post
                             PostUserId = entity.PostUser.Value,
                             UpdateTimeStamp = operateInfo.OperatedDateTime,
                             UpdateUserId = operateInfo.Operator.Value,
+                            SequenceId = entity.SequenceId,
+                            PostId = dbPost.PostId,
+                            InsertTimeStamp = dbPost.InsertTimeStamp,
+                            InsertUserId = dbPost.InsertUserId,
                         }.ToSnakeCaseDictionary(),
                         cancellationToken: cancellationToken);
             }

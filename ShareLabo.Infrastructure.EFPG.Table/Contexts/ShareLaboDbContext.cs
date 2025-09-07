@@ -11,6 +11,8 @@ namespace ShareLabo.Infrastructure.EFPG.Table
 
         public DbSet<DbAccount> Accounts { get; set; }
 
+        public DbSet<DbFollow> Follows { get; set; }
+
         public DbSet<DbGroupMember> GroupMembers { get; set; }
 
         public DbSet<DbGroup> Groups { get; set; }

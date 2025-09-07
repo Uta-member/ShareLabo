@@ -1,1 +1,15 @@
 ﻿@inherits ShareLaboComponentBase
+
+<div class="card">
+    <div class="card-body">
+        <div class="card-title">@Post.Title</div>
+        <div class="d-flex flex-row justify-content-between align-items-center">
+            <div>
+                @Post.PostUser.PostUserName
+            </div>
+            <div>
+                @Post.PostDateTime.ToString("yyyy/MM/dd HH:mm")
+            </div>
+        </div>
+    </div>
+</div>

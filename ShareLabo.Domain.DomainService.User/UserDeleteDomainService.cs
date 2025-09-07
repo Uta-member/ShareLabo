@@ -1,4 +1,5 @@
 ﻿using CSStack.TADA;
+using ShareLabo.Domain.Aggregate.Follow;
 using ShareLabo.Domain.Aggregate.Group;
 using ShareLabo.Domain.Aggregate.TimeLine;
 using ShareLabo.Domain.Aggregate.Toolkit;
@@ -7,12 +8,14 @@ using ShareLabo.Domain.ValueObject;
 
 namespace ShareLabo.Domain.DomainService.User
 {
-    public sealed class UserDeleteDomainService<TUserSession, TGroupSession, TTimeLineSession>
-        : IDomainService<UserDeleteDomainService<TUserSession, TGroupSession, TTimeLineSession>.Req>
+    public sealed class UserDeleteDomainService<TUserSession, TGroupSession, TTimeLineSession, TFollowSession>
+        : IDomainService<UserDeleteDomainService<TUserSession, TGroupSession, TTimeLineSession, TFollowSession>.Req>
         where TUserSession : IDisposable
         where TGroupSession : IDisposable
         where TTimeLineSession : IDisposable
+        where TFollowSession : IDisposable
     {
+        private readonly FollowAggregateService<TFollowSession> _followAggregateService;
         private readonly GroupAggregateService<TGroupSession> _groupAggregateService;
         private readonly TimeLineAggregateService<TTimeLineSession> _timeLineAggregateService;
         private readonly UserAggregateService<TUserSession> _userAggregateService;
@@ -20,11 +23,13 @@ namespace ShareLabo.Domain.DomainService.User
         public UserDeleteDomainService(
             UserAggregateService<TUserSession> userAggregateService,
             GroupAggregateService<TGroupSession> groupAggregateService,
-            TimeLineAggregateService<TTimeLineSession> timeLineAggregateService)
+            TimeLineAggregateService<TTimeLineSession> timeLineAggregateService,
+            FollowAggregateService<TFollowSession> followAggregateService)
         {
             _userAggregateService = userAggregateService;
             _groupAggregateService = groupAggregateService;
             _timeLineAggregateService = timeLineAggregateService;
+            _followAggregateService = followAggregateService;
         }
 
         public async ValueTask ExecuteAsync(Req req, CancellationToken cancellationToken = default)
@@ -52,10 +57,29 @@ namespace ShareLabo.Domain.DomainService.User
                     Session = req.TimeLineSession,
                 },
                 cancellationToken);
+
+            var targetFollows = await _followAggregateService.FindByFollowingUserIdAsync(
+                req.FollowSession,
+                req.TargetId,
+                cancellationToken);
+
+            foreach(var targetFollow in targetFollows)
+            {
+                await _followAggregateService.DeleteAsync(
+                    new FollowAggregateService<TFollowSession>.DeleteReq()
+                    {
+                        FollowId = targetFollow.Identifier,
+                        OperateInfo = req.OperateInfo,
+                        Session = req.FollowSession,
+                    },
+                    cancellationToken);
+            }
         }
 
         public sealed record Req : IDomainServiceDTO
         {
+            public required TFollowSession FollowSession { get; init; }
+
             public required TGroupSession GroupSession { get; init; }
 
             public required OperateInfo OperateInfo { get; init; }

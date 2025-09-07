@@ -8,6 +8,8 @@
 
         public required string PostId { get; init; }
 
+        public required long PostSequenceId { get; init; }
+
         public required PostUserReadModel PostUser { get; init; }
 
         public required string Title { get; init; }

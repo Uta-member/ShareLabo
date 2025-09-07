@@ -28,5 +28,9 @@ namespace ShareLabo.Infrastructure.EFPG.Table
         [Required]
         [MinLength(1)]
         public required string PostUserId { get; set; }
+
+        [Comment("連番ID")]
+        [Required]
+        public required long SequenceId { get; set; }
     }
 }

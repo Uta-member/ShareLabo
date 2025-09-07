@@ -3,19 +3,21 @@ using System.Collections.Immutable;
 
 namespace ShareLabo.Application.UseCase.QueryService.Post
 {
-    public interface IPostSummariesSearchQueryService
-        : IQueryService<IPostSummariesSearchQueryService.Req, IPostSummariesSearchQueryService.Res>
+    public interface IFollowedPostsGetQueryService
+        : IQueryService<IFollowedPostsGetQueryService.Req, IFollowedPostsGetQueryService.Res>
     {
-        public sealed record Req : IQueryServiceDTO
+        sealed record Req : IQueryServiceDTO
         {
             public required int Length { get; init; }
 
-            public string? StartPostId { get; init; }
+            public long? StartPostSequenceId { get; init; }
 
             public bool ToBefore { get; init; } = true;
+
+            public required string UserId { get; init; }
         }
 
-        public sealed record Res : IQueryServiceDTO
+        sealed record Res : IQueryServiceDTO
         {
             public required ImmutableList<PostSummaryReadModel> PostSummaries { get; init; }
         }

@@ -15,7 +15,14 @@ namespace ShareLabo.Domain.Aggregate.Post
 
         public async ValueTask CreateAsync(CreateReq req, CancellationToken cancellationToken = default)
         {
-            var entity = PostEntity.Create(req.Command);
+            var latestPostEntityOptional = await Repository.FindLatestPostAsync(
+                req.Session,
+                cancellationToken);
+
+            var entity = PostEntity.Create(
+                req.Command,
+                latestPostEntityOptional.TryGetValue(out var latestPostEntity) ? latestPostEntity.SequenceId + 1 : 1);
+
             var targetEntityOptional = await Repository.FindByIdentifierAsync(
                 req.Session,
                 entity.Identifier,
@@ -42,15 +49,22 @@ namespace ShareLabo.Domain.Aggregate.Post
 
         public async ValueTask UpdateAsync(UpdateReq req, CancellationToken cancellationToken = default)
         {
+            var latestPostEntityOptional = await Repository.FindLatestPostAsync(
+                req.Session,
+                cancellationToken);
+
             var targetEntityOptional = await Repository.FindByIdentifierAsync(
                 req.Session,
                 req.TargetId,
                 cancellationToken);
+
             if(!targetEntityOptional.TryGetValue(out var targetEntity))
             {
                 throw new ObjectNotFoundException();
             }
-            targetEntity = targetEntity.Update(req.Command);
+            targetEntity = targetEntity.Update(
+                req.Command,
+                latestPostEntityOptional.TryGetValue(out var latestPostEntity) ? latestPostEntity.SequenceId + 1 : 1);
             await Repository.SaveAsync(req.Session, targetEntity, req.OperateInfo, cancellationToken);
         }
 

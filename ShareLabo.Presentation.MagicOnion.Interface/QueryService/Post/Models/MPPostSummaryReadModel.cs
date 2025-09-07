@@ -5,55 +5,45 @@ using ShareLabo.Application.UseCase.QueryService.Post;
 namespace ShareLabo.Presentation.MagicOnion.Interface
 {
     [MessagePackObject]
-    public sealed record MPPostDetailReadModel : IMPDTO<PostDetailReadModel, MPPostDetailReadModel>
+    public sealed record MPPostSummaryReadModel : IMPDTO<PostSummaryReadModel, MPPostSummaryReadModel>
     {
-        public static MPPostDetailReadModel FromDTO(PostDetailReadModel dto)
+        public static MPPostSummaryReadModel FromDTO(PostSummaryReadModel dto)
         {
-            return new MPPostDetailReadModel()
+            return new MPPostSummaryReadModel()
             {
-                Content = dto.Content,
                 PostDateTime = dto.PostDateTime,
                 PostId = dto.PostId,
-                PostUser = MPPostUserReadModel.FromDTO(dto.PostUser),
+                PostUser = dto.PostUser,
                 Title = dto.Title,
-                UpdateTimeStamp = dto.UpdateTimeStamp,
                 PostSequenceId = dto.PostSequenceId,
             };
         }
 
-        public PostDetailReadModel ToDTO()
+        public PostSummaryReadModel ToDTO()
         {
-            return new PostDetailReadModel()
+            return new PostSummaryReadModel()
             {
-                Content = Content,
                 PostDateTime = PostDateTime,
                 PostId = PostId,
-                PostUser = PostUser.ToDTO(),
+                PostUser = PostUser,
                 Title = Title,
-                UpdateTimeStamp = UpdateTimeStamp,
                 PostSequenceId = PostSequenceId,
             };
         }
 
         [Key(0)]
-        public required string Content { get; init; }
-
-        [Key(1)]
         public required DateTime PostDateTime { get; init; }
 
-        [Key(2)]
+        [Key(1)]
         public required string PostId { get; init; }
 
-        [Key(6)]
+        [Key(4)]
         public required long PostSequenceId { get; init; }
 
+        [Key(2)]
+        public required PostUserReadModel PostUser { get; init; }
+
         [Key(3)]
-        public required MPPostUserReadModel PostUser { get; init; }
-
-        [Key(4)]
         public required string Title { get; init; }
-
-        [Key(5)]
-        public required DateTime UpdateTimeStamp { get; init; }
     }
 }

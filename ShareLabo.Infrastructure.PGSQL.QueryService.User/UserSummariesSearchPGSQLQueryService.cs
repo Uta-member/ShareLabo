@@ -8,11 +8,11 @@ using System.Collections.Immutable;
 
 namespace ShareLabo.Infrastructure.PGSQL.QueryService.User
 {
-    public sealed class UserSummariesSearchQueryService : IUserSummariesSearchQueryService
+    public sealed class UserSummariesSearchPGSQLQueryService : IUserSummariesSearchQueryService
     {
         private readonly ShareLaboPGSQLConnectionFactory _connectionFactory;
 
-        public UserSummariesSearchQueryService(ShareLaboPGSQLConnectionFactory connectionFactory)
+        public UserSummariesSearchPGSQLQueryService(ShareLaboPGSQLConnectionFactory connectionFactory)
         {
             _connectionFactory = connectionFactory;
         }

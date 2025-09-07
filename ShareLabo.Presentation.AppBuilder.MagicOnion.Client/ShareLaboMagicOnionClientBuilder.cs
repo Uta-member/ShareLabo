@@ -50,7 +50,11 @@ namespace ShareLabo.Presentation.AppBuilder.MagicOnion.Client
                 );
             services.AddTransient<IUserDetailFindByUserIdQueryService, MOUserDetailFindByUserIdQueryServiceClient>();
 
+            services.AddTransient<IGeneralPostsGetQueryService, MOGeneralPostsGetQueryServiceClient>();
             services.AddTransient<IPostDetailFindByIdQueryService, MOPostDetailFindByIdQueryServiceClient>();
+            services.AddTransient<IFollowedPostsGetQueryService, MOFollowedPostsGetQueryServiceClient>();
+            services.AddTransient<IMyPostsGetQueryService, MOMyPostsGetQueryServiceClient>();
+            services.AddTransient<ITimeLinePostsGetQueryService, MOTimeLinePostsGetQueryServiceClient>();
         }
 
         public static IServiceCollection AddShareLaboMagicOnionClient(

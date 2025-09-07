@@ -24,16 +24,21 @@ namespace ShareLabo.Presentation.AppBuilder.DomainCoreBuilder
             services.AddTransient<TimeLineAggregateService<TTimeLineSession>>();
         }
 
-        private static void AddDomainServices<TUserSession, TGroupSession, TPostSession, TTimeLineSession>(
-            this IServiceCollection services)
+        private static void AddDomainServices<TUserSession,
+            TGroupSession,
+            TPostSession,
+            TTimeLineSession,
+            TFollowSession>(this IServiceCollection services)
             where TUserSession : IDisposable
             where TGroupSession : IDisposable
             where TPostSession : IDisposable
             where TTimeLineSession : IDisposable
+            where TFollowSession : IDisposable
         {
             services.AddTransient<UserCreateDomainService<TUserSession>>();
             services.AddTransient<UserUpdateDomainService<TUserSession>>();
-            services.AddTransient<UserDeleteDomainService<TUserSession, TGroupSession, TTimeLineSession>>();
+            services.AddTransient<UserDeleteDomainService<TUserSession, TGroupSession, TTimeLineSession, TFollowSession>>(
+                );
 
             services.AddTransient<GroupCreateDomainService<TGroupSession, TUserSession>>();
             services.AddTransient<GroupUpdateDomainService<TGroupSession, TUserSession>>();
@@ -44,15 +49,19 @@ namespace ShareLabo.Presentation.AppBuilder.DomainCoreBuilder
             services.AddTransient<PostDeleteDomainService<TPostSession>>();
         }
 
-        public static IServiceCollection AddShareLaboDomainCore<TUserSession, TGroupSession, TPostSession, TTimeLineSession>(
-            this IServiceCollection services)
+        public static IServiceCollection AddShareLaboDomainCore<TUserSession,
+            TGroupSession,
+            TPostSession,
+            TTimeLineSession,
+            TFollowSession>(this IServiceCollection services)
             where TUserSession : IDisposable
             where TGroupSession : IDisposable
             where TPostSession : IDisposable
             where TTimeLineSession : IDisposable
+            where TFollowSession : IDisposable
         {
             services.AddAggregateServices<TUserSession, TGroupSession, TPostSession, TTimeLineSession>();
-            services.AddDomainServices<TUserSession, TGroupSession, TPostSession, TTimeLineSession>();
+            services.AddDomainServices<TUserSession, TGroupSession, TPostSession, TTimeLineSession, TFollowSession>();
             return services;
         }
     }

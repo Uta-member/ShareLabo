@@ -9,11 +9,11 @@ using SqlKata.Execution;
 
 namespace ShareLabo.Infrastructure.PGSQL.QueryService.User
 {
-    public sealed class UserDetailFindByAccountIdQueryService : IUserDetailFindByAccountIdQueryService
+    public sealed class UserDetailFindByAccountIdPGSQLQueryService : IUserDetailFindByAccountIdQueryService
     {
         private readonly ShareLaboPGSQLConnectionFactory _connectionFactory;
 
-        public UserDetailFindByAccountIdQueryService(ShareLaboPGSQLConnectionFactory connectionFactory)
+        public UserDetailFindByAccountIdPGSQLQueryService(ShareLaboPGSQLConnectionFactory connectionFactory)
         {
             _connectionFactory = connectionFactory;
         }

@@ -1,26 +1,22 @@
-﻿using Npgsql;
+﻿using Microsoft.Extensions.Logging;
+using Npgsql;
 
 namespace ShareLabo.Infrastructure.PGSQL.Toolkit
 {
     public sealed class ShareLaboPGSQLConnectionFactory
     {
-        private string _connectionString;
+        private readonly NpgsqlDataSource _dataSource;
 
-        public ShareLaboPGSQLConnectionFactory(NpgsqlConnectionStringBuilder connectionStringBuilder)
+        public ShareLaboPGSQLConnectionFactory(string connectionString, ILoggerFactory loggerFactory)
         {
-            _connectionString = connectionStringBuilder.ConnectionString;
-        }
-
-        public ShareLaboPGSQLConnectionFactory(string connectionString)
-        {
-            _connectionString = connectionString;
+            var dataSourceBuilder = new NpgsqlDataSourceBuilder(connectionString);
+            dataSourceBuilder.UseLoggerFactory(loggerFactory);
+            _dataSource = dataSourceBuilder.Build();
         }
 
         public NpgsqlConnection OpenConnection()
         {
-            var connection = new NpgsqlConnection(_connectionString);
-            connection.Open();
-            return connection;
+            return _dataSource.OpenConnection();
         }
     }
 }

@@ -1,20 +1,22 @@
 ﻿using CSStack.TADA;
 using ShareLabo.Domain.Aggregate.Toolkit;
 using ShareLabo.Domain.ValueObject;
+using System.Collections.Immutable;
 
-namespace ShareLabo.Domain.Aggregate.Post
+namespace ShareLabo.Domain.Aggregate.Follow
 {
-    public interface IPostRepository<TSession> : IRepository<PostEntity, PostId, OperateInfo, TSession>
+    public interface IFollowRepository<TSession> : IRepository<FollowEntity, FollowIdentifier, OperateInfo, TSession>
         where TSession : IDisposable
     {
         ValueTask DeleteAsync(
             TSession session,
-            PostEntity entity,
+            FollowEntity entity,
             OperateInfo operateInfo,
             CancellationToken cancellationToken = default);
 
-        ValueTask<Optional<PostEntity>> FindLatestPostAsync(
+        ValueTask<ImmutableList<FollowEntity>> FindByFollowingUserIdAsync(
             TSession session,
+            UserId followingUserId,
             CancellationToken cancellationToken = default);
     }
 }

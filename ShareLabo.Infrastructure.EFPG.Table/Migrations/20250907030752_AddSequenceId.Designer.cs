@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using ShareLabo.Infrastructure.EFPG.Table;
@@ -11,9 +12,11 @@ using ShareLabo.Infrastructure.EFPG.Table;
 namespace ShareLabo.Infrastructure.EFPG.Table.Migrations
 {
     [DbContext(typeof(ShareLaboDbContext))]
-    partial class ShareLaboDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250907030752_AddSequenceId")]
+    partial class AddSequenceId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -89,59 +92,6 @@ namespace ShareLabo.Infrastructure.EFPG.Table.Migrations
                         .HasName("pk_accounts");
 
                     b.ToTable("accounts", (string)null);
-                });
-
-            modelBuilder.Entity("ShareLabo.Infrastructure.EFPG.Table.DbFollow", b =>
-                {
-                    b.Property<int>("PointerNo")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasColumnName("pointer_no");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("PointerNo"));
-
-                    b.Property<DateTime>("FollowStartDateTime")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("follow_start_date_time")
-                        .HasComment("フォロー開始日時");
-
-                    b.Property<string>("FromUserId")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("from_user_id")
-                        .HasComment("フォロー元ユーザID");
-
-                    b.Property<DateTime>("InsertTimeStamp")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("insert_time_stamp")
-                        .HasComment("作成日時");
-
-                    b.Property<string>("InsertUserId")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("insert_user_id")
-                        .HasComment("作成者ID");
-
-                    b.Property<string>("ToUserId")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("to_user_id")
-                        .HasComment("フォロー先ユーザID");
-
-                    b.Property<DateTime?>("UpdateTimeStamp")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("update_time_stamp")
-                        .HasComment("更新日時");
-
-                    b.Property<string>("UpdateUserId")
-                        .HasColumnType("text")
-                        .HasColumnName("update_user_id")
-                        .HasComment("更新者ID");
-
-                    b.HasKey("PointerNo")
-                        .HasName("pk_follows");
-
-                    b.ToTable("follows", (string)null);
                 });
 
             modelBuilder.Entity("ShareLabo.Infrastructure.EFPG.Table.DbGroup", b =>

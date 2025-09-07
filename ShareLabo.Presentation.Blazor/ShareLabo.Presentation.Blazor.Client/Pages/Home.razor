@@ -1,4 +1,4 @@
-﻿@attribute [Authorize]
+﻿@* @attribute [Authorize] *@
 @inject NavigationManager NavigationManager
 
 <PageTitle>Home</PageTitle>
@@ -6,6 +6,8 @@
 <input @bind-value="_postId" placeholder="PostId" />
 
 <button @onclick="GetPostDetailAsync">投稿取得</button>
+
+<button @onclick="GetGeneralPostsAsync">投稿一覧取得</button>
 
 @if(_postDetail is not null)
 {

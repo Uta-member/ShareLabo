@@ -8,9 +8,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ShareLabo.Domain.Aggregate.Follow\ShareLabo.Domain.Aggregate.Follow.csproj" />
-    <ProjectReference Include="..\ShareLabo.Domain.Aggregate.Group\ShareLabo.Domain.Aggregate.Group.csproj" />
-    <ProjectReference Include="..\ShareLabo.Domain.Aggregate.TimeLine\ShareLabo.Domain.Aggregate.TimeLine.csproj" />
-    <ProjectReference Include="..\ShareLabo.Domain.Aggregate.User\ShareLabo.Domain.Aggregate.User.csproj" />
+    <ProjectReference Include="..\ShareLabo.Infrastructure.EFPG.Table\ShareLabo.Infrastructure.EFPG.Table.csproj" />
+    <ProjectReference Include="..\ShareLabo.Infrastructure.PGSQL.Toolkit\ShareLabo.Infrastructure.PGSQL.Toolkit.csproj" />
   </ItemGroup>
 
 </Project>
