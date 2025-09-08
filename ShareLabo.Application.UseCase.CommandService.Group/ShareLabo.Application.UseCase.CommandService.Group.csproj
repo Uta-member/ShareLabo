@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ShareLabo.Domain.DomainService.Group\ShareLabo.Domain.DomainService.Group.csproj" />
+  </ItemGroup>
+
 </Project>

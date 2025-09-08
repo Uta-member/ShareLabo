@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using ShareLabo.Application.Authentication;
 using ShareLabo.Application.UseCase.CommandService.Follow;
+using ShareLabo.Application.UseCase.CommandService.Group;
 using ShareLabo.Application.UseCase.CommandService.Post;
 using ShareLabo.Application.UseCase.CommandService.TimeLine;
 using ShareLabo.Application.UseCase.CommandService.User;
@@ -43,6 +44,10 @@ namespace ShareLabo.Presentation.AppBuilder.Application
             services.AddTransient<ISelfAuthUserPasswordUpdateCommandService, SelfAuthUserPasswordUpdateCommandService<TAuthSession>>(
                 );
             services.AddTransient<ISelfAuthUserLoginCommandService, SelfAuthUserLoginCommandService<TAuthSession>>();
+
+            services.AddTransient<IGroupCreateCommandService, GroupCreateCommandService<TGroupSession, TUserSession>>();
+            services.AddTransient<IGroupUpdateCommandService, GroupUpdateCommandService<TGroupSession, TUserSession>>();
+            services.AddTransient<IGroupDeleteCommandService, GroupDeleteCommandService<TGroupSession>>();
 
             services.AddTransient<IPostCreateCommandService, PostCreateCommandService<TPostSession, TUserSession, TGroupSession>>(
                 );
