@@ -2,7 +2,7 @@
 using CSStack.TADA;
 using ShareLabo.Domain.DomainService.TimeLine;
 
-namespace ShareLabo.Application.UseCase.CommanService.TimeLine
+namespace ShareLabo.Application.UseCase.CommandService.TimeLine
 {
     public sealed class TimeLineUpdateCommandService<TTimeLineSession, TUserSession> : ITimeLineUpdateCommandService
         where TTimeLineSession : IDisposable

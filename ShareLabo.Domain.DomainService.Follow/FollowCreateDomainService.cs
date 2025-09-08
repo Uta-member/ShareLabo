@@ -3,7 +3,7 @@ using ShareLabo.Domain.Aggregate.Follow;
 using ShareLabo.Domain.Aggregate.Toolkit;
 using ShareLabo.Domain.Aggregate.User;
 
-namespace ShareLabo.Domain.DomeinService.Follow
+namespace ShareLabo.Domain.DomainService.Follow
 {
     public sealed class FollowCreateDomainService<TFollowSession, TUserSession>
         : IDomainService<FollowCreateDomainService<TFollowSession, TUserSession>.Req>

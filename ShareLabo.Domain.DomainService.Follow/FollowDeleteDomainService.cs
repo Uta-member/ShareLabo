@@ -2,7 +2,7 @@
 using ShareLabo.Domain.Aggregate.Follow;
 using ShareLabo.Domain.Aggregate.Toolkit;
 
-namespace ShareLabo.Domain.DomeinService.Follow
+namespace ShareLabo.Domain.DomainService.Follow
 {
     public sealed class FollowDeleteDomainService<TFollowSession>
         : IDomainService<FollowDeleteDomainService<TFollowSession>.Req>

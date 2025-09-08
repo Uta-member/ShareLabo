@@ -4,11 +4,11 @@ using ShareLabo.Domain.Aggregate.Group;
 using ShareLabo.Domain.Aggregate.Post;
 using ShareLabo.Domain.Aggregate.TimeLine;
 using ShareLabo.Domain.Aggregate.User;
+using ShareLabo.Domain.DomainService.Follow;
 using ShareLabo.Domain.DomainService.Group;
 using ShareLabo.Domain.DomainService.Post;
 using ShareLabo.Domain.DomainService.TimeLine;
 using ShareLabo.Domain.DomainService.User;
-using ShareLabo.Domain.DomeinService.Follow;
 
 namespace ShareLabo.Presentation.AppBuilder.DomainCoreBuilder
 {

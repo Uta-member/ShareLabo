@@ -3,8 +3,8 @@ using Microsoft.Extensions.DependencyInjection;
 using ShareLabo.Application.Authentication;
 using ShareLabo.Application.UseCase.CommandService.Follow;
 using ShareLabo.Application.UseCase.CommandService.Post;
+using ShareLabo.Application.UseCase.CommandService.TimeLine;
 using ShareLabo.Application.UseCase.CommandService.User;
-using ShareLabo.Application.UseCase.CommanService.TimeLine;
 using ShareLabo.Presentation.AppBuilder.DomainCoreBuilder;
 
 namespace ShareLabo.Presentation.AppBuilder.Application

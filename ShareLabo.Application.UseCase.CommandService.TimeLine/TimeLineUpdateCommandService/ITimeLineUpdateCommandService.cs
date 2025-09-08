@@ -3,7 +3,7 @@ using ShareLabo.Domain.Aggregate.Toolkit;
 using ShareLabo.Domain.ValueObject;
 using System.Collections.Immutable;
 
-namespace ShareLabo.Application.UseCase.CommanService.TimeLine
+namespace ShareLabo.Application.UseCase.CommandService.TimeLine
 {
     public interface ITimeLineUpdateCommandService : ICommandService<ITimeLineUpdateCommandService.Req>
     {

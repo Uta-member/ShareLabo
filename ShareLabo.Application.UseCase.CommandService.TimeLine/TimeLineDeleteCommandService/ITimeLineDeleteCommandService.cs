@@ -2,7 +2,7 @@
 using ShareLabo.Domain.Aggregate.Toolkit;
 using ShareLabo.Domain.ValueObject;
 
-namespace ShareLabo.Application.UseCase.CommanService.TimeLine
+namespace ShareLabo.Application.UseCase.CommandService.TimeLine
 {
     public interface ITimeLineDeleteCommandService : ICommandService<ITimeLineDeleteCommandService.Req>
     {

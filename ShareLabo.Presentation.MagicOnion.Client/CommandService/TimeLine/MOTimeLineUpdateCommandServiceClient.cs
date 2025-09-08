@@ -1,5 +1,5 @@
 ﻿using CSStack.TADA.MagicOnionHelper.Client;
-using ShareLabo.Application.UseCase.CommanService.TimeLine;
+using ShareLabo.Application.UseCase.CommandService.TimeLine;
 using ShareLabo.Presentation.MagicOnion.Interface;
 
 namespace ShareLabo.Presentation.MagicOnion.Client

@@ -1,6 +1,6 @@
 ﻿using CSStack.TADA.MagicOnionHelper.Abstractions;
 using MessagePack;
-using ShareLabo.Application.UseCase.CommanService.TimeLine;
+using ShareLabo.Application.UseCase.CommandService.TimeLine;
 using ShareLabo.Domain.ValueObject;
 
 namespace ShareLabo.Presentation.MagicOnion.Interface

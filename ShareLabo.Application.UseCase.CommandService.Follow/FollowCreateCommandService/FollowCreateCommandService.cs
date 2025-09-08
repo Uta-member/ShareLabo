@@ -1,6 +1,6 @@
 ﻿
 using CSStack.TADA;
-using ShareLabo.Domain.DomeinService.Follow;
+using ShareLabo.Domain.DomainService.Follow;
 
 namespace ShareLabo.Application.UseCase.CommandService.Follow
 {

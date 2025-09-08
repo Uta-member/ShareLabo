@@ -14,7 +14,7 @@
     <ProjectReference Include="..\ShareLabo.Application.UseCase.CommandService.Follow\ShareLabo.Application.UseCase.CommandService.Follow.csproj" />
     <ProjectReference Include="..\ShareLabo.Application.UseCase.CommandService.Post\ShareLabo.Application.UseCase.CommandService.Post.csproj" />
     <ProjectReference Include="..\ShareLabo.Application.UseCase.CommandService.User\ShareLabo.Application.UseCase.CommandService.User.csproj" />
-    <ProjectReference Include="..\ShareLabo.Application.UseCase.CommanService.TimeLine\ShareLabo.Application.UseCase.CommanService.TimeLine.csproj" />
+    <ProjectReference Include="..\ShareLabo.Application.UseCase.CommandService.TimeLine\ShareLabo.Application.UseCase.CommandService.TimeLine.csproj" />
     <ProjectReference Include="..\ShareLabo.Application.UseCase.QueryService.Post\ShareLabo.Application.UseCase.QueryService.Post.csproj" />
     <ProjectReference Include="..\ShareLabo.Application.UseCase.QueryService.User\ShareLabo.Application.UseCase.QueryService.User.csproj" />
   </ItemGroup>
