@@ -3,7 +3,6 @@ using Grpc.Net.Client;
 using Grpc.Net.Client.Web;
 using Microsoft.Extensions.DependencyInjection;
 using ShareLabo.Application.UseCase.CommandService.Follow;
-using ShareLabo.Application.UseCase.CommandService.Group;
 using ShareLabo.Application.UseCase.CommandService.Post;
 using ShareLabo.Application.UseCase.CommandService.TimeLine;
 using ShareLabo.Application.UseCase.CommandService.User;
@@ -24,15 +23,11 @@ namespace ShareLabo.Presentation.AppBuilder.MagicOnion.Client
                 );
             services.AddTransient<ISelfAuthUserLoginCommandService, MOSelfAuthUserLoginCommandServiceClient>();
 
-            services.AddTransient<IGroupCreateCommandService, MOGroupCreateCommandServiceClient>();
-            services.AddTransient<IGroupUpdateCommandService, MOGroupUpdateCommandServiceClient>();
-            services.AddTransient<IGroupDeleteCommandService, MOGroupDeleteCommandServiceClient>();
-
             services.AddTransient<IPostCreateCommandService, MOPostCreateCommandServiceClient>();
             services.AddTransient<IPostUpdateCommandService, MOPostUpdateCommandServiceClient>();
             services.AddTransient<IPostDeleteCommandService, MOPostDeleteCommandServiceClient>();
 
-            services.AddTransient<IFollowCreateCommandService, MOFollowCreateCommandServiceClient>();
+            services.AddTransient<IFollowCreateCommandService, FollowCreateCommandService>();
             services.AddTransient<IFollowDeleteCommandService, MOFollowDeleteCommandServiceClient>();
 
             services.AddTransient<ITimeLineCreateCommandService, MOTimeLineCreateCommandServiceClient>();

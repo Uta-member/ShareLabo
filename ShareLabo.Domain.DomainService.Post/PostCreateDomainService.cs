@@ -1,5 +1,4 @@
 ﻿using CSStack.TADA;
-using ShareLabo.Domain.Aggregate.Group;
 using ShareLabo.Domain.Aggregate.Post;
 using ShareLabo.Domain.Aggregate.Toolkit;
 using ShareLabo.Domain.Aggregate.User;
@@ -7,22 +6,18 @@ using ShareLabo.Domain.ValueObject;
 
 namespace ShareLabo.Domain.DomainService.Post
 {
-    public sealed class PostCreateDomainService<TPostSession, TUserSession, TGroupSession>
-        : IDomainService<PostCreateDomainService<TPostSession, TUserSession, TGroupSession>.Req>
+    public sealed class PostCreateDomainService<TPostSession, TUserSession>
+        : IDomainService<PostCreateDomainService<TPostSession, TUserSession>.Req>
         where TPostSession : IDisposable
         where TUserSession : IDisposable
-        where TGroupSession : IDisposable
     {
-        private readonly GroupAggregateService<TGroupSession> _groupAggregateService;
         private readonly PostAggregateService<TPostSession> _postAggregateService;
         private readonly UserAggregateService<TUserSession> _userAggregateService;
 
         public PostCreateDomainService(
-            GroupAggregateService<TGroupSession> groupAggregateService,
             PostAggregateService<TPostSession> postAggregateService,
             UserAggregateService<TUserSession> userAggregateService)
         {
-            _groupAggregateService = groupAggregateService;
             _postAggregateService = postAggregateService;
             _userAggregateService = userAggregateService;
         }
@@ -58,8 +53,6 @@ namespace ShareLabo.Domain.DomainService.Post
 
         public sealed record Req : IDomainServiceDTO
         {
-            public required TGroupSession GroupSession { get; init; }
-
             public required OperateInfo OperateInfo { get; init; }
 
             public required PostContent PostContent { get; init; }

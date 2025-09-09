@@ -9,12 +9,13 @@
   <ItemGroup>
     <ProjectReference Include="..\ShareLabo.Application.Authentication\ShareLabo.Application.Authentication.csproj" />
     <ProjectReference Include="..\ShareLabo.Application.UseCase.CommandService.Follow\ShareLabo.Application.UseCase.CommandService.Follow.csproj" />
-    <ProjectReference Include="..\ShareLabo.Application.UseCase.CommandService.Group\ShareLabo.Application.UseCase.CommandService.Group.csproj" />
+    <ProjectReference Include="..\ShareLabo.Application.UseCase.CommandService.Implementation.Follow\ShareLabo.Application.UseCase.CommandService.Implementation.Follow.csproj" />
+    <ProjectReference Include="..\ShareLabo.Application.UseCase.CommandService.Implementation.Post\ShareLabo.Application.UseCase.CommandService.Implementation.Post.csproj" />
+    <ProjectReference Include="..\ShareLabo.Application.UseCase.CommandService.Implementation.TimeLine\ShareLabo.Application.UseCase.CommandService.Implementation.TimeLine.csproj" />
+    <ProjectReference Include="..\ShareLabo.Application.UseCase.CommandService.Implementation.User\ShareLabo.Application.UseCase.CommandService.Implementation.User.csproj" />
     <ProjectReference Include="..\ShareLabo.Application.UseCase.CommandService.Post\ShareLabo.Application.UseCase.CommandService.Post.csproj" />
     <ProjectReference Include="..\ShareLabo.Application.UseCase.CommandService.User\ShareLabo.Application.UseCase.CommandService.User.csproj" />
     <ProjectReference Include="..\ShareLabo.Application.UseCase.CommandService.TimeLine\ShareLabo.Application.UseCase.CommandService.TimeLine.csproj" />
-    <ProjectReference Include="..\ShareLabo.Application.UseCase.QueryService.Post\ShareLabo.Application.UseCase.QueryService.Post.csproj" />
-    <ProjectReference Include="..\ShareLabo.Application.UseCase.QueryService.User\ShareLabo.Application.UseCase.QueryService.User.csproj" />
     <ProjectReference Include="..\ShareLabo.Presentation.AppBuilder.DomainCoreBuilder\ShareLabo.Presentation.AppBuilder.DomainCoreBuilder.csproj" />
   </ItemGroup>
 

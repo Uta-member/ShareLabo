@@ -13,10 +13,6 @@ namespace ShareLabo.Infrastructure.EFPG.Table
 
         public DbSet<DbFollow> Follows { get; set; }
 
-        public DbSet<DbGroupMember> GroupMembers { get; set; }
-
-        public DbSet<DbGroup> Groups { get; set; }
-
         public DbSet<DbPost> Posts { get; set; }
 
         public DbSet<DbTimeLineFilter> TimeLineFilters { get; set; }

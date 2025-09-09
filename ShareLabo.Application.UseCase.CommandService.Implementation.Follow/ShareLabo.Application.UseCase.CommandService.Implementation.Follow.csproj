@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ShareLabo.Application.UseCase.CommandService.Follow\ShareLabo.Application.UseCase.CommandService.Follow.csproj" />
+    <ProjectReference Include="..\ShareLabo.Domain.DomainService.Follow\ShareLabo.Domain.DomainService.Follow.csproj" />
+  </ItemGroup>
+
+</Project>

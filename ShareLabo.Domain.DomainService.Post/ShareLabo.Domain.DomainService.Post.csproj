@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ShareLabo.Domain.Aggregate.Group\ShareLabo.Domain.Aggregate.Group.csproj" />
     <ProjectReference Include="..\ShareLabo.Domain.Aggregate.Post\ShareLabo.Domain.Aggregate.Post.csproj" />
     <ProjectReference Include="..\ShareLabo.Domain.Aggregate.User\ShareLabo.Domain.Aggregate.User.csproj" />
   </ItemGroup>
