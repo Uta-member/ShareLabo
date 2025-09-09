@@ -131,6 +131,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Application.UseCa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Infrastructure.PGSQL.QueryService.TimeLine", "ShareLabo.Infrastructure.PGSQL.QueryService.TimeLine\ShareLabo.Infrastructure.PGSQL.QueryService.TimeLine.csproj", "{88EF55BF-FF34-4030-AF31-D3A6CC9534A9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D04C40C0-EB1C-455A-8D95-53444F943693}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Domain.ValueObject.Tests", "Tests\ShareLabo.Domain.ValueObject.Tests\ShareLabo.Domain.ValueObject.Tests.csproj", "{F585255B-8A35-435C-8DE5-F57E41BB5544}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -317,6 +321,10 @@ Global
 		{88EF55BF-FF34-4030-AF31-D3A6CC9534A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88EF55BF-FF34-4030-AF31-D3A6CC9534A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88EF55BF-FF34-4030-AF31-D3A6CC9534A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F585255B-8A35-435C-8DE5-F57E41BB5544}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F585255B-8A35-435C-8DE5-F57E41BB5544}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F585255B-8A35-435C-8DE5-F57E41BB5544}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F585255B-8A35-435C-8DE5-F57E41BB5544}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -381,6 +389,7 @@ Global
 		{AB584215-0510-4C4F-A22B-6FFDCBD7AAEB} = {DEAACB52-A949-4288-888E-822B2303592C}
 		{97EE3D19-5FBC-4F88-B84E-704D534FBE61} = {DEAACB52-A949-4288-888E-822B2303592C}
 		{88EF55BF-FF34-4030-AF31-D3A6CC9534A9} = {7274F359-4CCC-4754-86F7-F853271262D8}
+		{F585255B-8A35-435C-8DE5-F57E41BB5544} = {D04C40C0-EB1C-455A-8D95-53444F943693}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FF4DA580-1568-4D1C-B696-3AE5FDB023A3}
