@@ -4,7 +4,7 @@ using ShareLabo.Presentation.MagicOnion.Interface;
 
 namespace ShareLabo.Presentation.MagicOnion.Client
 {
-    public sealed class MOPostDetailFindByIdQueryServiceClient
+    public sealed class PostDetailFindByIdQueryService
         : MOSHQueryServiceClientBase<IMOPostDetailFindByIdQueryService,
         IMOPostDetailFindByIdQueryService.Req,
         IPostDetailFindByIdQueryService.Req,
@@ -12,7 +12,7 @@ namespace ShareLabo.Presentation.MagicOnion.Client
         IPostDetailFindByIdQueryService.Res>
         , IPostDetailFindByIdQueryService
     {
-        public MOPostDetailFindByIdQueryServiceClient(IMOClientChannelFactory channelFactory)
+        public PostDetailFindByIdQueryService(IMOClientChannelFactory channelFactory)
             : base(channelFactory)
         {
         }

@@ -4,11 +4,11 @@ using ShareLabo.Presentation.MagicOnion.Interface;
 
 namespace ShareLabo.Presentation.MagicOnion.Client
 {
-    public sealed class MOTimeLineUpdateCommandServiceClient
+    public sealed class TimeLineUpdateCommandService
         : MOSHCommandServiceClientBase<IMOTimeLineUpdateCommandService, IMOTimeLineUpdateCommandService.Req, ITimeLineUpdateCommandService.Req>
         , ITimeLineUpdateCommandService
     {
-        public MOTimeLineUpdateCommandServiceClient(IMOClientChannelFactory channelFactory)
+        public TimeLineUpdateCommandService(IMOClientChannelFactory channelFactory)
             : base(channelFactory)
         {
         }

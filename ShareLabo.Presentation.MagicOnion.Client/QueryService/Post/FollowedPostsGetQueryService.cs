@@ -4,7 +4,7 @@ using ShareLabo.Presentation.MagicOnion.Interface;
 
 namespace ShareLabo.Presentation.MagicOnion.Client
 {
-    public sealed class MOFollowedPostsGetQueryServiceClient
+    public sealed class FollowedPostsGetQueryService
         : MOSHQueryServiceClientBase<IMOFollowedPostsGetQueryService,
         IMOFollowedPostsGetQueryService.Req,
         IFollowedPostsGetQueryService.Req,
@@ -13,7 +13,7 @@ namespace ShareLabo.Presentation.MagicOnion.Client
         ,
         IFollowedPostsGetQueryService
     {
-        public MOFollowedPostsGetQueryServiceClient(IMOClientChannelFactory channelFactory)
+        public FollowedPostsGetQueryService(IMOClientChannelFactory channelFactory)
             : base(channelFactory)
         {
         }

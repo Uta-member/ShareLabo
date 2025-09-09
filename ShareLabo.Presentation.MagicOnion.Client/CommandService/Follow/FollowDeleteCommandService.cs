@@ -4,11 +4,11 @@ using ShareLabo.Presentation.MagicOnion.Interface;
 
 namespace ShareLabo.Presentation.MagicOnion.Client
 {
-    public sealed class MOFollowDeleteCommandServiceClient
+    public sealed class FollowDeleteCommandService
         : MOSHCommandServiceClientBase<IMOFollowDeleteCommandService, IMOFollowDeleteCommandService.Req, IFollowDeleteCommandService.Req>
         , IFollowDeleteCommandService
     {
-        public MOFollowDeleteCommandServiceClient(IMOClientChannelFactory channelFactory)
+        public FollowDeleteCommandService(IMOClientChannelFactory channelFactory)
             : base(channelFactory)
         {
         }

@@ -4,11 +4,11 @@ using ShareLabo.Presentation.MagicOnion.Interface;
 
 namespace ShareLabo.Presentation.MagicOnion.Client
 {
-    public sealed class MOUserUpdateCommandServiceClient
+    public sealed class UserUpdateCommandService
         : MOSHCommandServiceClientBase<IMOUserUpdateCommandService, IMOUserUpdateCommandService.Req, IUserUpdateCommandService.Req>
         , IUserUpdateCommandService
     {
-        public MOUserUpdateCommandServiceClient(IMOClientChannelFactory channelFactory)
+        public UserUpdateCommandService(IMOClientChannelFactory channelFactory)
             : base(channelFactory)
         {
         }

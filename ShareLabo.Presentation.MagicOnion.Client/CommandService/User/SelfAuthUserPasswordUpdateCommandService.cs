@@ -4,11 +4,11 @@ using ShareLabo.Presentation.MagicOnion.Interface;
 
 namespace ShareLabo.Presentation.MagicOnion.Client
 {
-    public sealed class MOSelfAuthUserPasswordUpdateCommandServiceClient
+    public sealed class SelfAuthUserPasswordUpdateCommandService
         : MOSHCommandServiceClientBase<IMOSelfAuthUserPasswordUpdateCommandService, IMOSelfAuthUserPasswordUpdateCommandService.Req, ISelfAuthUserPasswordUpdateCommandService.Req>
         , ISelfAuthUserPasswordUpdateCommandService
     {
-        public MOSelfAuthUserPasswordUpdateCommandServiceClient(IMOClientChannelFactory channelFactory)
+        public SelfAuthUserPasswordUpdateCommandService(IMOClientChannelFactory channelFactory)
             : base(channelFactory)
         {
         }

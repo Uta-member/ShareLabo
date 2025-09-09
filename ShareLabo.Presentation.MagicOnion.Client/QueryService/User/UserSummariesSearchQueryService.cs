@@ -4,11 +4,11 @@ using ShareLabo.Presentation.MagicOnion.Interface;
 
 namespace ShareLabo.Presentation.MagicOnion.Client
 {
-    public sealed class MOUserSummariesSearchQueryServiceClient
+    public sealed class UserSummariesSearchQueryService
         : MOSHQueryServiceClientBase<IMOUserSummariesSearchQueryService, IMOUserSummariesSearchQueryService.Req, IUserSummariesSearchQueryService.Req, IMOUserSummariesSearchQueryService.Res, IUserSummariesSearchQueryService.Res>
         , IUserSummariesSearchQueryService
     {
-        public MOUserSummariesSearchQueryServiceClient(IMOClientChannelFactory channelFactory)
+        public UserSummariesSearchQueryService(IMOClientChannelFactory channelFactory)
             : base(channelFactory)
         {
         }

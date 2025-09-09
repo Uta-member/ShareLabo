@@ -4,11 +4,11 @@ using ShareLabo.Presentation.MagicOnion.Interface;
 
 namespace ShareLabo.Presentation.MagicOnion.Client
 {
-    public sealed class MOPostCreateCommandServiceClient
+    public sealed class PostCreateCommandService
         : MOSHCommandServiceClientBase<IMOPostCreateCommandService, IMOPostCreateCommandService.Req, IPostCreateCommandService.Req>
         , IPostCreateCommandService
     {
-        public MOPostCreateCommandServiceClient(IMOClientChannelFactory channelFactory)
+        public PostCreateCommandService(IMOClientChannelFactory channelFactory)
             : base(channelFactory)
         {
         }
