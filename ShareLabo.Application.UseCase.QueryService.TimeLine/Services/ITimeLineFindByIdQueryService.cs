@@ -2,8 +2,8 @@
 
 namespace ShareLabo.Application.UseCase.QueryService.TimeLine
 {
-    public interface ITimeLineGetByIdQueryService
-        : IQueryService<ITimeLineGetByIdQueryService.Req, ITimeLineGetByIdQueryService.Res>
+    public interface ITimeLineFindByIdQueryService
+        : IQueryService<ITimeLineFindByIdQueryService.Req, ITimeLineFindByIdQueryService.Res>
     {
         sealed record Req : IQueryServiceDTO
         {

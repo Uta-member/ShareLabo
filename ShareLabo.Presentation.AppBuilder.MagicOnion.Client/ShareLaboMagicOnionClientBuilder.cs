@@ -6,7 +6,9 @@ using ShareLabo.Application.UseCase.CommandService.Follow;
 using ShareLabo.Application.UseCase.CommandService.Post;
 using ShareLabo.Application.UseCase.CommandService.TimeLine;
 using ShareLabo.Application.UseCase.CommandService.User;
+using ShareLabo.Application.UseCase.QueryService.Follow;
 using ShareLabo.Application.UseCase.QueryService.Post;
+using ShareLabo.Application.UseCase.QueryService.TimeLine;
 using ShareLabo.Application.UseCase.QueryService.User;
 using ShareLabo.Presentation.MagicOnion.Client;
 
@@ -16,23 +18,27 @@ namespace ShareLabo.Presentation.AppBuilder.MagicOnion.Client
     {
         private static void AddCommandServices(this IServiceCollection services)
         {
+            // Follow
+            services.AddTransient<IFollowCreateCommandService, FollowCreateCommandService>();
+            services.AddTransient<IFollowDeleteCommandService, FollowDeleteCommandService>();
+
+            // Post
+            services.AddTransient<IPostCreateCommandService, PostCreateCommandService>();
+            services.AddTransient<IPostUpdateCommandService, PostUpdateCommandService>();
+            services.AddTransient<IPostDeleteCommandService, PostDeleteCommandService>();
+
+            // TimeLine
+            services.AddTransient<ITimeLineCreateCommandService, TimeLineCreateCommandService>();
+            services.AddTransient<ITimeLineUpdateCommandService, TimeLineUpdateCommandService>();
+            services.AddTransient<ITimeLineDeleteCommandService, TimeLineDeleteCommandService>();
+
+            // User
             services.AddTransient<ISelfAuthUserCreateCommandService, SelfAuthUserCreateCommandService>();
             services.AddTransient<IUserDeleteCommandService, UserDeleteCommandService>();
             services.AddTransient<IUserUpdateCommandService, UserUpdateCommandService>();
             services.AddTransient<ISelfAuthUserPasswordUpdateCommandService, SelfAuthUserPasswordUpdateCommandService>(
                 );
             services.AddTransient<ISelfAuthUserLoginCommandService, SelfAuthUserLoginCommandService>();
-
-            services.AddTransient<IPostCreateCommandService, PostCreateCommandService>();
-            services.AddTransient<IPostUpdateCommandService, PostUpdateCommandService>();
-            services.AddTransient<IPostDeleteCommandService, PostDeleteCommandService>();
-
-            services.AddTransient<IFollowCreateCommandService, FollowCreateCommandService>();
-            services.AddTransient<IFollowDeleteCommandService, FollowDeleteCommandService>();
-
-            services.AddTransient<ITimeLineCreateCommandService, TimeLineCreateCommandService>();
-            services.AddTransient<ITimeLineUpdateCommandService, TimeLineUpdateCommandService>();
-            services.AddTransient<ITimeLineDeleteCommandService, TimeLineDeleteCommandService>();
         }
 
         private static void AddGrpcChannel(this IServiceCollection services, string hostUrl, bool isGrpcWeb)
@@ -56,16 +62,26 @@ namespace ShareLabo.Presentation.AppBuilder.MagicOnion.Client
 
         private static void AddQueryServices(this IServiceCollection services)
         {
-            services.AddTransient<IUserSummariesSearchQueryService, UserSummariesSearchQueryService>();
-            services.AddTransient<IUserDetailFindByAccountIdQueryService, UserDetailFindByAccountIdQueryService>(
-                );
-            services.AddTransient<IUserDetailFindByUserIdQueryService, UserDetailFindByUserIdQueryService>();
+            // Follow
+            services.AddTransient<IUserFollowersGetQueryService, UserFollowersGetQueryService>();
+            services.AddTransient<IUserFollowsGetQueryService, UserFollowsGetQueryService>();
 
+            // Post
             services.AddTransient<IGeneralPostsGetQueryService, GeneralPostsGetQueryService>();
             services.AddTransient<IPostDetailFindByIdQueryService, PostDetailFindByIdQueryService>();
             services.AddTransient<IFollowedPostsGetQueryService, FollowedPostsGetQueryService>();
             services.AddTransient<IMyPostsGetQueryService, MyPostsGetQueryService>();
             services.AddTransient<ITimeLinePostsGetQueryService, TimeLinePostsGetQueryService>();
+
+            // TimeLine
+            services.AddTransient<ITimeLineFindByIdQueryService, TimeLineFindByIdQueryService>();
+            services.AddTransient<IUserTimeLinesGetQueryService, UserTimeLinesGetQueryService>();
+
+            // User
+            services.AddTransient<IUserSummariesSearchQueryService, UserSummariesSearchQueryService>();
+            services.AddTransient<IUserDetailFindByAccountIdQueryService, UserDetailFindByAccountIdQueryService>(
+                );
+            services.AddTransient<IUserDetailFindByUserIdQueryService, UserDetailFindByUserIdQueryService>();
         }
 
         public static IServiceCollection AddShareLaboMagicOnionClient(

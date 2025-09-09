@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ShareLabo.Application.UseCase.QueryService.TimeLine\ShareLabo.Application.UseCase.QueryService.TimeLine.csproj" />
+    <ProjectReference Include="..\ShareLabo.Infrastructure.EFPG.Table\ShareLabo.Infrastructure.EFPG.Table.csproj" />
+    <ProjectReference Include="..\ShareLabo.Infrastructure.PGSQL.Pakages\ShareLabo.Infrastructure.PGSQL.Pakages.csproj" />
+    <ProjectReference Include="..\ShareLabo.Infrastructure.PGSQL.Toolkit\ShareLabo.Infrastructure.PGSQL.Toolkit.csproj" />
+  </ItemGroup>
+
+</Project>

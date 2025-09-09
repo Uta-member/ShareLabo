@@ -37,6 +37,25 @@ namespace ShareLabo.Presentation.AppBuilder.Application
             where TTimeLineSession : IDisposable
             where TFollowSession : IDisposable
         {
+            // Follow
+            services.AddTransient<IFollowCreateCommandService, FollowCreateCommandService<TFollowSession, TUserSession>>(
+                );
+            services.AddTransient<IFollowDeleteCommandService, FollowDeleteCommandService<TFollowSession>>();
+
+            // Post
+            services.AddTransient<IPostCreateCommandService, PostCreateCommandService<TPostSession, TUserSession>>(
+                );
+            services.AddTransient<IPostUpdateCommandService, PostUpdateCommandService<TPostSession>>();
+            services.AddTransient<IPostDeleteCommandService, PostDeleteCommandService<TPostSession>>();
+
+            // TimeLine
+            services.AddTransient<ITimeLineCreateCommandService, TimeLineCreateCommandService<TTimeLineSession, TUserSession>>(
+                );
+            services.AddTransient<ITimeLineUpdateCommandService, TimeLineUpdateCommandService<TTimeLineSession, TUserSession>>(
+                );
+            services.AddTransient<ITimeLineDeleteCommandService, TimeLineDeleteCommandService<TTimeLineSession>>();
+
+            // User
             services.AddTransient<ISelfAuthUserCreateCommandService, SelfAuthUserCreateCommandService<TUserSession, TAuthSession>>(
                 );
             services.AddTransient<IUserDeleteCommandService, UserDeleteCommandService<TUserSession, TAuthSession, TTimeLineSession, TFollowSession>>(
@@ -45,21 +64,6 @@ namespace ShareLabo.Presentation.AppBuilder.Application
             services.AddTransient<ISelfAuthUserPasswordUpdateCommandService, SelfAuthUserPasswordUpdateCommandService<TAuthSession>>(
                 );
             services.AddTransient<ISelfAuthUserLoginCommandService, SelfAuthUserLoginCommandService<TAuthSession>>();
-
-            services.AddTransient<IPostCreateCommandService, PostCreateCommandService<TPostSession, TUserSession>>(
-                );
-            services.AddTransient<IPostUpdateCommandService, PostUpdateCommandService<TPostSession>>();
-            services.AddTransient<IPostDeleteCommandService, PostDeleteCommandService<TPostSession>>();
-
-            services.AddTransient<IFollowCreateCommandService, FollowCreateCommandService<TFollowSession, TUserSession>>(
-                );
-            services.AddTransient<IFollowDeleteCommandService, FollowDeleteCommandService<TFollowSession>>();
-
-            services.AddTransient<ITimeLineCreateCommandService, TimeLineCreateCommandService<TTimeLineSession, TUserSession>>(
-                );
-            services.AddTransient<ITimeLineUpdateCommandService, TimeLineUpdateCommandService<TTimeLineSession, TUserSession>>(
-                );
-            services.AddTransient<ITimeLineDeleteCommandService, TimeLineDeleteCommandService<TTimeLineSession>>();
         }
 
         public static IServiceCollection AddShareLaboApplication<TUserSession,

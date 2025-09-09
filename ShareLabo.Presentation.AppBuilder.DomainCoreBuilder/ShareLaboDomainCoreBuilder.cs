@@ -19,10 +19,10 @@ namespace ShareLabo.Presentation.AppBuilder.DomainCoreBuilder
             where TFollowSession : IDisposable
             where TTimeLineSession : IDisposable
         {
-            services.AddTransient<UserAggregateService<TUserSession>>();
-            services.AddTransient<PostAggregateService<TPostSession>>();
             services.AddTransient<FollowAggregateService<TFollowSession>>();
+            services.AddTransient<PostAggregateService<TPostSession>>();
             services.AddTransient<TimeLineAggregateService<TTimeLineSession>>();
+            services.AddTransient<UserAggregateService<TUserSession>>();
         }
 
         private static void AddDomainServices<TUserSession,
@@ -34,21 +34,25 @@ namespace ShareLabo.Presentation.AppBuilder.DomainCoreBuilder
             where TTimeLineSession : IDisposable
             where TFollowSession : IDisposable
         {
-            services.AddTransient<UserCreateDomainService<TUserSession>>();
-            services.AddTransient<UserUpdateDomainService<TUserSession>>();
-            services.AddTransient<UserDeleteDomainService<TUserSession, TTimeLineSession, TFollowSession>>(
-                );
+            // Follow
+            services.AddTransient<FollowCreateDomainService<TFollowSession, TUserSession>>();
+            services.AddTransient<FollowDeleteDomainService<TFollowSession>>();
 
+            // Post
             services.AddTransient<PostCreateDomainService<TPostSession, TUserSession>>();
             services.AddTransient<PostUpdateDomainService<TPostSession>>();
             services.AddTransient<PostDeleteDomainService<TPostSession>>();
 
-            services.AddTransient<FollowCreateDomainService<TFollowSession, TUserSession>>();
-            services.AddTransient<FollowDeleteDomainService<TFollowSession>>();
-
+            // TimeLine
             services.AddTransient<TimeLineCreateDomainService<TTimeLineSession, TUserSession>>();
             services.AddTransient<TimeLineUpdateDomainService<TTimeLineSession, TUserSession>>();
             services.AddTransient<TimeLineDeleteDomainService<TTimeLineSession>>();
+
+            // User
+            services.AddTransient<UserCreateDomainService<TUserSession>>();
+            services.AddTransient<UserUpdateDomainService<TUserSession>>();
+            services.AddTransient<UserDeleteDomainService<TUserSession, TTimeLineSession, TFollowSession>>(
+                );
         }
 
         public static IServiceCollection AddShareLaboDomainCore<TUserSession,

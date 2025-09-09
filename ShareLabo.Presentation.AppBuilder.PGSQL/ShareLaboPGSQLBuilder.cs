@@ -3,14 +3,18 @@ using Dapper;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using ShareLabo.Application.Authentication;
+using ShareLabo.Application.UseCase.QueryService.Follow;
 using ShareLabo.Application.UseCase.QueryService.Post;
+using ShareLabo.Application.UseCase.QueryService.TimeLine;
 using ShareLabo.Application.UseCase.QueryService.User;
 using ShareLabo.Domain.Aggregate.Follow;
 using ShareLabo.Domain.Aggregate.Post;
 using ShareLabo.Domain.Aggregate.TimeLine;
 using ShareLabo.Domain.Aggregate.User;
 using ShareLabo.Infrastructure.PGSQL.Application.Authentication;
+using ShareLabo.Infrastructure.PGSQL.QueryService.Follow;
 using ShareLabo.Infrastructure.PGSQL.QueryService.Post;
+using ShareLabo.Infrastructure.PGSQL.QueryService.TimeLine;
 using ShareLabo.Infrastructure.PGSQL.QueryService.User;
 using ShareLabo.Infrastructure.PGSQL.Repository.Follow;
 using ShareLabo.Infrastructure.PGSQL.Repository.Post;
@@ -44,23 +48,33 @@ namespace ShareLabo.Presentation.AppBuilder.PGSQL
 
         private static void AddQueryServices(this IServiceCollection services)
         {
-            services.AddTransient<IUserSummariesSearchQueryService, UserSummariesSearchQueryService>();
-            services.AddTransient<IUserDetailFindByAccountIdQueryService, UserDetailFindByAccountIdQueryService>();
-            services.AddTransient<IUserDetailFindByUserIdQueryService, UserDetailFindByUserIdQueryService>();
+            // Follow
+            services.AddTransient<IUserFollowersGetQueryService, UserFollowersGetQueryService>();
+            services.AddTransient<IUserFollowsGetQueryService, UserFollowsGetQueryService>();
 
+            // Post
             services.AddTransient<IGeneralPostsGetQueryService, GeneralPostsGetQueryService>();
             services.AddTransient<IFollowedPostsGetQueryService, FollowedPostsGetQueryService>();
             services.AddTransient<IMyPostsGetQueryService, MyPostsGetQueryService>();
             services.AddTransient<IPostDetailFindByIdQueryService, PostDetailFindByIdQueryService>();
             services.AddTransient<ITimeLinePostsGetQueryService, TimeLinePostsGetQueryService>();
+
+            // TimeLine
+            services.AddTransient<ITimeLineFindByIdQueryService, TimeLineFindByIdQueryService>();
+            services.AddTransient<IUserTimeLinesGetQueryService, UserTimeLinesGetQueryService>();
+
+            // User
+            services.AddTransient<IUserSummariesSearchQueryService, UserSummariesSearchQueryService>();
+            services.AddTransient<IUserDetailFindByAccountIdQueryService, UserDetailFindByAccountIdQueryService>();
+            services.AddTransient<IUserDetailFindByUserIdQueryService, UserDetailFindByUserIdQueryService>();
         }
 
         private static void AddRepositories(this IServiceCollection services)
         {
-            services.AddTransient<IUserRepository<ShareLaboPGSQLTransaction>, UserRepository>();
-            services.AddTransient<IPostRepository<ShareLaboPGSQLTransaction>, PostRepository>();
             services.AddTransient<IFollowRepository<ShareLaboPGSQLTransaction>, FollowRepository>();
+            services.AddTransient<IPostRepository<ShareLaboPGSQLTransaction>, PostRepository>();
             services.AddTransient<ITimeLineRepository<ShareLaboPGSQLTransaction>, TimeLineRepository>();
+            services.AddTransient<IUserRepository<ShareLaboPGSQLTransaction>, UserRepository>();
         }
 
         public static IServiceCollection AddShareLaboPGSQL(this IServiceCollection services, BuildOption option)

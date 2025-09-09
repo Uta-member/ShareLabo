@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ShareLabo.Infrastructure.EFPG.Table
 {
-    public sealed class DbPost : TableBase
+    public class DbPost : TableBase
     {
         [Comment("投稿内容")]
         [Required]

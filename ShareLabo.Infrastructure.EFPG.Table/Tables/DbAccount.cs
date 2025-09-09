@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ShareLabo.Infrastructure.EFPG.Table
 {
-    public sealed class DbAccount : VersionedTableBase
+    public class DbAccount : VersionedTableBase
     {
         [Comment("アカウントID")]
         [Required]

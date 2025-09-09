@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ShareLabo.Infrastructure.EFPG.Table
 {
-    public sealed class DbFollow : TableBase
+    public class DbFollow : TableBase
     {
         [Comment("フォロー開始日時")]
         [Required]

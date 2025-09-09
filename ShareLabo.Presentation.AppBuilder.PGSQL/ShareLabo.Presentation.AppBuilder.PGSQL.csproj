@@ -8,7 +8,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ShareLabo.Infrastructure.PGSQL.Application.Authentication\ShareLabo.Infrastructure.PGSQL.Application.Authentication.csproj" />
+    <ProjectReference Include="..\ShareLabo.Infrastructure.PGSQL.QueryService.Follow\ShareLabo.Infrastructure.PGSQL.QueryService.Follow.csproj" />
     <ProjectReference Include="..\ShareLabo.Infrastructure.PGSQL.QueryService.Post\ShareLabo.Infrastructure.PGSQL.QueryService.Post.csproj" />
+    <ProjectReference Include="..\ShareLabo.Infrastructure.PGSQL.QueryService.TimeLine\ShareLabo.Infrastructure.PGSQL.QueryService.TimeLine.csproj" />
     <ProjectReference Include="..\ShareLabo.Infrastructure.PGSQL.QueryService.User\ShareLabo.Infrastructure.PGSQL.QueryService.User.csproj" />
     <ProjectReference Include="..\ShareLabo.Infrastructure.PGSQL.Repository.Follow\ShareLabo.Infrastructure.PGSQL.Repository.Follow.csproj" />
     <ProjectReference Include="..\ShareLabo.Infrastructure.PGSQL.Repository.Post\ShareLabo.Infrastructure.PGSQL.Repository.Post.csproj" />

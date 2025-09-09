@@ -25,7 +25,7 @@ namespace ShareLabo.Infrastructure.PGSQL.QueryService.Follow
             var dbFollowers = await factory.Query("follows as f")
                 .Join("users as u", "f.from_user_id", "u.user_id")
                 .Where("f.to_user_id", req.UserId)
-                .Select("f.to_user_id as UserId", "u.account_id", "u.user_name", "f.follow_start_date_time")
+                .Select("f.from_user_id as UserId", "u.account_id", "u.user_name", "f.follow_start_date_time")
                 .OrderByDesc("f.follow_start_date_time")
                 .GetAsync<DbFollowWithUser>(cancellationToken: cancellationToken);
 

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ShareLabo.Infrastructure.EFPG.Table
 {
-    public sealed class DbTimeLine : TableBase
+    public class DbTimeLine : TableBase
     {
         [Comment("所有ユーザID")]
         [Required]
