@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\ShareLabo.Domain.ValueObject\ShareLabo.Domain.ValueObject.csproj" />
+    <ProjectReference Include="..\..\src\ShareLabo.Domain.ValueObject\ShareLabo.Domain.ValueObject.csproj" />
   </ItemGroup>
 
   <ItemGroup>

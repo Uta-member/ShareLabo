@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Packages", "ShareLabo.Packages\ShareLabo.Packages.csproj", "{B983E7BA-1B19-4DC0-B666-D3BDFE14527D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Packages", "src\ShareLabo.Packages\ShareLabo.Packages.csproj", "{B983E7BA-1B19-4DC0-B666-D3BDFE14527D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Packages", "Packages", "{DDB4EF12-CC4E-5E88-E6FC-71A802F4DE97}"
 EndProject
@@ -19,15 +19,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Aggregate", "Aggregate", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DomainService", "DomainService", "{76780982-ED06-4939-9513-0036DBB090F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Domain.ValueObject", "ShareLabo.Domain.ValueObject\ShareLabo.Domain.ValueObject.csproj", "{56FD6ED2-1B28-449D-83AC-1C06A3111D23}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Domain.ValueObject", "src\ShareLabo.Domain.ValueObject\ShareLabo.Domain.ValueObject.csproj", "{56FD6ED2-1B28-449D-83AC-1C06A3111D23}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Domain.Aggregate.User", "ShareLabo.Domain.Aggregate.User\ShareLabo.Domain.Aggregate.User.csproj", "{99F71064-76FC-4750-BB0A-2C1C83F1524C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Domain.Aggregate.User", "src\ShareLabo.Domain.Aggregate.User\ShareLabo.Domain.Aggregate.User.csproj", "{99F71064-76FC-4750-BB0A-2C1C83F1524C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Domain.Aggregate.Toolkit", "ShareLabo.Domain.Aggregate.Toolkit\ShareLabo.Domain.Aggregate.Toolkit.csproj", "{D69E0C2A-6E1E-45EB-9FAF-551A6FF0C332}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Domain.Aggregate.Toolkit", "src\ShareLabo.Domain.Aggregate.Toolkit\ShareLabo.Domain.Aggregate.Toolkit.csproj", "{D69E0C2A-6E1E-45EB-9FAF-551A6FF0C332}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Domain.DomainService.User", "ShareLabo.Domain.DomainService.User\ShareLabo.Domain.DomainService.User.csproj", "{5904E38B-5821-4648-B2D4-43A1DD73176D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Domain.DomainService.User", "src\ShareLabo.Domain.DomainService.User\ShareLabo.Domain.DomainService.User.csproj", "{5904E38B-5821-4648-B2D4-43A1DD73176D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Application.UseCase.CommandService.User", "ShareLabo.Application.UseCase.CommandService.User\ShareLabo.Application.UseCase.CommandService.User.csproj", "{758F5A0F-1AA4-405C-8C1A-6FCF0E7BB898}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Application.UseCase.CommandService.User", "src\ShareLabo.Application.UseCase.CommandService.User\ShareLabo.Application.UseCase.CommandService.User.csproj", "{758F5A0F-1AA4-405C-8C1A-6FCF0E7BB898}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UseCase", "UseCase", "{C71E5561-5662-4D1A-858C-8B38BB5E2DD1}"
 EndProject
@@ -35,15 +35,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CommandService", "CommandSe
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "QueryService", "QueryService", "{0CC6DBA6-8A62-4BA5-97F3-046778138C0E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Application.Authentication", "ShareLabo.Application.Authentication\ShareLabo.Application.Authentication.csproj", "{4D2FCFBE-4304-439D-A653-0AA0E1511FBB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Application.Authentication", "src\ShareLabo.Application.Authentication\ShareLabo.Application.Authentication.csproj", "{4D2FCFBE-4304-439D-A653-0AA0E1511FBB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Domain.Aggregate.Post", "ShareLabo.Domain.Aggregate.Post\ShareLabo.Domain.Aggregate.Post.csproj", "{9CE8E163-979F-45E2-9BBD-6101BF231BF0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Domain.Aggregate.Post", "src\ShareLabo.Domain.Aggregate.Post\ShareLabo.Domain.Aggregate.Post.csproj", "{9CE8E163-979F-45E2-9BBD-6101BF231BF0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Domain.DomainService.Post", "ShareLabo.Domain.DomainService.Post\ShareLabo.Domain.DomainService.Post.csproj", "{07F67032-1FE3-4928-B142-5B1DFF0DFC6A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Domain.DomainService.Post", "src\ShareLabo.Domain.DomainService.Post\ShareLabo.Domain.DomainService.Post.csproj", "{07F67032-1FE3-4928-B142-5B1DFF0DFC6A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Application.UseCase.CommandService.Post", "ShareLabo.Application.UseCase.CommandService.Post\ShareLabo.Application.UseCase.CommandService.Post.csproj", "{A0965A05-2832-4FC2-AAD9-653DAEEF698F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Application.UseCase.CommandService.Post", "src\ShareLabo.Application.UseCase.CommandService.Post\ShareLabo.Application.UseCase.CommandService.Post.csproj", "{A0965A05-2832-4FC2-AAD9-653DAEEF698F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Infrastructure.EFPG.Table", "ShareLabo.Infrastructure.EFPG.Table\ShareLabo.Infrastructure.EFPG.Table.csproj", "{1172A8C3-7389-4EC6-A5B7-CFC4A226F092}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Infrastructure.EFPG.Table", "src\ShareLabo.Infrastructure.EFPG.Table\ShareLabo.Infrastructure.EFPG.Table.csproj", "{1172A8C3-7389-4EC6-A5B7-CFC4A226F092}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EntityFramework", "EntityFramework", "{E94744C0-96EC-4B60-B919-963919D9D455}"
 EndProject
@@ -53,87 +53,87 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repository", "Repository", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "QueryService", "QueryService", "{7274F359-4CCC-4754-86F7-F853271262D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Infrastructure.PGSQL.Pakages", "ShareLabo.Infrastructure.PGSQL.Pakages\ShareLabo.Infrastructure.PGSQL.Pakages.csproj", "{16149731-0222-4DFB-97CD-4F7CFC570E8E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Infrastructure.PGSQL.Pakages", "src\ShareLabo.Infrastructure.PGSQL.Pakages\ShareLabo.Infrastructure.PGSQL.Pakages.csproj", "{16149731-0222-4DFB-97CD-4F7CFC570E8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Infrastructure.PGSQL.Repository.User", "ShareLabo.Infrastructure.PGSQL.Repository.User\ShareLabo.Infrastructure.PGSQL.Repository.User.csproj", "{2A9C2C22-1BB2-4849-AC3B-33A5647D2ED5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Infrastructure.PGSQL.Repository.User", "src\ShareLabo.Infrastructure.PGSQL.Repository.User\ShareLabo.Infrastructure.PGSQL.Repository.User.csproj", "{2A9C2C22-1BB2-4849-AC3B-33A5647D2ED5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Infrastructure.PGSQL.Toolkit", "ShareLabo.Infrastructure.PGSQL.Toolkit\ShareLabo.Infrastructure.PGSQL.Toolkit.csproj", "{DC4AEB5D-67E3-4A2D-A2E2-8D6D298C31EA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Infrastructure.PGSQL.Toolkit", "src\ShareLabo.Infrastructure.PGSQL.Toolkit\ShareLabo.Infrastructure.PGSQL.Toolkit.csproj", "{DC4AEB5D-67E3-4A2D-A2E2-8D6D298C31EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Infrastructure.PGSQL.Repository.Post", "ShareLabo.Infrastructure.PGSQL.Repository.Post\ShareLabo.Infrastructure.PGSQL.Repository.Post.csproj", "{67E14A7F-458F-4859-A079-EA1CF2A68CDE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Infrastructure.PGSQL.Repository.Post", "src\ShareLabo.Infrastructure.PGSQL.Repository.Post\ShareLabo.Infrastructure.PGSQL.Repository.Post.csproj", "{67E14A7F-458F-4859-A079-EA1CF2A68CDE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MagicOnion", "MagicOnion", "{4E02EFA3-1084-4136-A2BF-164330CB2EC1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AppBuilder", "AppBuilder", "{288F9AED-3C39-4EFD-A42D-8FC9F0BBA134}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Presentation.AppBuilder.DomainCoreBuilder", "ShareLabo.Presentation.AppBuilder.DomainCoreBuilder\ShareLabo.Presentation.AppBuilder.DomainCoreBuilder.csproj", "{F21839B9-F592-492E-85DA-E4191800E94A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Presentation.AppBuilder.DomainCoreBuilder", "src\ShareLabo.Presentation.AppBuilder.DomainCoreBuilder\ShareLabo.Presentation.AppBuilder.DomainCoreBuilder.csproj", "{F21839B9-F592-492E-85DA-E4191800E94A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Presentation.AppBuilder.Application", "ShareLabo.Presentation.AppBuilder.Application\ShareLabo.Presentation.AppBuilder.Application.csproj", "{62A7E010-AA4C-4EE4-9AD3-E2CA2549AB3F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Presentation.AppBuilder.Application", "src\ShareLabo.Presentation.AppBuilder.Application\ShareLabo.Presentation.AppBuilder.Application.csproj", "{62A7E010-AA4C-4EE4-9AD3-E2CA2549AB3F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Presentation.AppBuilder.PGSQL", "ShareLabo.Presentation.AppBuilder.PGSQL\ShareLabo.Presentation.AppBuilder.PGSQL.csproj", "{0AACC459-2F22-4AD6-96B1-D67C827355C0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Presentation.AppBuilder.PGSQL", "src\ShareLabo.Presentation.AppBuilder.PGSQL\ShareLabo.Presentation.AppBuilder.PGSQL.csproj", "{0AACC459-2F22-4AD6-96B1-D67C827355C0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{8491BC24-2608-4565-BFE3-06CFF073DD6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Infrastructure.PGSQL.Application.Authentication", "ShareLabo.Infrastructure.PGSQL.Application.Authentication\ShareLabo.Infrastructure.PGSQL.Application.Authentication.csproj", "{331F572B-6C23-4831-AC4C-C66EB5D0E40E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Infrastructure.PGSQL.Application.Authentication", "src\ShareLabo.Infrastructure.PGSQL.Application.Authentication\ShareLabo.Infrastructure.PGSQL.Application.Authentication.csproj", "{331F572B-6C23-4831-AC4C-C66EB5D0E40E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Presentation.MagicOnion.Interface", "ShareLabo.Presentation.MagicOnion.Interface\ShareLabo.Presentation.MagicOnion.Interface.csproj", "{116EAB4E-DD31-402E-B315-08F7402BAA0D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Presentation.MagicOnion.Interface", "src\ShareLabo.Presentation.MagicOnion.Interface\ShareLabo.Presentation.MagicOnion.Interface.csproj", "{116EAB4E-DD31-402E-B315-08F7402BAA0D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Presentation.MagicOnion.Server", "ShareLabo.Presentation.MagicOnion.Server\ShareLabo.Presentation.MagicOnion.Server.csproj", "{F42839E4-B5A2-4940-91B7-59AF75950273}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Presentation.MagicOnion.Server", "src\ShareLabo.Presentation.MagicOnion.Server\ShareLabo.Presentation.MagicOnion.Server.csproj", "{F42839E4-B5A2-4940-91B7-59AF75950273}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Presentation.MagicOnion.Client", "ShareLabo.Presentation.MagicOnion.Client\ShareLabo.Presentation.MagicOnion.Client.csproj", "{6F33C0D2-58AC-4D1D-98D4-1F0AF8FF4FB5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Presentation.MagicOnion.Client", "src\ShareLabo.Presentation.MagicOnion.Client\ShareLabo.Presentation.MagicOnion.Client.csproj", "{6F33C0D2-58AC-4D1D-98D4-1F0AF8FF4FB5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Presentation.AppBuilder.MagicOnion.Client", "ShareLabo.Presentation.AppBuilder.MagicOnion.Client\ShareLabo.Presentation.AppBuilder.MagicOnion.Client.csproj", "{6A1D192C-12E5-4358-A77D-624659725F50}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Presentation.AppBuilder.MagicOnion.Client", "src\ShareLabo.Presentation.AppBuilder.MagicOnion.Client\ShareLabo.Presentation.AppBuilder.MagicOnion.Client.csproj", "{6A1D192C-12E5-4358-A77D-624659725F50}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Blazor", "Blazor", "{5F6C9CD6-800B-443A-ACDE-DE3C91BF22AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Application.UseCase.QueryService.User", "ShareLabo.Application.UseCase.QueryService.User\ShareLabo.Application.UseCase.QueryService.User.csproj", "{AA1CB95F-59BD-43BF-BE2F-AEFF6DF4E4A4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Application.UseCase.QueryService.User", "src\ShareLabo.Application.UseCase.QueryService.User\ShareLabo.Application.UseCase.QueryService.User.csproj", "{AA1CB95F-59BD-43BF-BE2F-AEFF6DF4E4A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Infrastructure.PGSQL.QueryService.User", "ShareLabo.Infrastructure.PGSQL.QueryService.User\ShareLabo.Infrastructure.PGSQL.QueryService.User.csproj", "{BBA39F68-B255-4F77-AC38-DAA5ACA25C4B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Infrastructure.PGSQL.QueryService.User", "src\ShareLabo.Infrastructure.PGSQL.QueryService.User\ShareLabo.Infrastructure.PGSQL.QueryService.User.csproj", "{BBA39F68-B255-4F77-AC38-DAA5ACA25C4B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Presentation.Blazor", "ShareLabo.Presentation.Blazor\ShareLabo.Presentation.Blazor\ShareLabo.Presentation.Blazor.csproj", "{8E8A5A42-A848-4CBC-A3B3-FEC546C66582}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Presentation.Blazor", "src\ShareLabo.Presentation.Blazor\ShareLabo.Presentation.Blazor\ShareLabo.Presentation.Blazor.csproj", "{8E8A5A42-A848-4CBC-A3B3-FEC546C66582}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Presentation.Blazor.Client", "ShareLabo.Presentation.Blazor\ShareLabo.Presentation.Blazor.Client\ShareLabo.Presentation.Blazor.Client.csproj", "{08B8D324-F708-4AD9-BDA1-F01C63B4701D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Presentation.Blazor.Client", "src\ShareLabo.Presentation.Blazor\ShareLabo.Presentation.Blazor.Client\ShareLabo.Presentation.Blazor.Client.csproj", "{08B8D324-F708-4AD9-BDA1-F01C63B4701D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Application.UseCase.QueryService.Post", "ShareLabo.Application.UseCase.QueryService.Post\ShareLabo.Application.UseCase.QueryService.Post.csproj", "{8EE9DD96-FB76-4976-836C-D68CD2BF6E89}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Application.UseCase.QueryService.Post", "src\ShareLabo.Application.UseCase.QueryService.Post\ShareLabo.Application.UseCase.QueryService.Post.csproj", "{8EE9DD96-FB76-4976-836C-D68CD2BF6E89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Infrastructure.PGSQL.QueryService.Post", "ShareLabo.Infrastructure.PGSQL.QueryService.Post\ShareLabo.Infrastructure.PGSQL.QueryService.Post.csproj", "{11A3055D-0B3E-484C-80E5-57122478EB45}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Infrastructure.PGSQL.QueryService.Post", "src\ShareLabo.Infrastructure.PGSQL.QueryService.Post\ShareLabo.Infrastructure.PGSQL.QueryService.Post.csproj", "{11A3055D-0B3E-484C-80E5-57122478EB45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Domain.Aggregate.TimeLine", "ShareLabo.Domain.Aggregate.TimeLine\ShareLabo.Domain.Aggregate.TimeLine.csproj", "{C23A654B-17DE-48B9-B4C6-532B09A11B40}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Domain.Aggregate.TimeLine", "src\ShareLabo.Domain.Aggregate.TimeLine\ShareLabo.Domain.Aggregate.TimeLine.csproj", "{C23A654B-17DE-48B9-B4C6-532B09A11B40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Infrastructure.PGSQL.Repository.TimeLine", "ShareLabo.Infrastructure.PGSQL.Repository.TimeLine\ShareLabo.Infrastructure.PGSQL.Repository.TimeLine.csproj", "{81B42C19-7B20-4A69-92C3-D6814E72103A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Infrastructure.PGSQL.Repository.TimeLine", "src\ShareLabo.Infrastructure.PGSQL.Repository.TimeLine\ShareLabo.Infrastructure.PGSQL.Repository.TimeLine.csproj", "{81B42C19-7B20-4A69-92C3-D6814E72103A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Domain.Aggregate.Follow", "ShareLabo.Domain.Aggregate.Follow\ShareLabo.Domain.Aggregate.Follow.csproj", "{C9DF1021-8739-4A12-9058-E3E963487A65}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Domain.Aggregate.Follow", "src\ShareLabo.Domain.Aggregate.Follow\ShareLabo.Domain.Aggregate.Follow.csproj", "{C9DF1021-8739-4A12-9058-E3E963487A65}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Domain.DomainService.Follow", "ShareLabo.Domain.DomainService.Follow\ShareLabo.Domain.DomainService.Follow.csproj", "{9DB57A99-DE94-4DD4-91A5-21D6360EDBA6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Domain.DomainService.Follow", "src\ShareLabo.Domain.DomainService.Follow\ShareLabo.Domain.DomainService.Follow.csproj", "{9DB57A99-DE94-4DD4-91A5-21D6360EDBA6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Infrastructure.PGSQL.Repository.Follow", "ShareLabo.Infrastructure.PGSQL.Repository.Follow\ShareLabo.Infrastructure.PGSQL.Repository.Follow.csproj", "{37BDA11D-43E4-45F4-B8BA-C35DB00C108D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Infrastructure.PGSQL.Repository.Follow", "src\ShareLabo.Infrastructure.PGSQL.Repository.Follow\ShareLabo.Infrastructure.PGSQL.Repository.Follow.csproj", "{37BDA11D-43E4-45F4-B8BA-C35DB00C108D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Domain.DomainService.TimeLine", "ShareLabo.Domain.DomainService.TimeLine\ShareLabo.Domain.DomainService.TimeLine.csproj", "{722AD4B4-995D-4D32-853A-7915CD7112CB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Domain.DomainService.TimeLine", "src\ShareLabo.Domain.DomainService.TimeLine\ShareLabo.Domain.DomainService.TimeLine.csproj", "{722AD4B4-995D-4D32-853A-7915CD7112CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Application.UseCase.CommandService.Follow", "ShareLabo.Application.UseCase.CommandService.Follow\ShareLabo.Application.UseCase.CommandService.Follow.csproj", "{1FC632CF-BA5F-4298-B0E2-8073DD9ED992}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Application.UseCase.CommandService.Follow", "src\ShareLabo.Application.UseCase.CommandService.Follow\ShareLabo.Application.UseCase.CommandService.Follow.csproj", "{1FC632CF-BA5F-4298-B0E2-8073DD9ED992}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Application.UseCase.CommandService.TimeLine", "ShareLabo.Application.UseCase.CommandService.TimeLine\ShareLabo.Application.UseCase.CommandService.TimeLine.csproj", "{89B37EA9-69A6-4F26-ACC0-6D766C7602D3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Application.UseCase.CommandService.TimeLine", "src\ShareLabo.Application.UseCase.CommandService.TimeLine\ShareLabo.Application.UseCase.CommandService.TimeLine.csproj", "{89B37EA9-69A6-4F26-ACC0-6D766C7602D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Application.UseCase.QueryService.Follow", "ShareLabo.Application.UseCase.QueryService.Follow\ShareLabo.Application.UseCase.QueryService.Follow.csproj", "{10F58813-301B-4DEA-8C1D-7AC81B7B7537}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Application.UseCase.QueryService.Follow", "src\ShareLabo.Application.UseCase.QueryService.Follow\ShareLabo.Application.UseCase.QueryService.Follow.csproj", "{10F58813-301B-4DEA-8C1D-7AC81B7B7537}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Application.UseCase.QueryService.TimeLine", "ShareLabo.Application.UseCase.QueryService.TimeLine\ShareLabo.Application.UseCase.QueryService.TimeLine.csproj", "{17058744-7130-4BC1-9FE2-0C7789504F75}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Application.UseCase.QueryService.TimeLine", "src\ShareLabo.Application.UseCase.QueryService.TimeLine\ShareLabo.Application.UseCase.QueryService.TimeLine.csproj", "{17058744-7130-4BC1-9FE2-0C7789504F75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Infrastructure.PGSQL.QueryService.Follow", "ShareLabo.Infrastructure.PGSQL.QueryService.Follow\ShareLabo.Infrastructure.PGSQL.QueryService.Follow.csproj", "{E8B9D300-A40C-42CF-8BDF-70D9F6795F3E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Infrastructure.PGSQL.QueryService.Follow", "src\ShareLabo.Infrastructure.PGSQL.QueryService.Follow\ShareLabo.Infrastructure.PGSQL.QueryService.Follow.csproj", "{E8B9D300-A40C-42CF-8BDF-70D9F6795F3E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Implementation", "Implementation", "{DEAACB52-A949-4288-888E-822B2303592C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Application.UseCase.CommandService.Implementation.Follow", "ShareLabo.Application.UseCase.CommandService.Implementation.Follow\ShareLabo.Application.UseCase.CommandService.Implementation.Follow.csproj", "{6C9A6105-2655-440E-B497-9A8C1C623FF5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Application.UseCase.CommandService.Implementation.Follow", "src\ShareLabo.Application.UseCase.CommandService.Implementation.Follow\ShareLabo.Application.UseCase.CommandService.Implementation.Follow.csproj", "{6C9A6105-2655-440E-B497-9A8C1C623FF5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Application.UseCase.CommandService.Implementation.Post", "ShareLabo.Application.UseCase.CommandService.Implementation.Post\ShareLabo.Application.UseCase.CommandService.Implementation.Post.csproj", "{683EDE28-CEE2-4743-84C0-369AB2666FBB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Application.UseCase.CommandService.Implementation.Post", "src\ShareLabo.Application.UseCase.CommandService.Implementation.Post\ShareLabo.Application.UseCase.CommandService.Implementation.Post.csproj", "{683EDE28-CEE2-4743-84C0-369AB2666FBB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Application.UseCase.CommandService.Implementation.TimeLine", "ShareLabo.Application.UseCase.CommandService.Implementation.TimeLine\ShareLabo.Application.UseCase.CommandService.Implementation.TimeLine.csproj", "{AB584215-0510-4C4F-A22B-6FFDCBD7AAEB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Application.UseCase.CommandService.Implementation.TimeLine", "src\ShareLabo.Application.UseCase.CommandService.Implementation.TimeLine\ShareLabo.Application.UseCase.CommandService.Implementation.TimeLine.csproj", "{AB584215-0510-4C4F-A22B-6FFDCBD7AAEB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Application.UseCase.CommandService.Implementation.User", "ShareLabo.Application.UseCase.CommandService.Implementation.User\ShareLabo.Application.UseCase.CommandService.Implementation.User.csproj", "{97EE3D19-5FBC-4F88-B84E-704D534FBE61}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Application.UseCase.CommandService.Implementation.User", "src\ShareLabo.Application.UseCase.CommandService.Implementation.User\ShareLabo.Application.UseCase.CommandService.Implementation.User.csproj", "{97EE3D19-5FBC-4F88-B84E-704D534FBE61}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Infrastructure.PGSQL.QueryService.TimeLine", "ShareLabo.Infrastructure.PGSQL.QueryService.TimeLine\ShareLabo.Infrastructure.PGSQL.QueryService.TimeLine.csproj", "{88EF55BF-FF34-4030-AF31-D3A6CC9534A9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Infrastructure.PGSQL.QueryService.TimeLine", "src\ShareLabo.Infrastructure.PGSQL.QueryService.TimeLine\ShareLabo.Infrastructure.PGSQL.QueryService.TimeLine.csproj", "{88EF55BF-FF34-4030-AF31-D3A6CC9534A9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D04C40C0-EB1C-455A-8D95-53444F943693}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Domain.ValueObject.Tests", "Tests\ShareLabo.Domain.ValueObject.Tests\ShareLabo.Domain.ValueObject.Tests.csproj", "{F585255B-8A35-435C-8DE5-F57E41BB5544}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Domain.ValueObject.Tests", "tests\ShareLabo.Domain.ValueObject.Tests\ShareLabo.Domain.ValueObject.Tests.csproj", "{F585255B-8A35-435C-8DE5-F57E41BB5544}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
