@@ -135,6 +135,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D04C40C0
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Domain.ValueObject.Tests", "tests\ShareLabo.Domain.ValueObject.Tests\ShareLabo.Domain.ValueObject.Tests.csproj", "{F585255B-8A35-435C-8DE5-F57E41BB5544}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Domain.Aggregate.Follow.Tests", "tests\ShareLabo.Domain.Aggregate.Follow.Tests\ShareLabo.Domain.Aggregate.Follow.Tests.csproj", "{AFD89878-089D-41C8-AA6C-BD4D5AEF76E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -325,6 +327,10 @@ Global
 		{F585255B-8A35-435C-8DE5-F57E41BB5544}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F585255B-8A35-435C-8DE5-F57E41BB5544}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F585255B-8A35-435C-8DE5-F57E41BB5544}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFD89878-089D-41C8-AA6C-BD4D5AEF76E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFD89878-089D-41C8-AA6C-BD4D5AEF76E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFD89878-089D-41C8-AA6C-BD4D5AEF76E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFD89878-089D-41C8-AA6C-BD4D5AEF76E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -390,6 +396,7 @@ Global
 		{97EE3D19-5FBC-4F88-B84E-704D534FBE61} = {DEAACB52-A949-4288-888E-822B2303592C}
 		{88EF55BF-FF34-4030-AF31-D3A6CC9534A9} = {7274F359-4CCC-4754-86F7-F853271262D8}
 		{F585255B-8A35-435C-8DE5-F57E41BB5544} = {D04C40C0-EB1C-455A-8D95-53444F943693}
+		{AFD89878-089D-41C8-AA6C-BD4D5AEF76E3} = {D04C40C0-EB1C-455A-8D95-53444F943693}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FF4DA580-1568-4D1C-B696-3AE5FDB023A3}

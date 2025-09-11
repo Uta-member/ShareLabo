@@ -1,6 +1,7 @@
 ﻿using CSStack.TADA;
 using ShareLabo.Domain.Aggregate.Follow;
 using ShareLabo.Domain.Aggregate.Toolkit;
+using ShareLabo.Domain.ValueObject;
 
 namespace ShareLabo.Domain.DomainService.Follow
 {

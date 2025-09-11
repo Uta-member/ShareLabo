@@ -1,4 +1,5 @@
 ﻿using CSStack.TADA;
+using ShareLabo.Domain.ValueObject;
 
 namespace ShareLabo.Domain.Aggregate.Follow
 {

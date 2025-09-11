@@ -1,6 +1,4 @@
-﻿using ShareLabo.Domain.ValueObject;
-
-namespace ShareLabo.Domain.Aggregate.Follow
+﻿namespace ShareLabo.Domain.ValueObject
 {
     public sealed record FollowIdentifier
     {

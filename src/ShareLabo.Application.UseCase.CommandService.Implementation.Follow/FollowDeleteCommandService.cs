@@ -1,6 +1,7 @@
 ﻿
 using CSStack.TADA;
 using ShareLabo.Domain.DomainService.Follow;
+using ShareLabo.Domain.ValueObject;
 
 namespace ShareLabo.Application.UseCase.CommandService.Follow
 {
@@ -28,7 +29,7 @@ namespace ShareLabo.Application.UseCase.CommandService.Follow
                     new FollowDeleteDomainService<TFollowSession>.Req()
                 {
                     FollowId =
-                        new Domain.Aggregate.Follow.FollowIdentifier()
+                        new FollowIdentifier()
                                 {
                                     FollowFromId = req.FollowId.FollowFromId,
                                     FollowToId = req.FollowId.FollowToId
