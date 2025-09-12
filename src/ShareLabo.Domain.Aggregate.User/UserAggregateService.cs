@@ -6,6 +6,7 @@ namespace ShareLabo.Domain.Aggregate.User
 {
     public sealed class UserAggregateService<TSession>
         : AggregateServiceBase<UserEntity, UserId, IUserRepository<TSession>, OperateInfo, TSession>
+        , IUserAggregateService<TSession>
         where TSession : IDisposable
     {
         public UserAggregateService(IUserRepository<TSession> repository)
@@ -13,7 +14,9 @@ namespace ShareLabo.Domain.Aggregate.User
         {
         }
 
-        public async ValueTask CreateAsync(CreateReq req, CancellationToken cancellationToken = default)
+        public async ValueTask CreateAsync(
+            IUserAggregateService<TSession>.CreateReq req,
+            CancellationToken cancellationToken = default)
         {
             var entity = UserEntity.Create(req.Command);
             var targetEntityOptional = await Repository.FindByIdentifierAsync(
@@ -35,7 +38,9 @@ namespace ShareLabo.Domain.Aggregate.User
             await Repository.SaveAsync(req.Session, entity, req.OperateInfo, cancellationToken);
         }
 
-        public async ValueTask DeleteAsync(StatusUpdateReq req, CancellationToken cancellationToken = default)
+        public async ValueTask DeleteAsync(
+            IUserAggregateService<TSession>.StatusUpdateReq req,
+            CancellationToken cancellationToken = default)
         {
             var entityOptional = await Repository.FindByIdentifierAsync(req.Session, req.TargetId, cancellationToken);
             if(!entityOptional.TryGetValue(out var entity))
@@ -46,7 +51,9 @@ namespace ShareLabo.Domain.Aggregate.User
             await Repository.SaveAsync(req.Session, entity, req.OperateInfo, cancellationToken);
         }
 
-        public async ValueTask DisableAsync(StatusUpdateReq req, CancellationToken cancellationToken = default)
+        public async ValueTask DisableAsync(
+            IUserAggregateService<TSession>.StatusUpdateReq req,
+            CancellationToken cancellationToken = default)
         {
             var entityOptional = await Repository.FindByIdentifierAsync(req.Session, req.TargetId, cancellationToken);
             if(!entityOptional.TryGetValue(out var entity))
@@ -57,7 +64,9 @@ namespace ShareLabo.Domain.Aggregate.User
             await Repository.SaveAsync(req.Session, entity, req.OperateInfo, cancellationToken);
         }
 
-        public async ValueTask EnableAsync(StatusUpdateReq req, CancellationToken cancellationToken = default)
+        public async ValueTask EnableAsync(
+            IUserAggregateService<TSession>.StatusUpdateReq req,
+            CancellationToken cancellationToken = default)
         {
             var entityOptional = await Repository.FindByIdentifierAsync(req.Session, req.TargetId, cancellationToken);
             if(!entityOptional.TryGetValue(out var entity))
@@ -68,7 +77,9 @@ namespace ShareLabo.Domain.Aggregate.User
             await Repository.SaveAsync(req.Session, entity, req.OperateInfo, cancellationToken);
         }
 
-        public async ValueTask UpdateAsync(UpdateReq req, CancellationToken cancellationToken = default)
+        public async ValueTask UpdateAsync(
+            IUserAggregateService<TSession>.UpdateReq req,
+            CancellationToken cancellationToken = default)
         {
             var entityOptional = await Repository.FindByIdentifierAsync(req.Session, req.TargetId, cancellationToken);
             if(!entityOptional.TryGetValue(out var entity))
@@ -77,35 +88,6 @@ namespace ShareLabo.Domain.Aggregate.User
             }
             entity = entity.Update(req.Command);
             await Repository.SaveAsync(req.Session, entity, req.OperateInfo, cancellationToken);
-        }
-
-        public sealed record CreateReq
-        {
-            public required UserEntity.CreateCommand Command { get; init; }
-
-            public required OperateInfo OperateInfo { get; init; }
-
-            public required TSession Session { get; init; }
-        }
-
-        public sealed record UpdateReq
-        {
-            public required UserEntity.UpdateCommand Command { get; init; }
-
-            public required OperateInfo OperateInfo { get; init; }
-
-            public required TSession Session { get; init; }
-
-            public required UserId TargetId { get; init; }
-        }
-
-        public sealed record StatusUpdateReq
-        {
-            public required OperateInfo OperateInfo { get; init; }
-
-            public required TSession Session { get; init; }
-
-            public required UserId TargetId { get; init; }
         }
     }
 }

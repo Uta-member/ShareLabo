@@ -1,40 +1,30 @@
-﻿using CSStack.TADA;
-using ShareLabo.Domain.Aggregate.Follow;
-using ShareLabo.Domain.Aggregate.Toolkit;
-using ShareLabo.Domain.ValueObject;
+﻿using ShareLabo.Domain.Aggregate.Follow;
 
 namespace ShareLabo.Domain.DomainService.Follow
 {
     public sealed class FollowDeleteDomainService<TFollowSession>
-        : IDomainService<FollowDeleteDomainService<TFollowSession>.Req>
+        : IFollowDeleteDomainService<TFollowSession>
         where TFollowSession : IDisposable
     {
-        private readonly FollowAggregateService<TFollowSession> _followAggregateService;
+        private readonly IFollowAggregateService<TFollowSession> _followAggregateService;
 
         public FollowDeleteDomainService(FollowAggregateService<TFollowSession> followAggregateService)
         {
             _followAggregateService = followAggregateService;
         }
 
-        public async ValueTask ExecuteAsync(Req req, CancellationToken cancellationToken = default)
+        public async ValueTask ExecuteAsync(
+            IFollowDeleteDomainService<TFollowSession>.Req req,
+            CancellationToken cancellationToken = default)
         {
             await _followAggregateService.DeleteAsync(
-                new FollowAggregateService<TFollowSession>.DeleteReq()
+                new IFollowAggregateService<TFollowSession>.DeleteReq()
                 {
                     FollowId = req.FollowId,
                     OperateInfo = req.OperateInfo,
                     Session = req.FollowSession,
                 },
                 cancellationToken);
-        }
-
-        public sealed record Req : IDomainServiceDTO
-        {
-            public required FollowIdentifier FollowId { get; init; }
-
-            public required TFollowSession FollowSession { get; init; }
-
-            public required OperateInfo OperateInfo { get; init; }
         }
     }
 }

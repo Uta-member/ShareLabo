@@ -1,26 +1,25 @@
-﻿using CSStack.TADA;
-using ShareLabo.Domain.Aggregate.Post;
-using ShareLabo.Domain.Aggregate.Toolkit;
-using ShareLabo.Domain.ValueObject;
+﻿using ShareLabo.Domain.Aggregate.Post;
 
 namespace ShareLabo.Domain.DomainService.Post
 {
     public sealed class PostUpdateDomainService<TPostSession>
-        : IDomainService<PostUpdateDomainService<TPostSession>.Req>
+        : IPostUpdateDomainService<TPostSession>
         where TPostSession : IDisposable
     {
-        private readonly PostAggregateService<TPostSession> _postAggregateService;
+        private readonly IPostAggregateService<TPostSession> _postAggregateService;
 
         public PostUpdateDomainService(
-            PostAggregateService<TPostSession> postAggregateService)
+            IPostAggregateService<TPostSession> postAggregateService)
         {
             _postAggregateService = postAggregateService;
         }
 
-        public async ValueTask ExecuteAsync(Req req, CancellationToken cancellationToken = default)
+        public async ValueTask ExecuteAsync(
+            IPostUpdateDomainService<TPostSession>.Req req,
+            CancellationToken cancellationToken = default)
         {
             await _postAggregateService.UpdateAsync(
-                new PostAggregateService<TPostSession>.UpdateReq()
+                new IPostAggregateService<TPostSession>.UpdateReq()
                 {
                     Command =
                         new PostEntity.UpdateCommand()
@@ -33,19 +32,6 @@ namespace ShareLabo.Domain.DomainService.Post
                     TargetId = req.TargetPostId,
                 },
                 cancellationToken);
-        }
-
-        public sealed record Req : IDomainServiceDTO
-        {
-            public required OperateInfo OperateInfo { get; init; }
-
-            public required Optional<PostContent> PostContentOptional { get; init; }
-
-            public required TPostSession PostSession { get; init; }
-
-            public required Optional<PostTitle> PostTitleOptional { get; init; }
-
-            public required PostId TargetPostId { get; init; }
         }
     }
 }

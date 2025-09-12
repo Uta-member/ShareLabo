@@ -1,25 +1,24 @@
-﻿using CSStack.TADA;
-using ShareLabo.Domain.Aggregate.Toolkit;
-using ShareLabo.Domain.Aggregate.User;
-using ShareLabo.Domain.ValueObject;
+﻿using ShareLabo.Domain.Aggregate.User;
 
 namespace ShareLabo.Domain.DomainService.User
 {
     public sealed class UserUpdateDomainService<TUserSession>
-        : IDomainService<UserUpdateDomainService<TUserSession>.Req>
+        : IUserUpdateDomainService<TUserSession>
         where TUserSession : IDisposable
     {
-        private readonly UserAggregateService<TUserSession> _userAggregateService;
+        private readonly IUserAggregateService<TUserSession> _userAggregateService;
 
-        public UserUpdateDomainService(UserAggregateService<TUserSession> userAggregateService)
+        public UserUpdateDomainService(IUserAggregateService<TUserSession> userAggregateService)
         {
             _userAggregateService = userAggregateService;
         }
 
-        public async ValueTask ExecuteAsync(Req req, CancellationToken cancellationToken = default)
+        public async ValueTask ExecuteAsync(
+            IUserUpdateDomainService<TUserSession>.Req req,
+            CancellationToken cancellationToken = default)
         {
             await _userAggregateService.UpdateAsync(
-                new UserAggregateService<TUserSession>.UpdateReq()
+                new IUserAggregateService<TUserSession>.UpdateReq()
                 {
                     TargetId = req.TargetId,
                     Command =
@@ -32,23 +31,6 @@ namespace ShareLabo.Domain.DomainService.User
                     Session = req.UserSession,
                 },
                 cancellationToken);
-        }
-
-        public sealed record Req : IDomainServiceDTO
-        {
-            public required OperateInfo OperateInfo { get; init; }
-
-            public required UserId TargetId { get; init; }
-
-            public required Optional<UserAccountId> UserAccountIdOptional
-            {
-                get;
-                init;
-            } = Optional<UserAccountId>.Empty;
-
-            public required Optional<UserName> UserNameOptional { get; init; } = Optional<UserName>.Empty;
-
-            public required TUserSession UserSession { get; init; }
         }
     }
 }

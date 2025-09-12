@@ -32,7 +32,7 @@ namespace ShareLabo.Application.UseCase.CommandService.Implementation.User
                 async sessions =>
                 {
                     await _userUpdateDomainService.ExecuteAsync(
-                        new UserUpdateDomainService<TUserSession>.Req()
+                        new IUserUpdateDomainService<TUserSession>.Req()
                         {
                             UserAccountIdOptional = req.UserAccountIdOptional,
                             OperateInfo = req.OperateInfo,

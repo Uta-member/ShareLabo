@@ -26,7 +26,7 @@ namespace ShareLabo.Application.UseCase.CommandService.Implementation.TimeLine
             await _transactionManager.ExecuteTransactionAsync(
                 [typeof(TTimeLineSession), typeof(TUserSession)],
                 async sessions => await _timeLineUpdateDomainService.ExecuteAsync(
-                    new TimeLineUpdateDomainService<TTimeLineSession, TUserSession>.Req()
+                    new ITimeLineUpdateDomainService<TTimeLineSession, TUserSession>.Req()
                 {
                     FilterMembersOptional = req.FilterMembersOptional,
                     NameOptional = req.NameOptional,

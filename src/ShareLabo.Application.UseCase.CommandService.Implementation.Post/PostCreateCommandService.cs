@@ -26,7 +26,7 @@ namespace ShareLabo.Application.UseCase.CommandService.Implementation.Post
             await _transactionManager.ExecuteTransactionAsync(
                 [typeof(TPostSession), typeof(TUserSession)],
                 async sessions => await _postCreateDomainService.ExecuteAsync(
-                    new PostCreateDomainService<TPostSession, TUserSession>.Req()
+                    new IPostCreateDomainService<TPostSession, TUserSession>.Req()
                 {
                     OperateInfo = req.OperateInfo,
                     PostContent = req.PostContent,

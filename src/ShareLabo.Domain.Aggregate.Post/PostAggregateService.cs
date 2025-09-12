@@ -6,6 +6,7 @@ namespace ShareLabo.Domain.Aggregate.Post
 {
     public sealed class PostAggregateService<TSession>
         : AggregateServiceBase<PostEntity, PostId, IPostRepository<TSession>, OperateInfo, TSession>
+        , IPostAggregateService<TSession>
         where TSession : IDisposable
     {
         public PostAggregateService(IPostRepository<TSession> repository)
@@ -13,7 +14,9 @@ namespace ShareLabo.Domain.Aggregate.Post
         {
         }
 
-        public async ValueTask CreateAsync(CreateReq req, CancellationToken cancellationToken = default)
+        public async ValueTask CreateAsync(
+            IPostAggregateService<TSession>.CreateReq req,
+            CancellationToken cancellationToken = default)
         {
             var latestPostEntityOptional = await Repository.FindLatestPostAsync(
                 req.Session,
@@ -34,7 +37,9 @@ namespace ShareLabo.Domain.Aggregate.Post
             await Repository.SaveAsync(req.Session, entity, req.OperateInfo, cancellationToken);
         }
 
-        public async ValueTask DeleteAsync(DeleteReq req, CancellationToken cancellationToken = default)
+        public async ValueTask DeleteAsync(
+            IPostAggregateService<TSession>.DeleteReq req,
+            CancellationToken cancellationToken = default)
         {
             var targetEntityOptional = await Repository.FindByIdentifierAsync(
                 req.Session,
@@ -47,7 +52,9 @@ namespace ShareLabo.Domain.Aggregate.Post
             await Repository.DeleteAsync(req.Session, targetEntity, req.OperateInfo, cancellationToken);
         }
 
-        public async ValueTask UpdateAsync(UpdateReq req, CancellationToken cancellationToken = default)
+        public async ValueTask UpdateAsync(
+            IPostAggregateService<TSession>.UpdateReq req,
+            CancellationToken cancellationToken = default)
         {
             var latestPostEntityOptional = await Repository.FindLatestPostAsync(
                 req.Session,
@@ -66,35 +73,6 @@ namespace ShareLabo.Domain.Aggregate.Post
                 req.Command,
                 latestPostEntityOptional.TryGetValue(out var latestPostEntity) ? latestPostEntity.SequenceId + 1 : 1);
             await Repository.SaveAsync(req.Session, targetEntity, req.OperateInfo, cancellationToken);
-        }
-
-        public sealed record CreateReq
-        {
-            public required PostEntity.CreateCommand Command { get; init; }
-
-            public required OperateInfo OperateInfo { get; init; }
-
-            public required TSession Session { get; init; }
-        }
-
-        public sealed record UpdateReq
-        {
-            public required PostEntity.UpdateCommand Command { get; init; }
-
-            public required OperateInfo OperateInfo { get; init; }
-
-            public required TSession Session { get; init; }
-
-            public required PostId TargetId { get; init; }
-        }
-
-        public sealed record DeleteReq
-        {
-            public required OperateInfo OperateInfo { get; init; }
-
-            public required TSession Session { get; init; }
-
-            public required PostId TargetId { get; init; }
         }
     }
 }

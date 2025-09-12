@@ -38,7 +38,7 @@ namespace ShareLabo.Domain.Aggregate.Follow.Tests
                 Operator = UserId.Reconstruct(new string('c', 8)),
             };
 
-            var createReq = new FollowAggregateService<DummySession>.CreateReq
+            var createReq = new IFollowAggregateService<DummySession>.CreateReq
             {
                 CreateCommand = createCommand,
                 OperateInfo = operateInfo,
@@ -86,7 +86,7 @@ namespace ShareLabo.Domain.Aggregate.Follow.Tests
                 Operator = UserId.Reconstruct(new string('c', 8)),
             };
 
-            var createReq = new FollowAggregateService<DummySession>.CreateReq
+            var createReq = new IFollowAggregateService<DummySession>.CreateReq
             {
                 CreateCommand = createCommand,
                 OperateInfo = operateInfo,
@@ -139,7 +139,7 @@ namespace ShareLabo.Domain.Aggregate.Follow.Tests
                 Operator = UserId.Reconstruct(new string('c', 8)),
             };
 
-            var deleteReq = new FollowAggregateService<DummySession>.DeleteReq
+            var deleteReq = new IFollowAggregateService<DummySession>.DeleteReq
             {
                 FollowId = followId,
                 OperateInfo = operateInfo,
@@ -197,7 +197,7 @@ namespace ShareLabo.Domain.Aggregate.Follow.Tests
                 Operator = UserId.Reconstruct(new string('c', 8)),
             };
 
-            var deleteReq = new FollowAggregateService<DummySession>.DeleteReq
+            var deleteReq = new IFollowAggregateService<DummySession>.DeleteReq
             {
                 FollowId = followId,
                 OperateInfo = operateInfo,

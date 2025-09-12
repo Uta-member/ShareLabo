@@ -1,28 +1,28 @@
 ﻿using CSStack.TADA;
 using ShareLabo.Domain.Aggregate.Post;
-using ShareLabo.Domain.Aggregate.Toolkit;
 using ShareLabo.Domain.Aggregate.User;
-using ShareLabo.Domain.ValueObject;
 
 namespace ShareLabo.Domain.DomainService.Post
 {
     public sealed class PostCreateDomainService<TPostSession, TUserSession>
-        : IDomainService<PostCreateDomainService<TPostSession, TUserSession>.Req>
+        : IPostCreateDomainService<TPostSession, TUserSession>
         where TPostSession : IDisposable
         where TUserSession : IDisposable
     {
-        private readonly PostAggregateService<TPostSession> _postAggregateService;
-        private readonly UserAggregateService<TUserSession> _userAggregateService;
+        private readonly IPostAggregateService<TPostSession> _postAggregateService;
+        private readonly IUserAggregateService<TUserSession> _userAggregateService;
 
         public PostCreateDomainService(
-            PostAggregateService<TPostSession> postAggregateService,
-            UserAggregateService<TUserSession> userAggregateService)
+            IPostAggregateService<TPostSession> postAggregateService,
+            IUserAggregateService<TUserSession> userAggregateService)
         {
             _postAggregateService = postAggregateService;
             _userAggregateService = userAggregateService;
         }
 
-        public async ValueTask ExecuteAsync(Req req, CancellationToken cancellationToken = default)
+        public async ValueTask ExecuteAsync(
+            IPostCreateDomainService<TPostSession, TUserSession>.Req req,
+            CancellationToken cancellationToken = default)
         {
             var postUserOptional = await _userAggregateService.GetEntityByIdentifierAsync(
                 req.UserSession,
@@ -34,7 +34,7 @@ namespace ShareLabo.Domain.DomainService.Post
             }
 
             await _postAggregateService.CreateAsync(
-                new PostAggregateService<TPostSession>.CreateReq()
+                new IPostAggregateService<TPostSession>.CreateReq()
                 {
                     Command =
                         new PostEntity.CreateCommand()
@@ -49,25 +49,6 @@ namespace ShareLabo.Domain.DomainService.Post
                     Session = req.PostSession,
                 },
                 cancellationToken);
-        }
-
-        public sealed record Req : IDomainServiceDTO
-        {
-            public required OperateInfo OperateInfo { get; init; }
-
-            public required PostContent PostContent { get; init; }
-
-            public required DateTime PostDateTime { get; init; }
-
-            public required PostId PostId { get; init; }
-
-            public required TPostSession PostSession { get; init; }
-
-            public required PostTitle PostTitle { get; init; }
-
-            public required UserId PostUser { get; init; }
-
-            public required TUserSession UserSession { get; init; }
         }
     }
 }

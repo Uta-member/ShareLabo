@@ -25,7 +25,7 @@ namespace ShareLabo.Application.UseCase.CommandService.Implementation.TimeLine
             await _transactionManager.ExecuteTransactionAsync(
                 [typeof(TTimeLineSession)],
                 async sessions => await _timeLineDeleteDomainService.ExecuteAsync(
-                    new TimeLineDeleteDomainService<TTimeLineSession>.Req()
+                    new ITimeLineDeleteDomainService<TTimeLineSession>.Req()
                 {
                     OperateInfo = req.OperateInfo,
                     TargetId = req.TargetId,

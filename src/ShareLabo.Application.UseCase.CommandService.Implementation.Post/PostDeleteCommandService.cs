@@ -25,7 +25,7 @@ namespace ShareLabo.Application.UseCase.CommandService.Implementation.Post
             await _transactionManager.ExecuteTransactionAsync(
                 [typeof(TPostSession)],
                 async sessions => await _postDeleteDomainService.ExecuteAsync(
-                    new PostDeleteDomainService<TPostSession>.Req()
+                    new IPostDeleteDomainService<TPostSession>.Req()
                 {
                     OperateInfo = req.OperateInfo,
                     PostSession = sessions.GetSession<TPostSession>(),

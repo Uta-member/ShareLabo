@@ -7,6 +7,7 @@ namespace ShareLabo.Domain.Aggregate.Follow
 {
     public sealed class FollowAggregateService<TSession>
         : AggregateServiceBase<FollowEntity, FollowIdentifier, IFollowRepository<TSession>, OperateInfo, TSession>
+        , IFollowAggregateService<TSession>
         where TSession : IDisposable
     {
         public FollowAggregateService(IFollowRepository<TSession> repository)
@@ -14,7 +15,9 @@ namespace ShareLabo.Domain.Aggregate.Follow
         {
         }
 
-        public async ValueTask CreateAsync(CreateReq req, CancellationToken cancellationToken = default)
+        public async ValueTask CreateAsync(
+            IFollowAggregateService<TSession> .CreateReq req,
+            CancellationToken cancellationToken = default)
         {
             var entity = FollowEntity.Create(req.CreateCommand);
 
@@ -35,7 +38,9 @@ namespace ShareLabo.Domain.Aggregate.Follow
                 cancellationToken);
         }
 
-        public async ValueTask DeleteAsync(DeleteReq req, CancellationToken cancellationToken = default)
+        public async ValueTask DeleteAsync(
+            IFollowAggregateService<TSession> .DeleteReq req,
+            CancellationToken cancellationToken = default)
         {
             var targetFollowEntityOptional = await Repository.FindByIdentifierAsync(
                 req.Session,
@@ -63,24 +68,6 @@ namespace ShareLabo.Domain.Aggregate.Follow
                 session,
                 followingUserId,
                 cancellationToken);
-        }
-
-        public sealed record CreateReq
-        {
-            public required FollowEntity.CreateCommand CreateCommand { get; init; }
-
-            public required OperateInfo OperateInfo { get; init; }
-
-            public required TSession Session { get; init; }
-        }
-
-        public sealed record DeleteReq
-        {
-            public required FollowIdentifier FollowId { get; init; }
-
-            public required OperateInfo OperateInfo { get; init; }
-
-            public required TSession Session { get; init; }
         }
     }
 }

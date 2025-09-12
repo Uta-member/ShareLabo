@@ -1,28 +1,28 @@
 ﻿using CSStack.TADA;
 using ShareLabo.Domain.Aggregate.Follow;
-using ShareLabo.Domain.Aggregate.Toolkit;
 using ShareLabo.Domain.Aggregate.User;
-using ShareLabo.Domain.ValueObject;
 
 namespace ShareLabo.Domain.DomainService.Follow
 {
     public sealed class FollowCreateDomainService<TFollowSession, TUserSession>
-        : IDomainService<FollowCreateDomainService<TFollowSession, TUserSession>.Req>
+        : IFollowCreateDomainService<TFollowSession, TUserSession>
         where TFollowSession : IDisposable
         where TUserSession : IDisposable
     {
-        private readonly FollowAggregateService<TFollowSession> _followAggregateService;
-        private readonly UserAggregateService<TUserSession> _userAggregateService;
+        private readonly IFollowAggregateService<TFollowSession> _followAggregateService;
+        private readonly IUserAggregateService<TUserSession> _userAggregateService;
 
         public FollowCreateDomainService(
-            FollowAggregateService<TFollowSession> followAggregateService,
-            UserAggregateService<TUserSession> userAggregateService)
+            IFollowAggregateService<TFollowSession> followAggregateService,
+            IUserAggregateService<TUserSession> userAggregateService)
         {
             _followAggregateService = followAggregateService;
             _userAggregateService = userAggregateService;
         }
 
-        public async ValueTask ExecuteAsync(Req req, CancellationToken cancellationToken = default)
+        public async ValueTask ExecuteAsync(
+            IFollowCreateDomainService<TFollowSession, TUserSession>.Req req,
+            CancellationToken cancellationToken = default)
         {
             var targetFromUserOptional = await _userAggregateService.GetEntityByIdentifierAsync(
                 req.UserSession,
@@ -43,7 +43,7 @@ namespace ShareLabo.Domain.DomainService.Follow
             }
 
             await _followAggregateService.CreateAsync(
-                new FollowAggregateService<TFollowSession>.CreateReq()
+                new IFollowAggregateService<TFollowSession>.CreateReq()
                 {
                     CreateCommand =
                         new FollowEntity.CreateCommand()
@@ -55,19 +55,6 @@ namespace ShareLabo.Domain.DomainService.Follow
                     Session = req.FollowSession,
                 },
                 cancellationToken);
-        }
-
-        public sealed record Req : IDomainServiceDTO
-        {
-            public required FollowIdentifier FollowId { get; init; }
-
-            public required TFollowSession FollowSession { get; init; }
-
-            public required DateTime FollowStartDateTime { get; init; }
-
-            public required OperateInfo OperateInfo { get; init; }
-
-            public required TUserSession UserSession { get; init; }
         }
     }
 }

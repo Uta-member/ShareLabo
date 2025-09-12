@@ -27,7 +27,7 @@ namespace ShareLabo.Application.UseCase.CommandService.Implementation.Follow
             await _transactionManager.ExecuteTransactionAsync(
                 [typeof(TFollowSession), typeof(TUserSession)],
                 async sessions => await _followCreateDomainService.ExecuteAsync(
-                    new FollowCreateDomainService<TFollowSession, TUserSession>.Req()
+                    new IFollowCreateDomainService<TFollowSession, TUserSession>.Req()
                 {
                     FollowId =
                         new FollowIdentifier()

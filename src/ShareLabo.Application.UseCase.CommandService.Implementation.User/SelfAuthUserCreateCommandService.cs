@@ -33,7 +33,7 @@ namespace ShareLabo.Application.UseCase.CommandService.Implementation.User
                 async sessions =>
                 {
                     await _userCreateDomainService.ExecuteAsync(
-                        new UserCreateDomainService<TUserSession>.Req()
+                        new IUserCreateDomainService<TUserSession>.Req()
                         {
                             UserAccountId = req.UserAccountId,
                             OperateInfo = req.OperateInfo,

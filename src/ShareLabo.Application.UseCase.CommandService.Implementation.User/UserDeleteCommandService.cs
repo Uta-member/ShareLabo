@@ -35,7 +35,7 @@ namespace ShareLabo.Application.UseCase.CommandService.Implementation.User
                 async sessions =>
                 {
                     await _userDeleteDomainService.ExecuteAsync(
-                        new UserDeleteDomainService<TUserSession, TTimeLineSession, TFollowSession>.Req()
+                        new IUserDeleteDomainService<TUserSession, TTimeLineSession, TFollowSession>.Req()
                         {
                             OperateInfo = req.OperateInfo,
                             TargetId = req.TargetId,

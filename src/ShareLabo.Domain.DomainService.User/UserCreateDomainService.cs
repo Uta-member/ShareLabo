@@ -1,26 +1,25 @@
-﻿using CSStack.TADA;
-using ShareLabo.Domain.Aggregate.Toolkit;
-using ShareLabo.Domain.Aggregate.User;
-using ShareLabo.Domain.ValueObject;
+﻿using ShareLabo.Domain.Aggregate.User;
 
 namespace ShareLabo.Domain.DomainService.User
 {
     public sealed class UserCreateDomainService<TUserSession>
-        : IDomainService<UserCreateDomainService<TUserSession>.Req>
+        : IUserCreateDomainService<TUserSession>
         where TUserSession : IDisposable
     {
-        private readonly UserAggregateService<TUserSession> _userAggregateService;
+        private readonly IUserAggregateService<TUserSession> _userAggregateService;
 
         public UserCreateDomainService(
-            UserAggregateService<TUserSession> userAggregateService)
+            IUserAggregateService<TUserSession> userAggregateService)
         {
             _userAggregateService = userAggregateService;
         }
 
-        public async ValueTask ExecuteAsync(Req req, CancellationToken cancellationToken = default)
+        public async ValueTask ExecuteAsync(
+            IUserCreateDomainService<TUserSession>.Req req,
+            CancellationToken cancellationToken = default)
         {
             await _userAggregateService.CreateAsync(
-                new UserAggregateService<TUserSession>.CreateReq()
+                new IUserAggregateService<TUserSession>.CreateReq()
                 {
                     Command =
                         new UserEntity.CreateCommand()
@@ -33,19 +32,6 @@ namespace ShareLabo.Domain.DomainService.User
                     Session = req.UserSession,
                 },
                 cancellationToken);
-        }
-
-        public sealed record Req : IDomainServiceDTO
-        {
-            public required OperateInfo OperateInfo { get; init; }
-
-            public required UserAccountId UserAccountId { get; init; }
-
-            public required UserId UserId { get; init; }
-
-            public required UserName UserName { get; init; }
-
-            public required TUserSession UserSession { get; init; }
         }
     }
 }

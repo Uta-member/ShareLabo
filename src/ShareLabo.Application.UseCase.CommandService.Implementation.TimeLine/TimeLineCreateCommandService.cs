@@ -26,7 +26,7 @@ namespace ShareLabo.Application.UseCase.CommandService.Implementation.TimeLine
             await _transactionManager.ExecuteTransactionAsync(
                 [typeof(TTimeLineSession), typeof(TUserSession)],
                 async sessions => await _timeLineCreateDomainService.ExecuteAsync(
-                    new TimeLineCreateDomainService<TTimeLineSession, TUserSession>.Req()
+                    new ITimeLineCreateDomainService<TTimeLineSession, TUserSession>.Req()
                 {
                     FilterMembers = req.FilterMembers,
                     Id = req.Id,

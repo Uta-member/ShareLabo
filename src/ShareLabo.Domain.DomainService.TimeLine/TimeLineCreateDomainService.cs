@@ -1,29 +1,28 @@
 ﻿using CSStack.TADA;
 using ShareLabo.Domain.Aggregate.TimeLine;
-using ShareLabo.Domain.Aggregate.Toolkit;
 using ShareLabo.Domain.Aggregate.User;
-using ShareLabo.Domain.ValueObject;
-using System.Collections.Immutable;
 
 namespace ShareLabo.Domain.DomainService.TimeLine
 {
     public sealed class TimeLineCreateDomainService<TTimeLineSession, TUserSession>
-        : IDomainService<TimeLineCreateDomainService<TTimeLineSession, TUserSession>.Req>
+        : ITimeLineCreateDomainService<TTimeLineSession, TUserSession>
         where TTimeLineSession : IDisposable
         where TUserSession : IDisposable
     {
-        private readonly TimeLineAggregateService<TTimeLineSession> _timeLineAggregateService;
-        private readonly UserAggregateService<TUserSession> _userAggregateService;
+        private readonly ITimeLineAggregateService<TTimeLineSession> _timeLineAggregateService;
+        private readonly IUserAggregateService<TUserSession> _userAggregateService;
 
         public TimeLineCreateDomainService(
-            TimeLineAggregateService<TTimeLineSession> timeLineAggregateService,
-            UserAggregateService<TUserSession> userAggregateService)
+            ITimeLineAggregateService<TTimeLineSession> timeLineAggregateService,
+            IUserAggregateService<TUserSession> userAggregateService)
         {
             _timeLineAggregateService = timeLineAggregateService;
             _userAggregateService = userAggregateService;
         }
 
-        public async ValueTask ExecuteAsync(Req req, CancellationToken cancellationToken = default)
+        public async ValueTask ExecuteAsync(
+            ITimeLineCreateDomainService<TTimeLineSession, TUserSession>.Req req,
+            CancellationToken cancellationToken = default)
         {
             foreach(var filterMember in req.FilterMembers)
             {
@@ -38,7 +37,7 @@ namespace ShareLabo.Domain.DomainService.TimeLine
             }
 
             await _timeLineAggregateService.CreateAsync(
-                new TimeLineAggregateService<TTimeLineSession>.CreateReq()
+                new ITimeLineAggregateService<TTimeLineSession>.CreateReq()
                 {
                     Command =
                         new TimeLineEntity.CreateCommand()
@@ -51,23 +50,6 @@ namespace ShareLabo.Domain.DomainService.TimeLine
                     OperateInfo = req.OperateInfo,
                     Session = req.TimeLineSession,
                 });
-        }
-
-        public sealed record Req : IDomainServiceDTO
-        {
-            public required ImmutableList<UserId> FilterMembers { get; init; }
-
-            public required TimeLineId Id { get; init; }
-
-            public required TimeLineName Name { get; init; }
-
-            public required OperateInfo OperateInfo { get; init; }
-
-            public required UserId OwnerId { get; init; }
-
-            public required TTimeLineSession TimeLineSession { get; init; }
-
-            public required TUserSession UserSession { get; init; }
         }
     }
 }
