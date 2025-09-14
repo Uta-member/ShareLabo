@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\ShareLabo.Domain.DomainService.Follow\ShareLabo.Domain.DomainService.Follow.csproj" />
+    <ProjectReference Include="..\ShareLabo.Tests.Toolkit\ShareLabo.Tests.Toolkit.csproj" />
   </ItemGroup>
 
   <ItemGroup>

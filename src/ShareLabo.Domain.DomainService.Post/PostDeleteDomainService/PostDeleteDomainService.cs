@@ -1,10 +1,9 @@
-﻿using CSStack.TADA;
-using ShareLabo.Domain.Aggregate.Post;
+﻿using ShareLabo.Domain.Aggregate.Post;
 
 namespace ShareLabo.Domain.DomainService.Post
 {
     public sealed class PostDeleteDomainService<TPostSession>
-        : IDomainService<IPostDeleteDomainService<TPostSession>.Req>
+        : IPostDeleteDomainService<TPostSession>
         where TPostSession : IDisposable
     {
         private readonly IPostAggregateService<TPostSession> _postAggregateService;

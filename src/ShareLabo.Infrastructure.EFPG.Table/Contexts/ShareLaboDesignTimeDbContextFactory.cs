@@ -15,6 +15,7 @@ namespace ShareLabo.Infrastructure.EFPG.Table
 
             var optionsBuilder = new DbContextOptionsBuilder<ShareLaboDbContext>();
             var connectionString = configuration.GetConnectionString("DefaultConnection");
+            // var connectionString = configuration.GetConnectionString("TestConnection");
 
             optionsBuilder.UseNpgsql(connectionString)
                 .UseSnakeCaseNamingConvention();

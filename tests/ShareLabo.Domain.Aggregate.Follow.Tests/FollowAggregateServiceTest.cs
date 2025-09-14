@@ -30,11 +30,11 @@ namespace ShareLabo.Domain.Aggregate.Follow.Tests
                         FollowFromId = UserId.Create(new string('a', 8)),
                         FollowToId = UserId.Create(new string('b', 8)),
                     },
-                FollowStartDateTime = DateTime.Now,
+                FollowStartDateTime = new DateTime(2025, 9, 1),
             };
             var operateInfo = new OperateInfo()
             {
-                OperatedDateTime = DateTime.Now,
+                OperatedDateTime = new DateTime(2025, 9, 1),
                 Operator = UserId.Reconstruct(new string('c', 8)),
             };
 
@@ -78,11 +78,11 @@ namespace ShareLabo.Domain.Aggregate.Follow.Tests
                         FollowFromId = UserId.Create(new string('a', 8)),
                         FollowToId = UserId.Create(new string('b', 8)),
                     },
-                FollowStartDateTime = DateTime.Now,
+                FollowStartDateTime = new DateTime(2025, 9, 1),
             };
             var operateInfo = new OperateInfo()
             {
-                OperatedDateTime = DateTime.Now,
+                OperatedDateTime = new DateTime(2025, 9, 1),
                 Operator = UserId.Reconstruct(new string('c', 8)),
             };
 
@@ -108,7 +108,7 @@ namespace ShareLabo.Domain.Aggregate.Follow.Tests
                                             FollowFromId = UserId.Create(new string('a', 8)),
                                             FollowToId = UserId.Create(new string('b', 8)),
                                         },
-                            FollowStartDateTime = DateTime.Now,
+                            FollowStartDateTime = new DateTime(2025, 9, 1),
                         }));
 
             // Act
@@ -135,7 +135,7 @@ namespace ShareLabo.Domain.Aggregate.Follow.Tests
             };
             var operateInfo = new OperateInfo()
             {
-                OperatedDateTime = DateTime.Now,
+                OperatedDateTime = new DateTime(2025, 9, 1),
                 Operator = UserId.Reconstruct(new string('c', 8)),
             };
 
@@ -150,7 +150,7 @@ namespace ShareLabo.Domain.Aggregate.Follow.Tests
                 new FollowEntity.ReconstructCommand()
                 {
                     FollowId = followId,
-                    FollowStartDateTime = DateTime.Now,
+                    FollowStartDateTime = new DateTime(2025, 9, 1),
                 });
             _repositoryMock.Setup(
                 r => r.FindByIdentifierAsync(
@@ -193,7 +193,7 @@ namespace ShareLabo.Domain.Aggregate.Follow.Tests
             };
             var operateInfo = new OperateInfo()
             {
-                OperatedDateTime = DateTime.Now,
+                OperatedDateTime = new DateTime(2025, 9, 1),
                 Operator = UserId.Reconstruct(new string('c', 8)),
             };
 

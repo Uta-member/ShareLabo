@@ -8,7 +8,7 @@ namespace ShareLabo.Domain.DomainService.Follow
     {
         private readonly IFollowAggregateService<TFollowSession> _followAggregateService;
 
-        public FollowDeleteDomainService(FollowAggregateService<TFollowSession> followAggregateService)
+        public FollowDeleteDomainService(IFollowAggregateService<TFollowSession> followAggregateService)
         {
             _followAggregateService = followAggregateService;
         }

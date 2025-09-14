@@ -110,7 +110,7 @@ namespace ShareLabo.Infrastructure.PGSQL.Repository.Follow
                             FollowStartDateTime = entity.FollowStartDateTime,
                             InsertTimeStamp = operateInfo.OperatedDateTime,
                             InsertUserId = operateInfo.Operator.Value,
-                        },
+                        }.ToSnakeCaseDictionary(),
                         cancellationToken: cancellationToken);
             }
             else
@@ -128,7 +128,7 @@ namespace ShareLabo.Infrastructure.PGSQL.Repository.Follow
                             InsertTimeStamp = dbFollow.InsertTimeStamp,
                             InsertUserId = dbFollow.InsertUserId,
                             ToUserId = entity.FollowId.FollowToId.Value,
-                        },
+                        }.ToSnakeCaseDictionary(),
                         cancellationToken: cancellationToken);
             }
         }

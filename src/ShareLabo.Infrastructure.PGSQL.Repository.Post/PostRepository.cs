@@ -62,7 +62,7 @@ namespace ShareLabo.Infrastructure.PGSQL.Repository.Post
             var factory = new QueryFactory(connection, new PostgresCompiler());
 
             var dbPost = await factory.Query("posts")
-                .OrderBy("sequence_id desc")
+                .OrderByDesc("sequence_id")
                 .FirstOrDefaultAsync<DbPost>(cancellationToken: cancellationToken);
 
             if(dbPost == null)

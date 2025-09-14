@@ -14,7 +14,7 @@ namespace ShareLabo.Domain.Aggregate.Follow.Tests
                 FollowFromId = fromId,
                 FollowToId = toId,
             };
-            var followStartDateTime = DateTime.Now;
+            var followStartDateTime = new DateTime(2025, 9, 1);
 
             var createCommand = new FollowEntity.CreateCommand()
             {
@@ -38,7 +38,7 @@ namespace ShareLabo.Domain.Aggregate.Follow.Tests
                 FollowFromId = fromId,
                 FollowToId = toId,
             };
-            var followStartDateTime = DateTime.Now;
+            var followStartDateTime = new DateTime(2025, 9, 1);
 
             var createCommand = new FollowEntity.ReconstructCommand()
             {
