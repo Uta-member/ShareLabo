@@ -5,6 +5,7 @@ using ShareLabo.Presentation.MagicOnion.Interface;
 
 namespace ShareLabo.Presentation.MagicOnion.Server.Services.CommandService.Follow
 {
+    [ExceptionFilter]
     public sealed class MOFollowDeleteCommandService
         : MOCommandServiceBase<IMOFollowDeleteCommandService, IFollowDeleteCommandService, IMOFollowDeleteCommandService.Req, IFollowDeleteCommandService.Req>
         , IMOFollowDeleteCommandService

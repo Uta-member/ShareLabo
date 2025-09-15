@@ -5,13 +5,13 @@ using ShareLabo.Presentation.MagicOnion.Interface;
 
 namespace ShareLabo.Presentation.MagicOnion.Server.Services.CommandService.Post
 {
+    [ExceptionFilter]
     public class MOPostUpdateCommandService
         : MOCommandServiceBase<IMOPostUpdateCommandService,
         IPostUpdateCommandService,
         IMOPostUpdateCommandService.Req,
         IPostUpdateCommandService.Req>
-        ,
-        IMOPostUpdateCommandService
+        , IMOPostUpdateCommandService
     {
         public MOPostUpdateCommandService(IPostUpdateCommandService commandService)
             : base(commandService)

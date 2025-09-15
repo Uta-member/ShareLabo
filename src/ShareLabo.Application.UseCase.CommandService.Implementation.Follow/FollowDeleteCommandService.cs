@@ -8,12 +8,12 @@ namespace ShareLabo.Application.UseCase.CommandService.Follow
     public sealed class FollowDeleteCommandService<TFollowSession> : IFollowDeleteCommandService
         where TFollowSession : IDisposable
     {
-        private readonly FollowDeleteDomainService<TFollowSession> _followDeleteDomainService;
+        private readonly IFollowDeleteDomainService<TFollowSession> _followDeleteDomainService;
         private readonly ITransactionManager _transactionManager;
 
         public FollowDeleteCommandService(
             ITransactionManager transactionManager,
-            FollowDeleteDomainService<TFollowSession> followDeleteDomainService)
+            IFollowDeleteDomainService<TFollowSession> followDeleteDomainService)
         {
             _transactionManager = transactionManager;
             _followDeleteDomainService = followDeleteDomainService;

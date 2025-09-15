@@ -5,6 +5,7 @@ using ShareLabo.Presentation.MagicOnion.Interface;
 
 namespace ShareLabo.Presentation.MagicOnion.Server.Services.CommandService.Follow
 {
+    [ExceptionFilter]
     public sealed class MOFollowCreateCommandService
         : MOCommandServiceBase<IMOFollowCreateCommandService, IFollowCreateCommandService, IMOFollowCreateCommandService.Req, IFollowCreateCommandService.Req>
         , IMOFollowCreateCommandService

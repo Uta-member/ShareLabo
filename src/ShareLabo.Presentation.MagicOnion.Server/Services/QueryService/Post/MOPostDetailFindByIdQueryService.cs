@@ -5,6 +5,7 @@ using ShareLabo.Presentation.MagicOnion.Interface;
 
 namespace ShareLabo.Presentation.MagicOnion.Server.Services.QueryService.Post
 {
+    [ExceptionFilter]
     public sealed class MOPostDetailFindByIdQueryService
         : MOQueryServiceBase<IMOPostDetailFindByIdQueryService,
         IPostDetailFindByIdQueryService,

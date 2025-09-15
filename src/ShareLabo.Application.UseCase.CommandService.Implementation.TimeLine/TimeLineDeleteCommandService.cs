@@ -7,12 +7,12 @@ namespace ShareLabo.Application.UseCase.CommandService.Implementation.TimeLine
     public sealed class TimeLineDeleteCommandService<TTimeLineSession> : ITimeLineDeleteCommandService
         where TTimeLineSession : IDisposable
     {
-        private readonly TimeLineDeleteDomainService<TTimeLineSession> _timeLineDeleteDomainService;
+        private readonly ITimeLineDeleteDomainService<TTimeLineSession> _timeLineDeleteDomainService;
         private readonly ITransactionManager _transactionManager;
 
         public TimeLineDeleteCommandService(
             ITransactionManager transactionManager,
-            TimeLineDeleteDomainService<TTimeLineSession> timeLineDeleteDomainService)
+            ITimeLineDeleteDomainService<TTimeLineSession> timeLineDeleteDomainService)
         {
             _transactionManager = transactionManager;
             _timeLineDeleteDomainService = timeLineDeleteDomainService;

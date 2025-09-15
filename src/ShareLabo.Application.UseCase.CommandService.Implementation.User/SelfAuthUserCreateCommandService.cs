@@ -12,11 +12,11 @@ namespace ShareLabo.Application.UseCase.CommandService.Implementation.User
     {
         private readonly ITransactionManager _transactionManager;
         private readonly UserAccountCreateService<TAuthSession> _userAccountCreateService;
-        private readonly UserCreateDomainService<TUserSession> _userCreateDomainService;
+        private readonly IUserCreateDomainService<TUserSession> _userCreateDomainService;
 
         public SelfAuthUserCreateCommandService(
             ITransactionManager transactionManager,
-            UserCreateDomainService<TUserSession> userCreateDomainService,
+            IUserCreateDomainService<TUserSession> userCreateDomainService,
             UserAccountCreateService<TAuthSession> userAccountCreateService)
         {
             _transactionManager = transactionManager;

@@ -7,12 +7,12 @@ namespace ShareLabo.Application.UseCase.CommandService.Implementation.Post
     public sealed class PostUpdateCommandService<TPostSession> : IPostUpdateCommandService
         where TPostSession : IDisposable
     {
-        private readonly PostUpdateDomainService<TPostSession> _postUpdateDomainService;
+        private readonly IPostUpdateDomainService<TPostSession> _postUpdateDomainService;
         private readonly ITransactionManager _transactionManager;
 
         public PostUpdateCommandService(
             ITransactionManager transactionManager,
-            PostUpdateDomainService<TPostSession> postUpdateDomainService)
+            IPostUpdateDomainService<TPostSession> postUpdateDomainService)
         {
             _transactionManager = transactionManager;
             _postUpdateDomainService = postUpdateDomainService;

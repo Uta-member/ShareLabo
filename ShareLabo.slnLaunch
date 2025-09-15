@@ -1,0 +1,17 @@
+[
+  {
+    "Name": "MO+Blazor",
+    "Projects": [
+      {
+        "Path": "src\\ShareLabo.Presentation.MagicOnion.Server\\ShareLabo.Presentation.MagicOnion.Server.csproj",
+        "Action": "Start",
+        "DebugTarget": "https"
+      },
+      {
+        "Path": "src\\ShareLabo.Presentation.Blazor\\ShareLabo.Presentation.Blazor\\ShareLabo.Presentation.Blazor.csproj",
+        "Action": "Start",
+        "DebugTarget": "https"
+      }
+    ]
+  }
+]

@@ -9,12 +9,12 @@ namespace ShareLabo.Application.UseCase.CommandService.Implementation.Follow
         where TFollowSession : IDisposable
         where TUserSession : IDisposable
     {
-        private readonly FollowCreateDomainService<TFollowSession, TUserSession> _followCreateDomainService;
+        private readonly IFollowCreateDomainService<TFollowSession, TUserSession> _followCreateDomainService;
         private readonly ITransactionManager _transactionManager;
 
         public FollowCreateCommandService(
             ITransactionManager transactionManager,
-            FollowCreateDomainService<TFollowSession, TUserSession> followCreateDomainService)
+            IFollowCreateDomainService<TFollowSession, TUserSession> followCreateDomainService)
         {
             _transactionManager = transactionManager;
             _followCreateDomainService = followCreateDomainService;

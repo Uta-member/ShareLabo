@@ -14,11 +14,11 @@ namespace ShareLabo.Application.UseCase.CommandService.Implementation.User
     {
         private readonly ITransactionManager _transactionManager;
         private readonly UserAccountDeleteService<TAuthSession> _userAccountDeleteService;
-        private readonly UserDeleteDomainService<TUserSession, TTimeLineSession, TFollowSession> _userDeleteDomainService;
+        private readonly IUserDeleteDomainService<TUserSession, TTimeLineSession, TFollowSession> _userDeleteDomainService;
 
         public UserDeleteCommandService(
             ITransactionManager transactionManager,
-            UserDeleteDomainService<TUserSession, TTimeLineSession, TFollowSession> userDeleteDomainService,
+            IUserDeleteDomainService<TUserSession, TTimeLineSession, TFollowSession> userDeleteDomainService,
             UserAccountDeleteService<TAuthSession> userAccountDeleteService)
         {
             _transactionManager = transactionManager;

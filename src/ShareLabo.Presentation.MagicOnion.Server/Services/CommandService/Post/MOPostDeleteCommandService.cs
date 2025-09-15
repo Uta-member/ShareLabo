@@ -5,8 +5,10 @@ using ShareLabo.Presentation.MagicOnion.Interface;
 
 namespace ShareLabo.Presentation.MagicOnion.Server.Services.CommandService.Post
 {
+    [ExceptionFilter]
     public sealed class MOPostDeleteCommandService
         : MOCommandServiceBase<IMOPostDeleteCommandService, IPostDeleteCommandService, IMOPostDeleteCommandService.Req, IPostDeleteCommandService.Req>
+        , IMOPostDeleteCommandService
     {
         public MOPostDeleteCommandService(IPostDeleteCommandService commandService)
             : base(commandService)

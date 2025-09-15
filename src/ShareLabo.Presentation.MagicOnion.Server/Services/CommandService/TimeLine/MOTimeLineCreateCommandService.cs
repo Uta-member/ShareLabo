@@ -5,6 +5,7 @@ using ShareLabo.Presentation.MagicOnion.Interface;
 
 namespace ShareLabo.Presentation.MagicOnion.Server.Services.CommandService.TimeLine
 {
+    [ExceptionFilter]
     public sealed class MOTimeLineCreateCommandService
         : MOCommandServiceBase<IMOTimeLineCreateCommandService, ITimeLineCreateCommandService, IMOTimeLineCreateCommandService.Req, ITimeLineCreateCommandService.Req>
         , IMOTimeLineCreateCommandService

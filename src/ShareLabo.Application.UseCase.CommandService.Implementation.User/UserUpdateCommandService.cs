@@ -11,11 +11,11 @@ namespace ShareLabo.Application.UseCase.CommandService.Implementation.User
     {
         private readonly ITransactionManager _transactionManager;
         private readonly UserAccountUpdateService<TAuthSession> _userAccountUpdateService;
-        private readonly UserUpdateDomainService<TUserSession> _userUpdateDomainService;
+        private readonly IUserUpdateDomainService<TUserSession> _userUpdateDomainService;
 
         public UserUpdateCommandService(
             ITransactionManager transactionManager,
-            UserUpdateDomainService<TUserSession> userUpdateDomainService,
+            IUserUpdateDomainService<TUserSession> userUpdateDomainService,
             UserAccountUpdateService<TAuthSession> userAccountUpdateService)
         {
             _transactionManager = transactionManager;

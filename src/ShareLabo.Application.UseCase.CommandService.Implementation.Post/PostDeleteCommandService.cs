@@ -7,12 +7,12 @@ namespace ShareLabo.Application.UseCase.CommandService.Implementation.Post
     public sealed class PostDeleteCommandService<TPostSession> : IPostDeleteCommandService
         where TPostSession : IDisposable
     {
-        private readonly PostDeleteDomainService<TPostSession> _postDeleteDomainService;
+        private readonly IPostDeleteDomainService<TPostSession> _postDeleteDomainService;
         private readonly ITransactionManager _transactionManager;
 
         public PostDeleteCommandService(
             ITransactionManager transactionManager,
-            PostDeleteDomainService<TPostSession> postDeleteDomainService)
+            IPostDeleteDomainService<TPostSession> postDeleteDomainService)
         {
             _transactionManager = transactionManager;
             _postDeleteDomainService = postDeleteDomainService;

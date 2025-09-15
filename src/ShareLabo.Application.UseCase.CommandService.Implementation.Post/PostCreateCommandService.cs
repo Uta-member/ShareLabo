@@ -8,12 +8,12 @@ namespace ShareLabo.Application.UseCase.CommandService.Implementation.Post
         where TPostSession : IDisposable
         where TUserSession : IDisposable
     {
-        private readonly PostCreateDomainService<TPostSession, TUserSession> _postCreateDomainService;
+        private readonly IPostCreateDomainService<TPostSession, TUserSession> _postCreateDomainService;
         private readonly ITransactionManager _transactionManager;
 
         public PostCreateCommandService(
             ITransactionManager transactionManager,
-            PostCreateDomainService<TPostSession, TUserSession> postCreateDomainService)
+            IPostCreateDomainService<TPostSession, TUserSession> postCreateDomainService)
         {
             _transactionManager = transactionManager;
             _postCreateDomainService = postCreateDomainService;

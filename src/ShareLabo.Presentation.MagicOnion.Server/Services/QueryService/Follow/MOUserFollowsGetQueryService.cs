@@ -5,6 +5,7 @@ using ShareLabo.Presentation.MagicOnion.Interface;
 
 namespace ShareLabo.Presentation.MagicOnion.Server.Services.QueryService.Follow
 {
+    [ExceptionFilter]
     public sealed class MOUserFollowsGetQueryService
         : MOQueryServiceBase<IMOUserFollowsGetQueryService, IUserFollowsGetQueryService, IMOUserFollowsGetQueryService.Req, IUserFollowsGetQueryService.Req, IMOUserFollowsGetQueryService.Res, IUserFollowsGetQueryService.Res>
         , IMOUserFollowsGetQueryService

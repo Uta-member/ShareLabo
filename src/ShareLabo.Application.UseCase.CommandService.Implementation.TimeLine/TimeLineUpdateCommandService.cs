@@ -8,12 +8,12 @@ namespace ShareLabo.Application.UseCase.CommandService.Implementation.TimeLine
         where TTimeLineSession : IDisposable
         where TUserSession : IDisposable
     {
-        private readonly TimeLineUpdateDomainService<TTimeLineSession, TUserSession> _timeLineUpdateDomainService;
+        private readonly ITimeLineUpdateDomainService<TTimeLineSession, TUserSession> _timeLineUpdateDomainService;
         private readonly ITransactionManager _transactionManager;
 
         public TimeLineUpdateCommandService(
             ITransactionManager transactionManager,
-            TimeLineUpdateDomainService<TTimeLineSession, TUserSession> timeLineUpdateDomainService)
+            ITimeLineUpdateDomainService<TTimeLineSession, TUserSession> timeLineUpdateDomainService)
         {
             _transactionManager = transactionManager;
             _timeLineUpdateDomainService = timeLineUpdateDomainService;
