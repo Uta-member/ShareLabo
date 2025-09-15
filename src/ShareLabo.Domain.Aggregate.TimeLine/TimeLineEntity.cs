@@ -51,6 +51,15 @@ namespace ShareLabo.Domain.Aggregate.TimeLine
             var validateHelper = new KeyedValidateHelper<ValidateTypeEnum>();
             validateHelper.Add(ValidateTypeEnum.Id, () => Id.Validate());
             validateHelper.Add(ValidateTypeEnum.Name, () => Name.Validate());
+            validateHelper.Add(
+                ValidateTypeEnum.Filter,
+                () =>
+                {
+                    if(FilterMembers.Distinct().Count() != FilterMembers.Count())
+                    {
+                        throw new ValueObjectInvalidException("同じユーザがタイムラインに存在しています");
+                    }
+                });
             validateHelper.ExecuteValidateWithThrowException();
         }
 
@@ -67,7 +76,8 @@ namespace ShareLabo.Domain.Aggregate.TimeLine
         public enum ValidateTypeEnum
         {
             Id,
-            Name
+            Name,
+            Filter,
         }
 
         public sealed record CreateCommand

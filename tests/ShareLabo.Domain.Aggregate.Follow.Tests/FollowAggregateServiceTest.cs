@@ -7,29 +7,29 @@ namespace ShareLabo.Domain.Aggregate.Follow.Tests
 {
     public sealed class FollowAggregateServiceTest
     {
-        private readonly Mock<IFollowRepository<DummySession>> _repositoryMock;
-        private readonly FollowAggregateService<DummySession> _service;
-        private readonly DummySession _session;
+        private readonly FollowAggregateService<FollowDummySession> _followAggregateService;
+        private readonly Mock<IFollowRepository<FollowDummySession>> _followRepositoryMock;
+        private readonly FollowDummySession _followSession;
 
         public FollowAggregateServiceTest()
         {
-            _repositoryMock = new Mock<IFollowRepository<DummySession>>();
-            _service = new FollowAggregateService<DummySession>(_repositoryMock.Object);
-            _session = new DummySession();
+            _followRepositoryMock = new Mock<IFollowRepository<FollowDummySession>>();
+            _followAggregateService = new FollowAggregateService<FollowDummySession>(_followRepositoryMock.Object);
+            _followSession = new FollowDummySession();
         }
 
         [Fact]
         public async Task CreateAsync_正常()
         {
             // Arrange
+            var followId = new FollowIdentifier()
+            {
+                FollowFromId = UserId.Create(new string('a', 8)),
+                FollowToId = UserId.Create(new string('b', 8)),
+            };
             var createCommand = new FollowEntity.CreateCommand()
             {
-                FollowId =
-                    new FollowIdentifier()
-                    {
-                        FollowFromId = UserId.Create(new string('a', 8)),
-                        FollowToId = UserId.Create(new string('b', 8)),
-                    },
+                FollowId = followId,
                 FollowStartDateTime = new DateTime(2025, 9, 1),
             };
             var operateInfo = new OperateInfo()
@@ -38,30 +38,30 @@ namespace ShareLabo.Domain.Aggregate.Follow.Tests
                 Operator = UserId.Reconstruct(new string('c', 8)),
             };
 
-            var createReq = new IFollowAggregateService<DummySession>.CreateReq
+            var createReq = new IFollowAggregateService<FollowDummySession>.CreateReq
             {
                 CreateCommand = createCommand,
                 OperateInfo = operateInfo,
-                Session = _session
+                Session = _followSession
             };
 
-            _repositoryMock.Setup(
+            _followRepositoryMock.Setup(
                 r => r.FindByIdentifierAsync(
-                    It.IsAny<DummySession>(),
-                    It.IsAny<FollowIdentifier>(),
+                    _followSession,
+                    followId,
                     It.IsAny<CancellationToken>()))
                 .ReturnsAsync(Optional<FollowEntity>.Empty);
 
             // Act
-            await _service.CreateAsync(createReq);
+            await _followAggregateService.CreateAsync(createReq);
 
             // Assert
             // SaveAsync が1回呼び出されたことを検証
-            _repositoryMock.Verify(
+            _followRepositoryMock.Verify(
                 r => r.SaveAsync(
-                    It.IsAny<DummySession>(),
+                    _followSession,
                     It.IsAny<FollowEntity>(),
-                    It.IsAny<OperateInfo>(),
+                    operateInfo,
                     It.IsAny<CancellationToken>()),
                 Times.Once);
         }
@@ -70,14 +70,14 @@ namespace ShareLabo.Domain.Aggregate.Follow.Tests
         public async Task CreateAsync_同一オブジェクト存在()
         {
             // Arrange
+            var followId = new FollowIdentifier()
+            {
+                FollowFromId = UserId.Create(new string('a', 8)),
+                FollowToId = UserId.Create(new string('b', 8)),
+            };
             var createCommand = new FollowEntity.CreateCommand()
             {
-                FollowId =
-                    new FollowIdentifier()
-                    {
-                        FollowFromId = UserId.Create(new string('a', 8)),
-                        FollowToId = UserId.Create(new string('b', 8)),
-                    },
+                FollowId = followId,
                 FollowStartDateTime = new DateTime(2025, 9, 1),
             };
             var operateInfo = new OperateInfo()
@@ -86,17 +86,17 @@ namespace ShareLabo.Domain.Aggregate.Follow.Tests
                 Operator = UserId.Reconstruct(new string('c', 8)),
             };
 
-            var createReq = new IFollowAggregateService<DummySession>.CreateReq
+            var createReq = new IFollowAggregateService<FollowDummySession>.CreateReq
             {
                 CreateCommand = createCommand,
                 OperateInfo = operateInfo,
-                Session = _session
+                Session = _followSession
             };
 
-            _repositoryMock.Setup(
+            _followRepositoryMock.Setup(
                 r => r.FindByIdentifierAsync(
-                    It.IsAny<DummySession>(),
-                    It.IsAny<FollowIdentifier>(),
+                    _followSession,
+                    followId,
                     It.IsAny<CancellationToken>()))
                 .ReturnsAsync(
                     FollowEntity.Reconstruct(
@@ -112,14 +112,15 @@ namespace ShareLabo.Domain.Aggregate.Follow.Tests
                         }));
 
             // Act
-            await Assert.ThrowsAsync<ObjectAlreadyExistException>(async () => await _service.CreateAsync(createReq));
+            await Assert.ThrowsAsync<ObjectAlreadyExistException>(
+                async () => await _followAggregateService.CreateAsync(createReq));
 
             // SaveAsync が呼び出されないことを検証
-            _repositoryMock.Verify(
+            _followRepositoryMock.Verify(
                 r => r.SaveAsync(
-                    It.IsAny<DummySession>(),
+                    _followSession,
                     It.IsAny<FollowEntity>(),
-                    It.IsAny<OperateInfo>(),
+                    operateInfo,
                     It.IsAny<CancellationToken>()),
                 Times.Never);
         }
@@ -139,11 +140,11 @@ namespace ShareLabo.Domain.Aggregate.Follow.Tests
                 Operator = UserId.Reconstruct(new string('c', 8)),
             };
 
-            var deleteReq = new IFollowAggregateService<DummySession>.DeleteReq
+            var deleteReq = new IFollowAggregateService<FollowDummySession>.DeleteReq
             {
                 FollowId = followId,
                 OperateInfo = operateInfo,
-                Session = _session
+                Session = _followSession
             };
 
             var existingEntity = FollowEntity.Reconstruct(
@@ -152,31 +153,21 @@ namespace ShareLabo.Domain.Aggregate.Follow.Tests
                     FollowId = followId,
                     FollowStartDateTime = new DateTime(2025, 9, 1),
                 });
-            _repositoryMock.Setup(
+            _followRepositoryMock.Setup(
                 r => r.FindByIdentifierAsync(
-                    It.IsAny<DummySession>(),
-                    It.IsAny<FollowIdentifier>(),
+                    _followSession,
+                    followId,
                     It.IsAny<CancellationToken>()))
                 .ReturnsAsync(existingEntity);
 
             // Act
-            await _service.DeleteAsync(deleteReq);
+            await _followAggregateService.DeleteAsync(deleteReq);
 
             // Assert
-            // Repository.DeleteAsync が1回呼び出されたことを検証
-            _repositoryMock.Verify(
+            _followRepositoryMock.Verify(
                 r => r.DeleteAsync(
-                    It.IsAny<DummySession>(),
-                    It.IsAny<FollowEntity>(),
-                    It.IsAny<OperateInfo>(),
-                    It.IsAny<CancellationToken>()),
-                Times.Once);
-
-            // DeleteAsync に渡されたエンティティが正しいことを検証
-            _repositoryMock.Verify(
-                r => r.DeleteAsync(
-                    _session,
-                    existingEntity, // モックで返したエンティティと同じインスタンスが渡されることを検証
+                    _followSession,
+                    existingEntity,
                     operateInfo,
                     It.IsAny<CancellationToken>()),
                 Times.Once);
@@ -197,35 +188,35 @@ namespace ShareLabo.Domain.Aggregate.Follow.Tests
                 Operator = UserId.Reconstruct(new string('c', 8)),
             };
 
-            var deleteReq = new IFollowAggregateService<DummySession>.DeleteReq
+            var deleteReq = new IFollowAggregateService<FollowDummySession>.DeleteReq
             {
                 FollowId = followId,
                 OperateInfo = operateInfo,
-                Session = _session
+                Session = _followSession
             };
 
-            _repositoryMock.Setup(
+            _followRepositoryMock.Setup(
                 r => r.FindByIdentifierAsync(
-                    It.IsAny<DummySession>(),
-                    It.IsAny<FollowIdentifier>(),
+                    _followSession,
+                    followId,
                     It.IsAny<CancellationToken>()))
                 .ReturnsAsync(Optional<FollowEntity>.Empty);
 
             // Act
-            await Assert.ThrowsAsync<ObjectNotFoundException>(async () => await _service.DeleteAsync(deleteReq));
+            await Assert.ThrowsAsync<ObjectNotFoundException>(
+                async () => await _followAggregateService.DeleteAsync(deleteReq));
 
             // Assert
-            // Repository.DeleteAsync が1回呼び出されたことを検証
-            _repositoryMock.Verify(
+            _followRepositoryMock.Verify(
                 r => r.DeleteAsync(
-                    It.IsAny<DummySession>(),
+                    _followSession,
                     It.IsAny<FollowEntity>(),
-                    It.IsAny<OperateInfo>(),
+                    operateInfo,
                     It.IsAny<CancellationToken>()),
                 Times.Never);
         }
 
-        public class DummySession : IDisposable
+        public class FollowDummySession : IDisposable
         {
             public void Dispose()
             {
