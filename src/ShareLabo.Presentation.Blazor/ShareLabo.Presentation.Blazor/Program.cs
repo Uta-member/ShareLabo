@@ -1,6 +1,7 @@
 using CSStack.PrimeBlazor.Bootstrap;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Components.Authorization;
 using ShareLabo.Presentation.AppBuilder.MagicOnion.Client;
 using ShareLabo.Presentation.Blazor.Auth;
@@ -19,7 +20,14 @@ builder.Services.AddScoped<AuthenticationStateProvider, PersistingServerAuthenti
 
 builder.Services.AddAuthorization();
 builder.Services
-    .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddAuthentication(
+        options =>
+        {
+            // 既存のCookie認証をデフォルトに設定
+            options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            // 未認証時のチャレンジスキームとしてGoogleを設定
+            options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
+        })
     .AddCookie(
         options =>
         {
@@ -29,6 +37,13 @@ builder.Services
             options.SlidingExpiration = true; // 有効期限の延長を有効にするか
             options.Cookie.HttpOnly = true; // JavaScriptからのアクセスを禁止
             options.Cookie.IsEssential = true; // GDPR同意なしでCookieを許可
+        })
+    .AddGoogle(
+        options =>
+        {
+            options.ClientId = builder.Configuration["Authentication:Google:ClientId"];
+            options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+            options.CallbackPath = "/signin-google";
         });
 
 builder.Services.AddPrimeBlazorBootstrap();
