@@ -1,7 +1,7 @@
 ﻿using CSStack.TADA.MagicOnionHelper.Abstractions;
+using Mapster;
 using MessagePack;
 using ShareLabo.Application.UseCase.CommandService.User;
-using ShareLabo.Domain.ValueObject;
 
 namespace ShareLabo.Presentation.MagicOnion.Interface
 {
@@ -13,24 +13,12 @@ namespace ShareLabo.Presentation.MagicOnion.Interface
         {
             public static Req FromDTO(IUserUpdateCommandService.Req dto)
             {
-                return new Req()
-                {
-                    OperateInfo = MPOperateInfo.FromDTO(dto.OperateInfo),
-                    UserAccountIdOptional = MPOptional<string>.FromOptional(dto.UserAccountIdOptional, x => x.Value),
-                    TargetUserId = dto.TargetUserId.Value,
-                    UserNameOptional = MPOptional<string>.FromOptional(dto.UserNameOptional, x => x.Value),
-                };
+                return dto.Adapt<Req>();
             }
 
             public IUserUpdateCommandService.Req ToDTO()
             {
-                return new IUserUpdateCommandService.Req()
-                {
-                    OperateInfo = OperateInfo.ToDTO(),
-                    UserAccountIdOptional = UserAccountIdOptional.ToOptional(x => UserAccountId.Reconstruct(x)),
-                    UserNameOptional = UserNameOptional.ToOptional(x => UserName.Reconstruct(x)),
-                    TargetUserId = UserId.Reconstruct(TargetUserId),
-                };
+                return this.Adapt<IUserUpdateCommandService.Req>();
             }
 
             [Key(0)]

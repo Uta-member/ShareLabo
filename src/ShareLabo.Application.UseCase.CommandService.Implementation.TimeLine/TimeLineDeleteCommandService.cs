@@ -1,6 +1,7 @@
 ﻿using CSStack.TADA;
 using ShareLabo.Application.UseCase.CommandService.TimeLine;
 using ShareLabo.Domain.DomainService.TimeLine;
+using ShareLabo.Domain.ValueObject;
 
 namespace ShareLabo.Application.UseCase.CommandService.Implementation.TimeLine
 {
@@ -23,14 +24,14 @@ namespace ShareLabo.Application.UseCase.CommandService.Implementation.TimeLine
             CancellationToken cancellationToken = default)
         {
             await _transactionManager.ExecuteTransactionAsync(
-                [typeof(TTimeLineSession)],
+                [ typeof(TTimeLineSession) ],
                 async sessions => await _timeLineDeleteDomainService.ExecuteAsync(
                     new ITimeLineDeleteDomainService<TTimeLineSession>.Req()
-                {
-                    OperateInfo = req.OperateInfo,
-                    TargetId = req.TargetId,
-                    TimeLineSession = sessions.GetSession<TTimeLineSession>(),
-                }));
+                    {
+                        OperateInfo = req.OperateInfo.ToOperateInfo(),
+                        TargetId = TimeLineId.Reconstruct(req.TargetId),
+                        TimeLineSession = sessions.GetSession<TTimeLineSession>(),
+                    }));
         }
     }
 }

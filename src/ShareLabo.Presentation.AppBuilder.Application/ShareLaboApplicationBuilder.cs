@@ -1,6 +1,7 @@
 ﻿using CSStack.TADA;
 using Microsoft.Extensions.DependencyInjection;
 using ShareLabo.Application.Authentication;
+using ShareLabo.Application.Authentication.OAuthIntegration;
 using ShareLabo.Application.UseCase.CommandService.Follow;
 using ShareLabo.Application.UseCase.CommandService.Implementation.Follow;
 using ShareLabo.Application.UseCase.CommandService.Implementation.Post;
@@ -24,6 +25,7 @@ namespace ShareLabo.Presentation.AppBuilder.Application
             services.AddTransient<UserAccountUpdateService<TAuthSession>>();
             services.AddTransient<UserAccountPasswordUpdateService<TAuthSession>>();
             services.AddTransient<UserLoginService<TAuthSession>>();
+            services.AddTransient<IOAuthIntegrationService<TAuthSession>, OAuthIntegrationService<TAuthSession>>();
         }
 
         private static void AddCommandServices<TUserSession,
@@ -64,6 +66,8 @@ namespace ShareLabo.Presentation.AppBuilder.Application
             services.AddTransient<ISelfAuthUserPasswordUpdateCommandService, SelfAuthUserPasswordUpdateCommandService<TAuthSession>>(
                 );
             services.AddTransient<ISelfAuthUserLoginCommandService, SelfAuthUserLoginCommandService<TAuthSession>>();
+            services.AddTransient<IOAuthUserCreateCommandService, OAuthUserCreateCommandService<TUserSession, TAuthSession>>(
+                );
         }
 
         public static IServiceCollection AddShareLaboApplication<TUserSession,

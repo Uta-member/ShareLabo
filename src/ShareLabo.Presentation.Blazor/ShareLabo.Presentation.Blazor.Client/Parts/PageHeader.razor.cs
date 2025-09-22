@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using ShareLabo.Application.UseCase.QueryService.User;
-using ShareLabo.Presentation.Blazor.Client.Auth;
 
 namespace ShareLabo.Presentation.Blazor.Client.Parts
 {
@@ -13,28 +12,6 @@ namespace ShareLabo.Presentation.Blazor.Client.Parts
         {
             var authenticationState = await AuthenticationState;
 
-            var userIdStr = authenticationState.User.FindFirst(x => x.Type == ShareLaboClaim.UserId)?.Value;
-            if(string.IsNullOrWhiteSpace(userIdStr))
-            {
-                _userDetail = null;
-                StateHasChanged();
-                return;
-            }
-
-            var userFindRes = await FindUserDetailByUserIdQueryService.ExecuteAsync(
-                new IUserDetailFindByUserIdQueryService.Req()
-                {
-                    UserId = userIdStr,
-                });
-
-            if(!userFindRes.User.TryGetValue(out var userDetail))
-            {
-                _userDetail = null;
-                StateHasChanged();
-                return;
-            }
-
-            _userDetail = userDetail;
             StateHasChanged();
         }
 

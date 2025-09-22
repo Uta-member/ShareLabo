@@ -1,6 +1,7 @@
 ﻿using CSStack.TADA;
 using ShareLabo.Application.Authentication;
 using ShareLabo.Application.UseCase.CommandService.User;
+using ShareLabo.Domain.ValueObject;
 
 namespace ShareLabo.Application.UseCase.CommandService.Implementation.User
 {
@@ -24,16 +25,16 @@ namespace ShareLabo.Application.UseCase.CommandService.Implementation.User
             CancellationToken cancellationToken = default)
         {
             await _transactionManager.ExecuteTransactionAsync(
-                [typeof(TAuthSession)],
+                [ typeof(TAuthSession) ],
                 async sessions => await _userAccountPasswordUpdateService.ExecuteAsync(
                     new UserAccountPasswordUpdateService<TAuthSession>.Req()
-                {
-                    CurrentPassword = req.CurrentPassword,
-                    NewPassword = req.NewPassword,
-                    OperateInfo = req.OperateInfo,
-                    Session = sessions.GetSession<TAuthSession>(),
-                    TargetUserId = req.TargetUserId,
-                }));
+                    {
+                        CurrentPassword = AccountPassword.Reconstruct(req.CurrentPassword),
+                        NewPassword = AccountPassword.Create(req.NewPassword),
+                        OperateInfo = req.OperateInfo.ToOperateInfo(),
+                        Session = sessions.GetSession<TAuthSession>(),
+                        TargetUserId = UserId.Reconstruct(req.TargetUserId),
+                    }));
         }
     }
 }

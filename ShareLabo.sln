@@ -161,6 +161,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Domain.Aggregate.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Domain.Aggregate.User.Tests", "tests\ShareLabo.Domain.Aggregate.User.Tests\ShareLabo.Domain.Aggregate.User.Tests.csproj", "{13D35C92-9283-4405-A151-D42F9F8F06C0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Application.Authentication.OAuthIntegration", "src\ShareLabo.Application.Authentication.OAuthIntegration\ShareLabo.Application.Authentication.OAuthIntegration.csproj", "{31E236A9-C913-4199-81C6-2953FB96A20B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{BFBEB990-8432-4C81-9B9A-EA52D5DEFE40}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MagicOnion", "MagicOnion", "{9ABF6A0A-ECB3-40AA-A87B-101892ED9599}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Presentation.MagicOnion.Interface.Tests", "tests\ShareLabo.Presentation.MagicOnion.Interface.Tests\ShareLabo.Presentation.MagicOnion.Interface.Tests.csproj", "{6097E688-3E20-4F0F-8573-6D4B391E4652}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLabo.Application.Toolkit", "src\ShareLabo.Application.Toolkit\ShareLabo.Application.Toolkit.csproj", "{6FDB624B-F886-4627-B508-4F3F09E8D022}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -379,6 +389,18 @@ Global
 		{13D35C92-9283-4405-A151-D42F9F8F06C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13D35C92-9283-4405-A151-D42F9F8F06C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13D35C92-9283-4405-A151-D42F9F8F06C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31E236A9-C913-4199-81C6-2953FB96A20B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31E236A9-C913-4199-81C6-2953FB96A20B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31E236A9-C913-4199-81C6-2953FB96A20B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31E236A9-C913-4199-81C6-2953FB96A20B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6097E688-3E20-4F0F-8573-6D4B391E4652}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6097E688-3E20-4F0F-8573-6D4B391E4652}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6097E688-3E20-4F0F-8573-6D4B391E4652}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6097E688-3E20-4F0F-8573-6D4B391E4652}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FDB624B-F886-4627-B508-4F3F09E8D022}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FDB624B-F886-4627-B508-4F3F09E8D022}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FDB624B-F886-4627-B508-4F3F09E8D022}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FDB624B-F886-4627-B508-4F3F09E8D022}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -457,6 +479,11 @@ Global
 		{1EDC4FE4-E421-427F-BFBE-C8A658BA77CD} = {327550E8-7B93-4DCF-99A9-4AA6028D8599}
 		{513B40F8-2F9C-41DE-BFA0-D5A082AE7624} = {327550E8-7B93-4DCF-99A9-4AA6028D8599}
 		{13D35C92-9283-4405-A151-D42F9F8F06C0} = {327550E8-7B93-4DCF-99A9-4AA6028D8599}
+		{31E236A9-C913-4199-81C6-2953FB96A20B} = {A9B552A1-5033-4AD5-AA4E-ED6056CA4B4A}
+		{BFBEB990-8432-4C81-9B9A-EA52D5DEFE40} = {B8F370E5-B7A5-41C0-915C-3AEC223A62C5}
+		{9ABF6A0A-ECB3-40AA-A87B-101892ED9599} = {BFBEB990-8432-4C81-9B9A-EA52D5DEFE40}
+		{6097E688-3E20-4F0F-8573-6D4B391E4652} = {9ABF6A0A-ECB3-40AA-A87B-101892ED9599}
+		{6FDB624B-F886-4627-B508-4F3F09E8D022} = {A9B552A1-5033-4AD5-AA4E-ED6056CA4B4A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FF4DA580-1568-4D1C-B696-3AE5FDB023A3}

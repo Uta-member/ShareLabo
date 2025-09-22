@@ -1,6 +1,5 @@
 ﻿using CSStack.TADA;
-using ShareLabo.Domain.Aggregate.Toolkit;
-using ShareLabo.Domain.ValueObject;
+using ShareLabo.Application.Toolkit;
 using System.Collections.Immutable;
 
 namespace ShareLabo.Application.UseCase.CommandService.TimeLine
@@ -9,15 +8,15 @@ namespace ShareLabo.Application.UseCase.CommandService.TimeLine
     {
         sealed record Req : ICommandServiceDTO
         {
-            public required ImmutableList<UserId> FilterMembers { get; init; }
+            public required ImmutableList<string> FilterMembers { get; init; }
 
-            public required TimeLineId Id { get; init; }
+            public required string Id { get; init; }
 
-            public required TimeLineName Name { get; init; }
+            public required string Name { get; init; }
 
-            public required OperateInfo OperateInfo { get; init; }
+            public required OperateInfoWriteModel OperateInfo { get; init; }
 
-            public required UserId OwnerId { get; init; }
+            public required string OwnerId { get; init; }
         }
     }
 }

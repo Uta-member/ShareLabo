@@ -1,6 +1,5 @@
 ﻿using CSStack.TADA;
-using ShareLabo.Domain.Aggregate.Toolkit;
-using ShareLabo.Domain.ValueObject;
+using ShareLabo.Application.Toolkit;
 
 namespace ShareLabo.Application.UseCase.CommandService.Post
 {
@@ -8,13 +7,13 @@ namespace ShareLabo.Application.UseCase.CommandService.Post
     {
         sealed record Req : ICommandServiceDTO
         {
-            public required OperateInfo OperateInfo { get; init; }
+            public required OperateInfoWriteModel OperateInfo { get; init; }
 
-            public required Optional<PostContent> PostContentOptional { get; init; }
+            public Optional<string> PostContentOptional { get; init; } = Optional<string>.Empty;
 
-            public required Optional<PostTitle> PostTitleOptional { get; init; }
+            public Optional<string> PostTitleOptional { get; init; } = Optional<string>.Empty;
 
-            public required PostId TargetPostId { get; init; }
+            public required string TargetPostId { get; init; }
         }
     }
 }

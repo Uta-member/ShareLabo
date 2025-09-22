@@ -1,6 +1,5 @@
 ﻿using CSStack.TADA;
-using ShareLabo.Domain.Aggregate.Toolkit;
-using ShareLabo.Domain.ValueObject;
+using ShareLabo.Application.Toolkit;
 
 namespace ShareLabo.Application.UseCase.CommandService.User
 {
@@ -8,17 +7,17 @@ namespace ShareLabo.Application.UseCase.CommandService.User
     {
         public sealed record Req : ICommandServiceDTO
         {
-            public required OperateInfo OperateInfo { get; init; }
+            public required OperateInfoWriteModel OperateInfo { get; init; }
 
-            public required UserId TargetUserId { get; init; }
+            public required string TargetUserId { get; init; }
 
-            public required Optional<UserAccountId> UserAccountIdOptional
+            public required Optional<string> UserAccountIdOptional
             {
                 get;
                 init;
-            } = Optional<UserAccountId>.Empty;
+            } = Optional<string>.Empty;
 
-            public Optional<UserName> UserNameOptional { get; init; } = Optional<UserName>.Empty;
+            public Optional<string> UserNameOptional { get; init; } = Optional<string>.Empty;
         }
     }
 }

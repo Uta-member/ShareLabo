@@ -1,4 +1,5 @@
 ﻿using CSStack.TADA.MagicOnionHelper.Abstractions;
+using Mapster;
 using MessagePack;
 using ShareLabo.Application.UseCase.QueryService.TimeLine;
 
@@ -12,18 +13,12 @@ namespace ShareLabo.Presentation.MagicOnion.Interface
         {
             public static Req FromDTO(ITimeLineFindByIdQueryService.Req dto)
             {
-                return new Req()
-                {
-                    TimeLineId = dto.TimeLineId,
-                };
+                return dto.Adapt<Req>();
             }
 
             public ITimeLineFindByIdQueryService.Req ToDTO()
             {
-                return new ITimeLineFindByIdQueryService.Req()
-                {
-                    TimeLineId = TimeLineId,
-                };
+                return this.Adapt<ITimeLineFindByIdQueryService.Req>();
             }
 
             [Key(0)]
@@ -35,21 +30,12 @@ namespace ShareLabo.Presentation.MagicOnion.Interface
         {
             public static Res FromDTO(ITimeLineFindByIdQueryService.Res dto)
             {
-                return new Res()
-                {
-                    TimeLineOptional =
-                        MPOptional<MPTimeLineDetailReadModel>.FromOptional(
-                            dto.TimeLineOptional,
-                            x => MPTimeLineDetailReadModel.FromDTO(x)),
-                };
+                return dto.Adapt<Res>();
             }
 
             public ITimeLineFindByIdQueryService.Res ToDTO()
             {
-                return new ITimeLineFindByIdQueryService.Res()
-                {
-                    TimeLineOptional = TimeLineOptional.ToOptional(x => x.ToDTO()),
-                };
+                return this.Adapt<ITimeLineFindByIdQueryService.Res>();
             }
 
             [Key(0)]

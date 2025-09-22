@@ -1,6 +1,8 @@
 ﻿using CSStack.TADA;
 using ShareLabo.Application.UseCase.CommandService.TimeLine;
 using ShareLabo.Domain.DomainService.TimeLine;
+using ShareLabo.Domain.ValueObject;
+using System.Collections.Immutable;
 
 namespace ShareLabo.Application.UseCase.CommandService.Implementation.TimeLine
 {
@@ -24,17 +26,23 @@ namespace ShareLabo.Application.UseCase.CommandService.Implementation.TimeLine
             CancellationToken cancellationToken = default)
         {
             await _transactionManager.ExecuteTransactionAsync(
-                [typeof(TTimeLineSession), typeof(TUserSession)],
+                [ typeof(TTimeLineSession), typeof(TUserSession) ],
                 async sessions => await _timeLineUpdateDomainService.ExecuteAsync(
                     new ITimeLineUpdateDomainService<TTimeLineSession, TUserSession>.Req()
-                {
-                    FilterMembersOptional = req.FilterMembersOptional,
-                    NameOptional = req.NameOptional,
-                    OperateInfo = req.OperateInfo,
-                    TargetId = req.TargetId,
-                    TimeLineSession = sessions.GetSession<TTimeLineSession>(),
-                    UserSession = sessions.GetSession<TUserSession>(),
-                }));
+                    {
+                        FilterMembersOptional =
+                            req.FilterMembersOptional.TryGetValue(out var filterMembers)
+                                        ? filterMembers.Select(x => UserId.Reconstruct(x)).ToImmutableList()
+                                        : Optional<ImmutableList<UserId>>.Empty,
+                        NameOptional =
+                            req.NameOptional.TryGetValue(out var name)
+                                        ? TimeLineName.Create(name)
+                                        : Optional<TimeLineName>.Empty,
+                        OperateInfo = req.OperateInfo.ToOperateInfo(),
+                        TargetId = TimeLineId.Reconstruct(req.TargetId),
+                        TimeLineSession = sessions.GetSession<TTimeLineSession>(),
+                        UserSession = sessions.GetSession<TUserSession>(),
+                    }));
         }
     }
 }

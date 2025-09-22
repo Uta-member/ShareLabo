@@ -1,4 +1,5 @@
 ﻿using CSStack.TADA.MagicOnionHelper.Abstractions;
+using Mapster;
 using MessagePack;
 using ShareLabo.Application.UseCase.QueryService.Post;
 
@@ -9,20 +10,12 @@ namespace ShareLabo.Presentation.MagicOnion.Interface
     {
         public static MPPostUserReadModel FromDTO(PostUserReadModel dto)
         {
-            return new MPPostUserReadModel()
-            {
-                PostUserId = dto.PostUserId,
-                PostUserName = dto.PostUserName,
-            };
+            return dto.Adapt<MPPostUserReadModel>();
         }
 
         public PostUserReadModel ToDTO()
         {
-            return new PostUserReadModel()
-            {
-                PostUserId = PostUserId,
-                PostUserName = PostUserName,
-            };
+            return this.Adapt<PostUserReadModel>();
         }
 
         [Key(0)]

@@ -1,4 +1,5 @@
 ﻿using CSStack.TADA.MagicOnionHelper.Abstractions;
+using Mapster;
 using MessagePack;
 using ShareLabo.Application.UseCase.CommandService.Follow;
 
@@ -12,20 +13,12 @@ namespace ShareLabo.Presentation.MagicOnion.Interface
         {
             public static Req FromDTO(IFollowDeleteCommandService.Req dto)
             {
-                return new Req()
-                {
-                    FollowId = MPFollowIdentifier.FromDTO(dto.FollowId),
-                    OperateInfo = MPOperateInfo.FromDTO(dto.OperateInfo),
-                };
+                return dto.Adapt<Req>();
             }
 
             public IFollowDeleteCommandService.Req ToDTO()
             {
-                return new IFollowDeleteCommandService.Req()
-                {
-                    FollowId = FollowId.ToDTO(),
-                    OperateInfo = OperateInfo.ToDTO(),
-                };
+                return this.Adapt<IFollowDeleteCommandService.Req>();
             }
 
             [Key(0)]

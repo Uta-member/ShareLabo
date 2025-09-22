@@ -23,4 +23,8 @@
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ShareLabo.Application.Authentication.OAuthIntegration\ShareLabo.Application.Authentication.OAuthIntegration.csproj" />
+  </ItemGroup>
+
 </Project>

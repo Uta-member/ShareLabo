@@ -144,6 +144,59 @@ namespace ShareLabo.Infrastructure.EFPG.Table.Migrations
                     b.ToTable("follows", (string)null);
                 });
 
+            modelBuilder.Entity("ShareLabo.Infrastructure.EFPG.Table.DbOAuthIntegration", b =>
+                {
+                    b.Property<int>("PointerNo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("pointer_no");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("PointerNo"));
+
+                    b.Property<DateTime>("InsertTimeStamp")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("insert_time_stamp")
+                        .HasComment("作成日時");
+
+                    b.Property<string>("InsertUserId")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("insert_user_id")
+                        .HasComment("作成者ID");
+
+                    b.Property<string>("OAuthIdentifier")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("o_auth_identifier")
+                        .HasComment("認証ID");
+
+                    b.Property<int>("OAuthType")
+                        .HasColumnType("integer")
+                        .HasColumnName("o_auth_type")
+                        .HasComment("認証タイプ");
+
+                    b.Property<DateTime?>("UpdateTimeStamp")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("update_time_stamp")
+                        .HasComment("更新日時");
+
+                    b.Property<string>("UpdateUserId")
+                        .HasColumnType("text")
+                        .HasColumnName("update_user_id")
+                        .HasComment("更新者ID");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("user_id")
+                        .HasComment("ユーザID");
+
+                    b.HasKey("PointerNo")
+                        .HasName("pk_o_auth_integrations");
+
+                    b.ToTable("o_auth_integrations", (string)null);
+                });
+
             modelBuilder.Entity("ShareLabo.Infrastructure.EFPG.Table.DbPost", b =>
                 {
                     b.Property<int>("PointerNo")

@@ -3,6 +3,7 @@ using Dapper;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using ShareLabo.Application.Authentication;
+using ShareLabo.Application.Authentication.OAuthIntegration;
 using ShareLabo.Application.UseCase.QueryService.Follow;
 using ShareLabo.Application.UseCase.QueryService.Post;
 using ShareLabo.Application.UseCase.QueryService.TimeLine;
@@ -30,6 +31,7 @@ namespace ShareLabo.Presentation.AppBuilder.PGSQL
         private static void AddAuthentication(this IServiceCollection services)
         {
             services.AddTransient<IUserAccountRepository<ShareLaboPGSQLTransaction>, UserAccountPGSQLRepository>();
+            services.AddTransient<IOAuthIntegrationRepository<ShareLaboPGSQLTransaction>, OAuthIntegrationRepository>();
         }
 
         private static void AddPGSQL(
@@ -67,6 +69,8 @@ namespace ShareLabo.Presentation.AppBuilder.PGSQL
             services.AddTransient<IUserSummariesSearchQueryService, UserSummariesSearchQueryService>();
             services.AddTransient<IUserDetailFindByAccountIdQueryService, UserDetailFindByAccountIdQueryService>();
             services.AddTransient<IUserDetailFindByUserIdQueryService, UserDetailFindByUserIdQueryService>();
+            services.AddTransient<IUserDetailFindByOAuthIdentifierQueryService, UserDetailFindByOAuthIdentifierQueryService>(
+                );
         }
 
         private static void AddRepositories(this IServiceCollection services)

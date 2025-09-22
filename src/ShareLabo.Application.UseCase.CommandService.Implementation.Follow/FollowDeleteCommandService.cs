@@ -24,19 +24,19 @@ namespace ShareLabo.Application.UseCase.CommandService.Follow
             CancellationToken cancellationToken = default)
         {
             await _transactionManager.ExecuteTransactionAsync(
-                [typeof(TFollowSession)],
+                [ typeof(TFollowSession) ],
                 async sessions => await _followDeleteDomainService.ExecuteAsync(
                     new IFollowDeleteDomainService<TFollowSession>.Req()
-                {
-                    FollowId =
-                        new FollowIdentifier()
-                                {
-                                    FollowFromId = req.FollowId.FollowFromId,
-                                    FollowToId = req.FollowId.FollowToId
-                                },
-                    FollowSession = sessions.GetSession<TFollowSession>(),
-                    OperateInfo = req.OperateInfo,
-                }));
+                    {
+                        FollowId =
+                            new FollowIdentifier()
+                                    {
+                                        FollowFromId = UserId.Reconstruct(req.FollowId.FollowFromId),
+                                        FollowToId = UserId.Reconstruct(req.FollowId.FollowToId),
+                                    },
+                        FollowSession = sessions.GetSession<TFollowSession>(),
+                        OperateInfo = req.OperateInfo.ToOperateInfo(),
+                    }));
         }
     }
 }

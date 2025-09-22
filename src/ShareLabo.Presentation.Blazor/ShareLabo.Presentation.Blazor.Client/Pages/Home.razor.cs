@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using ShareLabo.Application.UseCase.QueryService.Post;
-using ShareLabo.Presentation.Blazor.Client.Auth;
 
 namespace ShareLabo.Presentation.Blazor.Client.Pages
 {
@@ -35,14 +34,6 @@ namespace ShareLabo.Presentation.Blazor.Client.Pages
 
             try
             {
-                var authenticationState = await AuthenticationState;
-                var userIdStr = authenticationState.User.FindFirst(x => x.Type == ShareLaboClaim.UserId)?.Value;
-
-                if(string.IsNullOrWhiteSpace(userIdStr))
-                {
-                    return;
-                }
-
                 if(_postId == null)
                 {
                     return;

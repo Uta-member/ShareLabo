@@ -1,6 +1,5 @@
 ﻿using CSStack.TADA;
-using ShareLabo.Domain.Aggregate.Toolkit;
-using ShareLabo.Domain.ValueObject;
+using ShareLabo.Application.Toolkit;
 
 namespace ShareLabo.Application.UseCase.CommandService.Follow
 {
@@ -8,11 +7,11 @@ namespace ShareLabo.Application.UseCase.CommandService.Follow
     {
         sealed record Req : ICommandServiceDTO
         {
-            public required FollowIdentifier FollowId { get; init; }
+            public required FollowIdentifierDTO FollowId { get; init; }
 
             public required DateTime FollowStartDateTime { get; init; }
 
-            public required OperateInfo OperateInfo { get; init; }
+            public required OperateInfoWriteModel OperateInfo { get; init; }
         }
     }
 }

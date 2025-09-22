@@ -13,6 +13,8 @@ namespace ShareLabo.Infrastructure.EFPG.Table
 
         public DbSet<DbFollow> Follows { get; set; }
 
+        public DbSet<DbOAuthIntegration> OAuthIntegrations { get; set; }
+
         public DbSet<DbPost> Posts { get; set; }
 
         public DbSet<DbTimeLineFilter> TimeLineFilters { get; set; }

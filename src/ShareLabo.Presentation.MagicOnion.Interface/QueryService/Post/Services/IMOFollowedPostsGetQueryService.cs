@@ -1,7 +1,7 @@
 ﻿using CSStack.TADA.MagicOnionHelper.Abstractions;
+using Mapster;
 using MessagePack;
 using ShareLabo.Application.UseCase.QueryService.Post;
-using System.Collections.Immutable;
 
 namespace ShareLabo.Presentation.MagicOnion.Interface
 {
@@ -15,24 +15,12 @@ namespace ShareLabo.Presentation.MagicOnion.Interface
         {
             public static Req FromDTO(IFollowedPostsGetQueryService.Req dto)
             {
-                return new Req()
-                {
-                    Length = dto.Length,
-                    StartPostSequenceId = dto.StartPostSequenceId,
-                    ToBefore = dto.ToBefore,
-                    UserId = dto.UserId,
-                };
+                return dto.Adapt<Req>();
             }
 
             public IFollowedPostsGetQueryService.Req ToDTO()
             {
-                return new IFollowedPostsGetQueryService.Req()
-                {
-                    Length = Length,
-                    StartPostSequenceId = StartPostSequenceId,
-                    ToBefore = ToBefore,
-                    UserId = UserId,
-                };
+                return this.Adapt<IFollowedPostsGetQueryService.Req>();
             }
 
             [Key(0)]
@@ -47,22 +35,17 @@ namespace ShareLabo.Presentation.MagicOnion.Interface
             [Key(3)]
             public required string UserId { get; init; }
         }
+
         [MessagePackObject]
         public sealed record Res : IMPDTO<IFollowedPostsGetQueryService.Res, Res>
         {
             public static Res FromDTO(IFollowedPostsGetQueryService.Res dto)
             {
-                return new Res()
-                {
-                    PostSummaries = dto.PostSummaries.Select(x => MPPostSummaryReadModel.FromDTO(x)).ToList(),
-                };
+                return dto.Adapt<Res>();
             }
             public IFollowedPostsGetQueryService.Res ToDTO()
             {
-                return new IFollowedPostsGetQueryService.Res()
-                {
-                    PostSummaries = PostSummaries.Select(x => x.ToDTO()).ToImmutableList(),
-                };
+                return this.Adapt<IFollowedPostsGetQueryService.Res>();
             }
 
             [Key(0)]

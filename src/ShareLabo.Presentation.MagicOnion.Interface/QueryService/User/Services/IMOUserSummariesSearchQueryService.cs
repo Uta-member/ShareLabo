@@ -1,8 +1,8 @@
 ﻿using CSStack.TADA.MagicOnionHelper.Abstractions;
+using Mapster;
 using MessagePack;
 using ShareLabo.Application.UseCase.QueryService.User;
 using ShareLabo.Domain.Aggregate.User;
-using System.Collections.Immutable;
 
 namespace ShareLabo.Presentation.MagicOnion.Interface
 {
@@ -14,31 +14,12 @@ namespace ShareLabo.Presentation.MagicOnion.Interface
         {
             public static Req FromDTO(IUserSummariesSearchQueryService.Req dto)
             {
-                return new Req()
-                {
-                    AccountIdStrOptional = MPOptional<string>.FromOptional(dto.AccountIdStrOptional),
-                    LimitOptional = MPOptional<int>.FromOptional(dto.LimitOptional),
-                    StartIndexOptional = MPOptional<int>.FromOptional(dto.StartIndexOptional),
-                    TargetStatusesOptional =
-                        MPOptional<List<UserEntity.StatusEnum>>.FromOptional(
-                            dto.TargetStatusesOptional,
-                            x => x.ToList()),
-                    UserIdStrOptional = MPOptional<string>.FromOptional(dto.UserIdStrOptional),
-                    UserNameStrOptional = MPOptional<string>.FromOptional(dto.UserNameStrOptional),
-                };
+                return dto.Adapt<Req>();
             }
 
             public IUserSummariesSearchQueryService.Req ToDTO()
             {
-                return new IUserSummariesSearchQueryService.Req()
-                {
-                    AccountIdStrOptional = AccountIdStrOptional.ToOptional(),
-                    LimitOptional = LimitOptional.ToOptional(),
-                    StartIndexOptional = StartIndexOptional.ToOptional(),
-                    TargetStatusesOptional = TargetStatusesOptional.ToOptional(x => x.ToImmutableList()),
-                    UserIdStrOptional = UserIdStrOptional.ToOptional(),
-                    UserNameStrOptional = UserNameStrOptional.ToOptional(),
-                };
+                return this.Adapt<IUserSummariesSearchQueryService.Req>();
             }
 
             [Key(0)]
@@ -69,18 +50,12 @@ namespace ShareLabo.Presentation.MagicOnion.Interface
         {
             public static Res FromDTO(IUserSummariesSearchQueryService.Res dto)
             {
-                return new Res()
-                {
-                    Users = dto.Users.Select(x => MPUserSummaryReadModel.FromDTO(x)).ToList(),
-                };
+                return dto.Adapt<Res>();
             }
 
             public IUserSummariesSearchQueryService.Res ToDTO()
             {
-                return new IUserSummariesSearchQueryService.Res()
-                {
-                    Users = Users.Select(x => x.ToDTO()).ToImmutableList(),
-                };
+                return this.Adapt<IUserSummariesSearchQueryService.Res>();
             }
 
             [Key(0)]

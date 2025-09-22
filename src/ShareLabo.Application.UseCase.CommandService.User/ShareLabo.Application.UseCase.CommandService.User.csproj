@@ -7,7 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ShareLabo.Application.Authentication.OAuthIntegration\ShareLabo.Application.Authentication.OAuthIntegration.csproj" />
     <ProjectReference Include="..\ShareLabo.Application.Authentication\ShareLabo.Application.Authentication.csproj" />
+    <ProjectReference Include="..\ShareLabo.Application.Toolkit\ShareLabo.Application.Toolkit.csproj" />
     <ProjectReference Include="..\ShareLabo.Domain.Aggregate.Toolkit\ShareLabo.Domain.Aggregate.Toolkit.csproj" />
     <ProjectReference Include="..\ShareLabo.Domain.ValueObject\ShareLabo.Domain.ValueObject.csproj" />
   </ItemGroup>

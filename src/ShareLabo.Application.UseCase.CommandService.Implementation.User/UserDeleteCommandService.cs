@@ -2,6 +2,7 @@
 using ShareLabo.Application.Authentication;
 using ShareLabo.Application.UseCase.CommandService.User;
 using ShareLabo.Domain.DomainService.User;
+using ShareLabo.Domain.ValueObject;
 
 namespace ShareLabo.Application.UseCase.CommandService.Implementation.User
 {
@@ -31,25 +32,25 @@ namespace ShareLabo.Application.UseCase.CommandService.Implementation.User
             CancellationToken cancellationToken = default)
         {
             await _transactionManager.ExecuteTransactionAsync(
-                [typeof(TUserSession), typeof(TAuthSession), typeof(TTimeLineSession), typeof(TFollowSession)],
+                [ typeof(TUserSession), typeof(TAuthSession), typeof(TTimeLineSession), typeof(TFollowSession) ],
                 async sessions =>
                 {
                     await _userDeleteDomainService.ExecuteAsync(
                         new IUserDeleteDomainService<TUserSession, TTimeLineSession, TFollowSession>.Req()
-                        {
-                            OperateInfo = req.OperateInfo,
-                            TargetId = req.TargetId,
-                            UserSession = sessions.GetSession<TUserSession>(),
-                            TimeLineSession = sessions.GetSession<TTimeLineSession>(),
-                            FollowSession = sessions.GetSession<TFollowSession>(),
-                        });
+                            {
+                                OperateInfo = req.OperateInfo.ToOperateInfo(),
+                                TargetId = UserId.Reconstruct(req.TargetId),
+                                UserSession = sessions.GetSession<TUserSession>(),
+                                TimeLineSession = sessions.GetSession<TTimeLineSession>(),
+                                FollowSession = sessions.GetSession<TFollowSession>(),
+                            });
                     await _userAccountDeleteService.ExecuteAsync(
                         new UserAccountDeleteService<TAuthSession>.Req()
-                        {
-                            OperateInfo = req.OperateInfo,
-                            Session = sessions.GetSession<TAuthSession>(),
-                            TargetId = req.TargetId,
-                        });
+                            {
+                                OperateInfo = req.OperateInfo.ToOperateInfo(),
+                                Session = sessions.GetSession<TAuthSession>(),
+                                TargetId = UserId.Reconstruct(req.TargetId),
+                            });
                 });
         }
     }

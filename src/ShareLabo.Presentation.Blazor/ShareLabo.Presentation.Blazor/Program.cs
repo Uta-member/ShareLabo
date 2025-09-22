@@ -2,9 +2,7 @@ using CSStack.PrimeBlazor.Bootstrap;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
-using Microsoft.AspNetCore.Components.Authorization;
 using ShareLabo.Presentation.AppBuilder.MagicOnion.Client;
-using ShareLabo.Presentation.Blazor.Auth;
 using ShareLabo.Presentation.Blazor.Client;
 using ShareLabo.Presentation.Blazor.Components;
 
@@ -16,7 +14,6 @@ builder.Services
     .AddInteractiveWebAssemblyComponents();
 
 builder.Services.AddCascadingAuthenticationState();
-builder.Services.AddScoped<AuthenticationStateProvider, PersistingServerAuthenticationStateProvider>();
 
 builder.Services.AddAuthorization();
 builder.Services

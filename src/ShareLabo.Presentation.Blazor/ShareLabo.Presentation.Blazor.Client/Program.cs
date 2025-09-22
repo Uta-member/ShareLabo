@@ -1,8 +1,6 @@
 using CSStack.PrimeBlazor.Bootstrap;
-using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using ShareLabo.Presentation.AppBuilder.MagicOnion.Client;
-using ShareLabo.Presentation.Blazor.Client;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
@@ -15,7 +13,6 @@ builder.Configuration.AddJsonStream(stream);
 
 builder.Services.AddAuthorizationCore();
 builder.Services.AddCascadingAuthenticationState();
-builder.Services.AddSingleton<AuthenticationStateProvider, PersistentAuthenticationStateProvider>();
 
 builder.Services.AddPrimeBlazorBootstrap();
 

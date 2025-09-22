@@ -2,6 +2,7 @@
 using ShareLabo.Application.Authentication;
 using ShareLabo.Application.UseCase.CommandService.User;
 using ShareLabo.Domain.DomainService.User;
+using ShareLabo.Domain.ValueObject;
 
 namespace ShareLabo.Application.UseCase.CommandService.Implementation.User
 {
@@ -29,29 +30,29 @@ namespace ShareLabo.Application.UseCase.CommandService.Implementation.User
             CancellationToken cancellationToken = default)
         {
             await _transactionManager.ExecuteTransactionAsync(
-                [typeof(TUserSession), typeof(TAuthSession)],
+                [ typeof(TUserSession), typeof(TAuthSession) ],
                 async sessions =>
                 {
                     await _userCreateDomainService.ExecuteAsync(
                         new IUserCreateDomainService<TUserSession>.Req()
-                        {
-                            UserAccountId = req.UserAccountId,
-                            OperateInfo = req.OperateInfo,
-                            UserId = req.UserId,
-                            UserName = req.UserName,
-                            UserSession = sessions.GetSession<TUserSession>(),
-                        },
+                            {
+                                UserAccountId = UserAccountId.Create(req.UserAccountId),
+                                OperateInfo = req.OperateInfo.ToOperateInfo(),
+                                UserId = UserId.Create(req.UserId),
+                                UserName = UserName.Create(req.UserName),
+                                UserSession = sessions.GetSession<TUserSession>(),
+                            },
                         cancellationToken);
 
                     await _userAccountCreateService.ExecuteAsync(
                         new UserAccountCreateService<TAuthSession>.Req()
-                        {
-                            AccountPassword = req.AccountPassword,
-                            UserAccountId = req.UserAccountId,
-                            OperateInfo = req.OperateInfo,
-                            Session = sessions.GetSession<TAuthSession>(),
-                            UserId = req.UserId,
-                        },
+                            {
+                                AccountPassword = AccountPassword.Create(req.AccountPassword),
+                                UserAccountId = UserAccountId.Create(req.UserAccountId),
+                                OperateInfo = req.OperateInfo.ToOperateInfo(),
+                                Session = sessions.GetSession<TAuthSession>(),
+                                UserId = UserId.Create(req.UserId),
+                            },
                         cancellationToken);
                 });
         }

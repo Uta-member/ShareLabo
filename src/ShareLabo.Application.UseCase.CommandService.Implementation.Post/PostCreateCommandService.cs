@@ -1,6 +1,7 @@
 ﻿using CSStack.TADA;
 using ShareLabo.Application.UseCase.CommandService.Post;
 using ShareLabo.Domain.DomainService.Post;
+using ShareLabo.Domain.ValueObject;
 
 namespace ShareLabo.Application.UseCase.CommandService.Implementation.Post
 {
@@ -24,19 +25,19 @@ namespace ShareLabo.Application.UseCase.CommandService.Implementation.Post
             CancellationToken cancellationToken = default)
         {
             await _transactionManager.ExecuteTransactionAsync(
-                [typeof(TPostSession), typeof(TUserSession)],
+                [ typeof(TPostSession), typeof(TUserSession) ],
                 async sessions => await _postCreateDomainService.ExecuteAsync(
                     new IPostCreateDomainService<TPostSession, TUserSession>.Req()
-                {
-                    OperateInfo = req.OperateInfo,
-                    PostContent = req.PostContent,
-                    PostDateTime = req.PostDateTime,
-                    PostId = req.PostId,
-                    PostSession = sessions.GetSession<TPostSession>(),
-                    PostTitle = req.PostTitle,
-                    PostUser = req.PostUserId,
-                    UserSession = sessions.GetSession<TUserSession>()
-                },
+                    {
+                        OperateInfo = req.OperateInfo.ToOperateInfo(),
+                        PostContent = PostContent.Create(req.PostContent),
+                        PostDateTime = req.PostDateTime,
+                        PostId = PostId.Create(req.PostId),
+                        PostSession = sessions.GetSession<TPostSession>(),
+                        PostTitle = PostTitle.Create(req.PostTitle),
+                        PostUser = UserId.Reconstruct(req.PostUserId),
+                        UserSession = sessions.GetSession<TUserSession>(),
+                    },
                     cancellationToken));
         }
     }

@@ -1,7 +1,7 @@
 ﻿using CSStack.TADA.MagicOnionHelper.Abstractions;
+using Mapster;
 using MessagePack;
 using ShareLabo.Application.UseCase.CommandService.Post;
-using ShareLabo.Domain.ValueObject;
 
 namespace ShareLabo.Presentation.MagicOnion.Interface
 {
@@ -13,20 +13,12 @@ namespace ShareLabo.Presentation.MagicOnion.Interface
         {
             public static Req FromDTO(IPostDeleteCommandService.Req dto)
             {
-                return new Req()
-                {
-                    OperateInfo = MPOperateInfo.FromDTO(dto.OperateInfo),
-                    TargetPostId = dto.TargetPostId.Value,
-                };
+                return dto.Adapt<Req>();
             }
 
             public IPostDeleteCommandService.Req ToDTO()
             {
-                return new IPostDeleteCommandService.Req()
-                {
-                    OperateInfo = OperateInfo.ToDTO(),
-                    TargetPostId = PostId.Reconstruct(TargetPostId),
-                };
+                return ToDTO().Adapt<IPostDeleteCommandService.Req>();
             }
 
             [Key(0)]

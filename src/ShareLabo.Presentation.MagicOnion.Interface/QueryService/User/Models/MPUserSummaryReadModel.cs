@@ -1,4 +1,5 @@
 ﻿using CSStack.TADA.MagicOnionHelper.Abstractions;
+using Mapster;
 using MessagePack;
 using ShareLabo.Application.UseCase.QueryService.User;
 using ShareLabo.Domain.Aggregate.User;
@@ -10,24 +11,12 @@ namespace ShareLabo.Presentation.MagicOnion.Interface
     {
         public static MPUserSummaryReadModel FromDTO(UserSummaryReadModel dto)
         {
-            return new MPUserSummaryReadModel()
-            {
-                UserAccountId = dto.UserAccountId,
-                Status = dto.Status,
-                UserId = dto.UserId,
-                UserName = dto.UserName,
-            };
+            return dto.Adapt<MPUserSummaryReadModel>();
         }
 
         public UserSummaryReadModel ToDTO()
         {
-            return new UserSummaryReadModel()
-            {
-                UserAccountId = UserAccountId,
-                Status = Status,
-                UserId = UserId,
-                UserName = UserName,
-            };
+            return this.Adapt<UserSummaryReadModel>();
         }
 
         [Key(0)]

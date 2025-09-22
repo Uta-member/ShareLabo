@@ -1,8 +1,7 @@
 ﻿using CSStack.TADA.MagicOnionHelper.Abstractions;
+using Mapster;
 using MessagePack;
 using ShareLabo.Application.UseCase.CommandService.TimeLine;
-using ShareLabo.Domain.ValueObject;
-using System.Collections.Immutable;
 
 namespace ShareLabo.Presentation.MagicOnion.Interface
 {
@@ -14,26 +13,12 @@ namespace ShareLabo.Presentation.MagicOnion.Interface
         {
             public static Req FromDTO(ITimeLineCreateCommandService.Req dto)
             {
-                return new Req()
-                {
-                    FilterMembers = dto.FilterMembers.Select(x => x.Value).ToList(),
-                    Id = dto.Id.Value,
-                    Name = dto.Name.Value,
-                    OperateInfo = MPOperateInfo.FromDTO(dto.OperateInfo),
-                    OwnerId = dto.OwnerId.Value,
-                };
+                return dto.Adapt<Req>();
             }
 
             public ITimeLineCreateCommandService.Req ToDTO()
             {
-                return new ITimeLineCreateCommandService.Req()
-                {
-                    FilterMembers = FilterMembers.Select(x => UserId.Reconstruct(x)).ToImmutableList(),
-                    Id = TimeLineId.Reconstruct(Id),
-                    Name = TimeLineName.Reconstruct(Name),
-                    OperateInfo = OperateInfo.ToDTO(),
-                    OwnerId = UserId.Reconstruct(OwnerId),
-                };
+                return this.Adapt<ITimeLineCreateCommandService.Req>();
             }
 
             [Key(0)]

@@ -2,6 +2,7 @@
 using ShareLabo.Application.Authentication;
 using ShareLabo.Application.UseCase.CommandService.User;
 using ShareLabo.Domain.DomainService.User;
+using ShareLabo.Domain.ValueObject;
 
 namespace ShareLabo.Application.UseCase.CommandService.Implementation.User
 {
@@ -28,27 +29,36 @@ namespace ShareLabo.Application.UseCase.CommandService.Implementation.User
             CancellationToken cancellationToken = default)
         {
             await _transactionManager.ExecuteTransactionAsync(
-                [typeof(TUserSession), typeof(TAuthSession)],
+                [ typeof(TUserSession), typeof(TAuthSession) ],
                 async sessions =>
                 {
                     await _userUpdateDomainService.ExecuteAsync(
                         new IUserUpdateDomainService<TUserSession>.Req()
-                        {
-                            UserAccountIdOptional = req.UserAccountIdOptional,
-                            OperateInfo = req.OperateInfo,
-                            TargetId = req.TargetUserId,
-                            UserNameOptional = req.UserNameOptional,
-                            UserSession = sessions.GetSession<TUserSession>(),
-                        });
+                            {
+                                UserAccountIdOptional =
+                                    req.UserAccountIdOptional.TryGetValue(out var userAccountId)
+                                                ? UserAccountId.Create(userAccountId)
+                                                : Optional<UserAccountId>.Empty,
+                                OperateInfo = req.OperateInfo.ToOperateInfo(),
+                                TargetId = UserId.Reconstruct(req.TargetUserId),
+                                UserNameOptional =
+                                    req.UserNameOptional.TryGetValue(out var userName)
+                                                ? UserName.Create(userName)
+                                                : Optional<UserName>.Empty,
+                                UserSession = sessions.GetSession<TUserSession>(),
+                            });
 
                     await _userAccountUpdateService.ExecuteAsync(
                         new UserAccountUpdateService<TAuthSession>.Req()
-                        {
-                            UserAccountIdOptional = req.UserAccountIdOptional,
-                            OperateInfo = req.OperateInfo,
-                            Session = sessions.GetSession<TAuthSession>(),
-                            TargetUserId = req.TargetUserId,
-                        });
+                            {
+                                UserAccountIdOptional =
+                                    req.UserAccountIdOptional.TryGetValue(out userAccountId)
+                                                ? UserAccountId.Create(userAccountId)
+                                                : Optional<UserAccountId>.Empty,
+                                OperateInfo = req.OperateInfo.ToOperateInfo(),
+                                Session = sessions.GetSession<TAuthSession>(),
+                                TargetUserId = UserId.Reconstruct(req.TargetUserId),
+                            });
                 });
         }
     }

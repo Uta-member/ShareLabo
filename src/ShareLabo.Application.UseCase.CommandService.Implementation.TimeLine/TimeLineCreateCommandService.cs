@@ -1,6 +1,8 @@
 ﻿using CSStack.TADA;
 using ShareLabo.Application.UseCase.CommandService.TimeLine;
 using ShareLabo.Domain.DomainService.TimeLine;
+using ShareLabo.Domain.ValueObject;
+using System.Collections.Immutable;
 
 namespace ShareLabo.Application.UseCase.CommandService.Implementation.TimeLine
 {
@@ -24,18 +26,18 @@ namespace ShareLabo.Application.UseCase.CommandService.Implementation.TimeLine
             CancellationToken cancellationToken = default)
         {
             await _transactionManager.ExecuteTransactionAsync(
-                [typeof(TTimeLineSession), typeof(TUserSession)],
+                [ typeof(TTimeLineSession), typeof(TUserSession) ],
                 async sessions => await _timeLineCreateDomainService.ExecuteAsync(
                     new ITimeLineCreateDomainService<TTimeLineSession, TUserSession>.Req()
-                {
-                    FilterMembers = req.FilterMembers,
-                    Id = req.Id,
-                    Name = req.Name,
-                    OperateInfo = req.OperateInfo,
-                    OwnerId = req.OwnerId,
-                    TimeLineSession = sessions.GetSession<TTimeLineSession>(),
-                    UserSession = sessions.GetSession<TUserSession>(),
-                }));
+                    {
+                        FilterMembers = req.FilterMembers.Select(x => UserId.Reconstruct(x)).ToImmutableList(),
+                        Id = TimeLineId.Create(req.Id),
+                        Name = TimeLineName.Create(req.Name),
+                        OperateInfo = req.OperateInfo.ToOperateInfo(),
+                        OwnerId = UserId.Reconstruct(req.OwnerId),
+                        TimeLineSession = sessions.GetSession<TTimeLineSession>(),
+                        UserSession = sessions.GetSession<TUserSession>(),
+                    }));
         }
     }
 }

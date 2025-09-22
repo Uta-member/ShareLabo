@@ -1,9 +1,7 @@
 ﻿using CSStack.TADA;
 using Microsoft.AspNetCore.Components;
-using ShareLabo.Application.Authentication;
+using ShareLabo.Application.Toolkit;
 using ShareLabo.Application.UseCase.CommandService.User;
-using ShareLabo.Domain.Aggregate.Toolkit;
-using ShareLabo.Domain.ValueObject;
 
 namespace ShareLabo.Presentation.Blazor.Client.Pages.User
 {
@@ -19,39 +17,21 @@ namespace ShareLabo.Presentation.Blazor.Client.Pages.User
             _message = string.Empty;
             await InvokeAsync(StateHasChanged);
 
-            var userId = UserId.Create(Guid.NewGuid().ToString());
-
-            UserAccountId userAccountId = default!;
-            UserName userName = default!;
-            AccountPassword accountPassword = default!;
-
             try
             {
-                userAccountId = UserAccountId.Create(_userRegisterViewModel.AccountId);
-                userName = UserName.Create(_userRegisterViewModel.Name);
-                accountPassword = AccountPassword.Create(_userRegisterViewModel.Password);
-            }
-            catch
-            {
-                _isProcessing = false;
-                _message = "アカウント情報の入力に誤りがあります";
-                return;
-            }
-
-            try
-            {
+                var userIdStr = Guid.NewGuid().ToString();
                 await SelfAuthUserCreateCommandService.ExecuteAsync(
                     new ISelfAuthUserCreateCommandService.Req()
                     {
-                        AccountPassword = accountPassword,
-                        UserAccountId = userAccountId,
-                        UserId = userId,
-                        UserName = userName,
+                        AccountPassword = _userRegisterViewModel.Password,
+                        UserAccountId = _userRegisterViewModel.AccountId,
+                        UserId = userIdStr,
+                        UserName = _userRegisterViewModel.Name,
                         OperateInfo =
-                            new OperateInfo()
+                            new OperateInfoWriteModel()
                                 {
                                     OperatedDateTime = DateTime.Now,
-                                    Operator = userId,
+                                    Operator = userIdStr,
                                 }
                     });
                 NotificationService.Notify("ユーザ登録", "ユーザ登録が完了しました");

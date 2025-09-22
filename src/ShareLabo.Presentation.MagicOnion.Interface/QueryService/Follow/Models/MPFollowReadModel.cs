@@ -1,4 +1,5 @@
 ﻿using CSStack.TADA.MagicOnionHelper.Abstractions;
+using Mapster;
 using MessagePack;
 using ShareLabo.Application.UseCase.QueryService.Follow;
 
@@ -9,24 +10,12 @@ namespace ShareLabo.Presentation.MagicOnion.Interface
     {
         public static MPFollowReadModel FromDTO(FollowReadModel dto)
         {
-            return new MPFollowReadModel()
-            {
-                AccountId = dto.AccountId,
-                FollowStartDateTime = dto.FollowStartDateTime,
-                UserId = dto.UserId,
-                UserName = dto.UserName,
-            };
+            return dto.Adapt<MPFollowReadModel>();
         }
 
         public FollowReadModel ToDTO()
         {
-            return new FollowReadModel()
-            {
-                AccountId = AccountId,
-                FollowStartDateTime = FollowStartDateTime,
-                UserId = UserId,
-                UserName = UserName,
-            };
+            return this.Adapt<FollowReadModel>();
         }
 
         [Key(0)]

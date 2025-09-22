@@ -1,6 +1,5 @@
 ﻿using CSStack.TADA;
 using ShareLabo.Application.Authentication;
-using ShareLabo.Domain.ValueObject;
 
 namespace ShareLabo.Application.UseCase.CommandService.User
 {
@@ -9,9 +8,9 @@ namespace ShareLabo.Application.UseCase.CommandService.User
     {
         public sealed record Req : ICommandServiceDTO
         {
-            public required AccountPassword AccountPassword { get; init; }
+            public required string AccountPassword { get; init; }
 
-            public required UserAccountId UserAccountId { get; init; }
+            public required string UserAccountId { get; init; }
         }
 
         public sealed record Res : ICommandServiceDTO
