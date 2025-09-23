@@ -33,7 +33,7 @@ namespace ShareLabo.Infrastructure.PGSQL.QueryService.User
             {
                 return new IUserDetailFindByOAuthIdentifierQueryService.Res()
                 {
-                    User = Optional<UserDetailReadModel>.Empty,
+                    UserOptional = Optional<UserDetailReadModel>.Empty,
                 };
             }
 
@@ -51,13 +51,13 @@ namespace ShareLabo.Infrastructure.PGSQL.QueryService.User
             {
                 return new IUserDetailFindByOAuthIdentifierQueryService.Res()
                 {
-                    User = Optional<UserDetailReadModel>.Empty,
+                    UserOptional = Optional<UserDetailReadModel>.Empty,
                 };
             }
 
             return new IUserDetailFindByOAuthIdentifierQueryService.Res()
             {
-                User =
+                UserOptional =
                     new UserDetailReadModel()
                     {
                         UserAccountId = dbUser.AccountId,

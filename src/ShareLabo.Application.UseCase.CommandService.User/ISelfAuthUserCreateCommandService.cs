@@ -9,7 +9,7 @@ namespace ShareLabo.Application.UseCase.CommandService.User
         {
             public required string AccountPassword { get; init; }
 
-            public required OperateInfoWriteModel OperateInfo { get; init; }
+            public required OperateInfoDTO OperateInfo { get; init; }
 
             public required string UserAccountId { get; init; }
 

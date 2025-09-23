@@ -1,5 +1,4 @@
 ﻿using CSStack.TADA.MagicOnionHelper.Abstractions;
-using Mapster;
 using MessagePack;
 using ShareLabo.Application.UseCase.CommandService.TimeLine;
 
@@ -13,12 +12,20 @@ namespace ShareLabo.Presentation.MagicOnion.Interface
         {
             public static Req FromDTO(ITimeLineDeleteCommandService.Req dto)
             {
-                return dto.Adapt<Req>();
+                return new Req()
+                {
+                    OperateInfo = dto.OperateInfo.ToMPDTO(),
+                    TargetId = dto.TargetId,
+                };
             }
 
             public ITimeLineDeleteCommandService.Req ToDTO()
             {
-                return this.Adapt<ITimeLineDeleteCommandService.Req>();
+                return new ITimeLineDeleteCommandService.Req()
+                {
+                    OperateInfo = OperateInfo.ToDTO(),
+                    TargetId = TargetId,
+                };
             }
 
             [Key(0)]

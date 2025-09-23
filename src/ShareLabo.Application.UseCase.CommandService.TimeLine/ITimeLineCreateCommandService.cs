@@ -14,7 +14,7 @@ namespace ShareLabo.Application.UseCase.CommandService.TimeLine
 
             public required string Name { get; init; }
 
-            public required OperateInfoWriteModel OperateInfo { get; init; }
+            public required OperateInfoDTO OperateInfo { get; init; }
 
             public required string OwnerId { get; init; }
         }

@@ -15,12 +15,24 @@ namespace ShareLabo.Presentation.MagicOnion.Interface
         {
             public static Req FromDTO(IMyPostsGetQueryService.Req dto)
             {
-                return dto.Adapt<Req>();
+                return new Req()
+                {
+                    Length = dto.Length,
+                    StartPostSequenceId = dto.StartPostSequenceId,
+                    ToBefore = dto.ToBefore,
+                    UserId = dto.UserId,
+                };
             }
 
             public IMyPostsGetQueryService.Req ToDTO()
             {
-                return this.Adapt<IMyPostsGetQueryService.Req>();
+                return new IMyPostsGetQueryService.Req()
+                {
+                    Length = Length,
+                    StartPostSequenceId = StartPostSequenceId,
+                    ToBefore = ToBefore,
+                    UserId = UserId,
+                };
             }
 
             [Key(0)]

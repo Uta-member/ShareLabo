@@ -28,7 +28,7 @@ namespace ShareLabo.Presentation.Blazor.Client.Pages.User
                         UserId = userIdStr,
                         UserName = _userRegisterViewModel.Name,
                         OperateInfo =
-                            new OperateInfoWriteModel()
+                            new OperateInfoDTO()
                                 {
                                     OperatedDateTime = DateTime.Now,
                                     Operator = userIdStr,

@@ -39,6 +39,7 @@ namespace ShareLabo.Presentation.AppBuilder.MagicOnion.Client
             services.AddTransient<ISelfAuthUserPasswordUpdateCommandService, SelfAuthUserPasswordUpdateCommandService>(
                 );
             services.AddTransient<ISelfAuthUserLoginCommandService, SelfAuthUserLoginCommandService>();
+            services.AddTransient<IOAuthUserCreateCommandService, OAuthUserCreateCommandService>();
         }
 
         private static void AddGrpcChannel(this IServiceCollection services, string hostUrl, bool isGrpcWeb)
@@ -82,6 +83,8 @@ namespace ShareLabo.Presentation.AppBuilder.MagicOnion.Client
             services.AddTransient<IUserDetailFindByAccountIdQueryService, UserDetailFindByAccountIdQueryService>(
                 );
             services.AddTransient<IUserDetailFindByUserIdQueryService, UserDetailFindByUserIdQueryService>();
+            services.AddTransient<IUserDetailFindByOAuthIdentifierQueryService, UserDetailFindByOAuthIdentifierQueryService>(
+                );
         }
 
         public static IServiceCollection AddShareLaboMagicOnionClient(

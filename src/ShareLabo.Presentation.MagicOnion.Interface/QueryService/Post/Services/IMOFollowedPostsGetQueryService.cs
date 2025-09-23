@@ -1,7 +1,7 @@
 ﻿using CSStack.TADA.MagicOnionHelper.Abstractions;
-using Mapster;
 using MessagePack;
 using ShareLabo.Application.UseCase.QueryService.Post;
+using System.Collections.Immutable;
 
 namespace ShareLabo.Presentation.MagicOnion.Interface
 {
@@ -15,12 +15,24 @@ namespace ShareLabo.Presentation.MagicOnion.Interface
         {
             public static Req FromDTO(IFollowedPostsGetQueryService.Req dto)
             {
-                return dto.Adapt<Req>();
+                return new Req
+                {
+                    Length = dto.Length,
+                    StartPostSequenceId = dto.StartPostSequenceId,
+                    ToBefore = dto.ToBefore,
+                    UserId = dto.UserId,
+                };
             }
 
             public IFollowedPostsGetQueryService.Req ToDTO()
             {
-                return this.Adapt<IFollowedPostsGetQueryService.Req>();
+                return new IFollowedPostsGetQueryService.Req
+                {
+                    Length = Length,
+                    StartPostSequenceId = StartPostSequenceId,
+                    ToBefore = ToBefore,
+                    UserId = UserId,
+                };
             }
 
             [Key(0)]
@@ -41,11 +53,17 @@ namespace ShareLabo.Presentation.MagicOnion.Interface
         {
             public static Res FromDTO(IFollowedPostsGetQueryService.Res dto)
             {
-                return dto.Adapt<Res>();
+                return new Res
+                {
+                    PostSummaries = dto.PostSummaries.Select(x => MPPostSummaryReadModel.FromDTO(x)).ToList(),
+                };
             }
             public IFollowedPostsGetQueryService.Res ToDTO()
             {
-                return this.Adapt<IFollowedPostsGetQueryService.Res>();
+                return new IFollowedPostsGetQueryService.Res
+                {
+                    PostSummaries = PostSummaries.Select(x => x.ToDTO()).ToImmutableList(),
+                };
             }
 
             [Key(0)]

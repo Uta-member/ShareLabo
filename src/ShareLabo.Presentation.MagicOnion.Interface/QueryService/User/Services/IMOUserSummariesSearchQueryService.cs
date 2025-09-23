@@ -1,8 +1,8 @@
 ﻿using CSStack.TADA.MagicOnionHelper.Abstractions;
-using Mapster;
 using MessagePack;
 using ShareLabo.Application.UseCase.QueryService.User;
 using ShareLabo.Domain.Aggregate.User;
+using System.Collections.Immutable;
 
 namespace ShareLabo.Presentation.MagicOnion.Interface
 {
@@ -14,12 +14,28 @@ namespace ShareLabo.Presentation.MagicOnion.Interface
         {
             public static Req FromDTO(IUserSummariesSearchQueryService.Req dto)
             {
-                return dto.Adapt<Req>();
+                return new Req()
+                {
+                    AccountIdStrOptional = dto.AccountIdStrOptional.ToMPOptional(),
+                    LimitOptional = dto.LimitOptional.ToMPOptional(),
+                    StartIndexOptional = dto.StartIndexOptional.ToMPOptional(),
+                    TargetStatusesOptional = dto.TargetStatusesOptional.ToMPOptional(x => x.ToList()),
+                    UserIdStrOptional = dto.UserIdStrOptional.ToMPOptional(),
+                    UserNameStrOptional = dto.UserNameStrOptional.ToMPOptional(),
+                };
             }
 
             public IUserSummariesSearchQueryService.Req ToDTO()
             {
-                return this.Adapt<IUserSummariesSearchQueryService.Req>();
+                return new IUserSummariesSearchQueryService.Req()
+                {
+                    AccountIdStrOptional = AccountIdStrOptional.ToOptional(),
+                    LimitOptional = LimitOptional.ToOptional(),
+                    StartIndexOptional = StartIndexOptional.ToOptional(),
+                    TargetStatusesOptional = TargetStatusesOptional.ToOptional(x => x.ToImmutableList()),
+                    UserIdStrOptional = UserIdStrOptional.ToOptional(),
+                    UserNameStrOptional = UserNameStrOptional.ToOptional(),
+                };
             }
 
             [Key(0)]
@@ -50,12 +66,18 @@ namespace ShareLabo.Presentation.MagicOnion.Interface
         {
             public static Res FromDTO(IUserSummariesSearchQueryService.Res dto)
             {
-                return dto.Adapt<Res>();
+                return new Res()
+                {
+                    Users = dto.Users.Select(x => MPUserSummaryReadModel.FromDTO(x)).ToList(),
+                };
             }
 
             public IUserSummariesSearchQueryService.Res ToDTO()
             {
-                return this.Adapt<IUserSummariesSearchQueryService.Res>();
+                return new IUserSummariesSearchQueryService.Res()
+                {
+                    Users = Users.Select(x => x.ToDTO()).ToImmutableList(),
+                };
             }
 
             [Key(0)]

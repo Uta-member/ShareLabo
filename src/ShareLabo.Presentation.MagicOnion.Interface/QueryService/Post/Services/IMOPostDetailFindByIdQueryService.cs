@@ -1,5 +1,4 @@
 ﻿using CSStack.TADA.MagicOnionHelper.Abstractions;
-using Mapster;
 using MessagePack;
 using ShareLabo.Application.UseCase.QueryService.Post;
 
@@ -13,12 +12,18 @@ namespace ShareLabo.Presentation.MagicOnion.Interface
         {
             public static Req FromDTO(IPostDetailFindByIdQueryService.Req dto)
             {
-                return dto.Adapt<Req>();
+                return new Req
+                {
+                    PostId = dto.PostId,
+                };
             }
 
             public IPostDetailFindByIdQueryService.Req ToDTO()
             {
-                return this.Adapt<IPostDetailFindByIdQueryService.Req>();
+                return new IPostDetailFindByIdQueryService.Req
+                {
+                    PostId = PostId,
+                };
             }
 
             [Key(0)]
@@ -30,11 +35,17 @@ namespace ShareLabo.Presentation.MagicOnion.Interface
         {
             public static Res FromDTO(IPostDetailFindByIdQueryService.Res dto)
             {
-                return dto.Adapt<Res>();
+                return new Res
+                {
+                    PostDetailOptional = dto.PostDetailOptional.ToMPOptional(x => MPPostDetailReadModel.FromDTO(x)),
+                };
             }
             public IPostDetailFindByIdQueryService.Res ToDTO()
             {
-                return this.Adapt<IPostDetailFindByIdQueryService.Res>();
+                return new IPostDetailFindByIdQueryService.Res
+                {
+                    PostDetailOptional = PostDetailOptional.ToOptional(x => x.ToDTO()),
+                };
             }
 
             [Key(0)]

@@ -7,7 +7,7 @@ namespace ShareLabo.Application.UseCase.CommandService.User
     {
         public sealed record Req : ICommandServiceDTO
         {
-            public required OperateInfoWriteModel OperateInfo { get; init; }
+            public required OperateInfoDTO OperateInfo { get; init; }
 
             public required string TargetUserId { get; init; }
 

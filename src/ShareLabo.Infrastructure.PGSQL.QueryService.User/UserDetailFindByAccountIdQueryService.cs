@@ -38,13 +38,13 @@ namespace ShareLabo.Infrastructure.PGSQL.QueryService.User
             {
                 return new IUserDetailFindByAccountIdQueryService.Res()
                 {
-                    User = Optional<UserDetailReadModel>.Empty,
+                    UserOptional = Optional<UserDetailReadModel>.Empty,
                 };
             }
 
             return new IUserDetailFindByAccountIdQueryService.Res()
             {
-                User =
+                UserOptional =
                     new UserDetailReadModel()
                     {
                         UserAccountId = dbUser.AccountId,

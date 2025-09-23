@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CSStack.TADA.MagicOnionHelper.Server" Version="0.3.8" />
+    <PackageReference Include="CSStack.TADA.MagicOnionHelper.Server" Version="0.3.9" />
     <PackageReference Include="Grpc.AspNetCore" Version="2.57.0" />
     <PackageReference Include="Grpc.AspNetCore.Web" Version="2.71.0" />
     <PackageReference Include="MagicOnion.Server" Version="7.0.6" />

@@ -1,5 +1,4 @@
 ﻿using CSStack.TADA.MagicOnionHelper.Abstractions;
-using Mapster;
 using MessagePack;
 using ShareLabo.Application.UseCase.CommandService.Post;
 
@@ -13,12 +12,20 @@ namespace ShareLabo.Presentation.MagicOnion.Interface
         {
             public static Req FromDTO(IPostDeleteCommandService.Req dto)
             {
-                return dto.Adapt<Req>();
+                return new Req()
+                {
+                    OperateInfo = dto.OperateInfo.ToMPDTO(),
+                    TargetPostId = dto.TargetPostId,
+                };
             }
 
             public IPostDeleteCommandService.Req ToDTO()
             {
-                return ToDTO().Adapt<IPostDeleteCommandService.Req>();
+                return new IPostDeleteCommandService.Req()
+                {
+                    OperateInfo = OperateInfo.ToDTO(),
+                    TargetPostId = TargetPostId,
+                };
             }
 
             [Key(0)]

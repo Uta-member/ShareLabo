@@ -1,7 +1,7 @@
 ﻿using CSStack.TADA.MagicOnionHelper.Abstractions;
-using Mapster;
 using MessagePack;
 using ShareLabo.Application.UseCase.QueryService.Follow;
+using System.Collections.Immutable;
 
 namespace ShareLabo.Presentation.MagicOnion.Interface
 {
@@ -13,12 +13,18 @@ namespace ShareLabo.Presentation.MagicOnion.Interface
         {
             public static Req FromDTO(IUserFollowsGetQueryService.Req dto)
             {
-                return dto.Adapt<Req>();
+                return new Req()
+                {
+                    UserId = dto.UserId,
+                };
             }
 
             public IUserFollowsGetQueryService.Req ToDTO()
             {
-                return this.Adapt<IUserFollowsGetQueryService.Req>();
+                return new IUserFollowsGetQueryService.Req()
+                {
+                    UserId = UserId,
+                };
             }
 
             [Key(0)]
@@ -30,12 +36,18 @@ namespace ShareLabo.Presentation.MagicOnion.Interface
         {
             public static Res FromDTO(IUserFollowsGetQueryService.Res dto)
             {
-                return dto.Adapt<Res>();
+                return new Res()
+                {
+                    Follows = dto.Follows.Select(x => MPFollowReadModel.FromDTO(x)).ToList(),
+                };
             }
 
             public IUserFollowsGetQueryService.Res ToDTO()
             {
-                return this.Adapt<IUserFollowsGetQueryService.Res>();
+                return new IUserFollowsGetQueryService.Res()
+                {
+                    Follows = Follows.Select(x => x.ToDTO()).ToImmutableList(),
+                };
             }
 
             [Key(0)]

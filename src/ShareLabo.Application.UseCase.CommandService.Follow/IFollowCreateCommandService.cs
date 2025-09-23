@@ -11,7 +11,7 @@ namespace ShareLabo.Application.UseCase.CommandService.Follow
 
             public required DateTime FollowStartDateTime { get; init; }
 
-            public required OperateInfoWriteModel OperateInfo { get; init; }
+            public required OperateInfoDTO OperateInfo { get; init; }
         }
     }
 }

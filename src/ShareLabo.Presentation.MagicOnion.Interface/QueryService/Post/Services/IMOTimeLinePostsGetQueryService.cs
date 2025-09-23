@@ -1,7 +1,7 @@
 ﻿using CSStack.TADA.MagicOnionHelper.Abstractions;
-using Mapster;
 using MessagePack;
 using ShareLabo.Application.UseCase.QueryService.Post;
+using System.Collections.Immutable;
 
 namespace ShareLabo.Presentation.MagicOnion.Interface
 {
@@ -15,12 +15,26 @@ namespace ShareLabo.Presentation.MagicOnion.Interface
         {
             public static Req FromDTO(ITimeLinePostsGetQueryService.Req dto)
             {
-                return dto.Adapt<Req>();
+                return new Req()
+                {
+                    Length = dto.Length,
+                    StartPostSequenceId = dto.StartPostSequenceId,
+                    TimeLineId = dto.TimeLineId,
+                    ToBefore = dto.ToBefore,
+                    UserId = dto.UserId,
+                };
             }
 
             public ITimeLinePostsGetQueryService.Req ToDTO()
             {
-                return this.Adapt<ITimeLinePostsGetQueryService.Req>();
+                return new ITimeLinePostsGetQueryService.Req()
+                {
+                    Length = Length,
+                    StartPostSequenceId = StartPostSequenceId,
+                    TimeLineId = TimeLineId,
+                    ToBefore = ToBefore,
+                    UserId = UserId,
+                };
             }
 
             [Key(0)]
@@ -44,12 +58,18 @@ namespace ShareLabo.Presentation.MagicOnion.Interface
         {
             public static Res FromDTO(ITimeLinePostsGetQueryService.Res dto)
             {
-                return dto.Adapt<Res>();
+                return new Res
+                {
+                    PostSummaries = dto.PostSummaries.Select(x => MPPostSummaryReadModel.FromDTO(x)).ToList(),
+                };
             }
 
             public ITimeLinePostsGetQueryService.Res ToDTO()
             {
-                return this.Adapt<ITimeLinePostsGetQueryService.Res>();
+                return new ITimeLinePostsGetQueryService.Res
+                {
+                    PostSummaries = PostSummaries.Select(x => x.ToDTO()).ToImmutableList(),
+                };
             }
 
             [Key(0)]

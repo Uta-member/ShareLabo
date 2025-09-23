@@ -1,7 +1,7 @@
 ﻿using CSStack.TADA.MagicOnionHelper.Abstractions;
-using Mapster;
 using MessagePack;
 using ShareLabo.Application.UseCase.QueryService.TimeLine;
+using System.Collections.Immutable;
 
 namespace ShareLabo.Presentation.MagicOnion.Interface
 {
@@ -10,12 +10,26 @@ namespace ShareLabo.Presentation.MagicOnion.Interface
     {
         public static MPTimeLineDetailReadModel FromDTO(TimeLineDetailReadModel dto)
         {
-            return dto.Adapt<MPTimeLineDetailReadModel>();
+            return new MPTimeLineDetailReadModel()
+            {
+                OwnerId = dto.OwnerId,
+                OwnerName = dto.OwnerName,
+                TimeLineFilters = dto.TimeLineFilters.Select(x => MPTimeLineFilterReadModel.FromDTO(x)).ToList(),
+                TimeLineId = dto.TimeLineId,
+                TimeLineName = dto.TimeLineName,
+            };
         }
 
         public TimeLineDetailReadModel ToDTO()
         {
-            return this.Adapt<TimeLineDetailReadModel>();
+            return new TimeLineDetailReadModel()
+            {
+                OwnerId = OwnerId,
+                OwnerName = OwnerName,
+                TimeLineFilters = TimeLineFilters.Select(x => x.ToDTO()).ToImmutableList(),
+                TimeLineId = TimeLineId,
+                TimeLineName = TimeLineName,
+            };
         }
 
         [Key(0)]

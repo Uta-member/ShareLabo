@@ -7,7 +7,7 @@ namespace ShareLabo.Application.UseCase.CommandService.Post
     {
         public sealed record Req : ICommandServiceDTO
         {
-            public required OperateInfoWriteModel OperateInfo { get; init; }
+            public required OperateInfoDTO OperateInfo { get; init; }
 
             public required string PostContent { get; init; }
 

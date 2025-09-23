@@ -1,5 +1,4 @@
 ﻿using CSStack.TADA.MagicOnionHelper.Abstractions;
-using Mapster;
 using MessagePack;
 using ShareLabo.Application.Authentication;
 using ShareLabo.Application.UseCase.CommandService.User;
@@ -14,12 +13,20 @@ namespace ShareLabo.Presentation.MagicOnion.Interface
         {
             public static Req FromDTO(ISelfAuthUserLoginCommandService.Req dto)
             {
-                return dto.Adapt<Req>();
+                return new Req()
+                {
+                    AccountPassword = dto.AccountPassword,
+                    UserAccountId = dto.UserAccountId,
+                };
             }
 
             public ISelfAuthUserLoginCommandService.Req ToDTO()
             {
-                return this.Adapt<ISelfAuthUserLoginCommandService.Req>();
+                return new ISelfAuthUserLoginCommandService.Req()
+                {
+                    AccountPassword = AccountPassword,
+                    UserAccountId = UserAccountId,
+                };
             }
 
             [Key(0)]

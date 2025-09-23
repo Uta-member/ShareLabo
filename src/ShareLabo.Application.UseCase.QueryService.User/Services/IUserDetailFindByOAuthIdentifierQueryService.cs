@@ -15,7 +15,7 @@ namespace ShareLabo.Application.UseCase.QueryService.User
 
         public sealed record Res : IQueryServiceDTO
         {
-            public required Optional<UserDetailReadModel> User { get; init; }
+            public required Optional<UserDetailReadModel> UserOptional { get; init; }
         }
     }
 }

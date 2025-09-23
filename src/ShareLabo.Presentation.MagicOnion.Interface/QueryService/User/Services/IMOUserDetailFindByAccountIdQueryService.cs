@@ -1,5 +1,4 @@
 ﻿using CSStack.TADA.MagicOnionHelper.Abstractions;
-using Mapster;
 using MessagePack;
 using ShareLabo.Application.UseCase.QueryService.User;
 
@@ -13,12 +12,18 @@ namespace ShareLabo.Presentation.MagicOnion.Interface
         {
             public static Req FromDTO(IUserDetailFindByAccountIdQueryService.Req dto)
             {
-                return dto.Adapt<Req>();
+                return new Req()
+                {
+                    AccountId = dto.AccountId,
+                };
             }
 
             public IUserDetailFindByAccountIdQueryService.Req ToDTO()
             {
-                return this.Adapt<IUserDetailFindByAccountIdQueryService.Req>();
+                return new IUserDetailFindByAccountIdQueryService.Req()
+                {
+                    AccountId = AccountId,
+                };
             }
 
             [Key(0)]
@@ -30,16 +35,22 @@ namespace ShareLabo.Presentation.MagicOnion.Interface
         {
             public static Res FromDTO(IUserDetailFindByAccountIdQueryService.Res dto)
             {
-                return dto.Adapt<Res>();
+                return new Res()
+                {
+                    UserOptional = dto.UserOptional.ToMPOptional(x => MPUserDetailReadModel.FromDTO(x)),
+                };
             }
 
             public IUserDetailFindByAccountIdQueryService.Res ToDTO()
             {
-                return this.Adapt<IUserDetailFindByAccountIdQueryService.Res>();
+                return new IUserDetailFindByAccountIdQueryService.Res()
+                {
+                    UserOptional = UserOptional.ToOptional(x => x.ToDTO()),
+                };
             }
 
             [Key(0)]
-            public required MPOptional<MPUserDetailReadModel> User { get; init; }
+            public required MPOptional<MPUserDetailReadModel> UserOptional { get; init; }
         }
     }
 }

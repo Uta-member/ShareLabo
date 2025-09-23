@@ -16,7 +16,7 @@ namespace ShareLabo.Application.UseCase.CommandService.TimeLine
 
             public Optional<string> NameOptional { get; init; } = Optional<string>.Empty;
 
-            public required OperateInfoWriteModel OperateInfo { get; init; }
+            public required OperateInfoDTO OperateInfo { get; init; }
 
             public required string TargetId { get; init; }
         }

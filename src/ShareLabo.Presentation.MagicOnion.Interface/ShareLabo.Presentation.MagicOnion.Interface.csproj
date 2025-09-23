@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CSStack.TADA.MagicOnionHelper.Abstractions" Version="0.3.8" />
+    <PackageReference Include="CSStack.TADA.MagicOnionHelper.Abstractions" Version="0.3.9" />
     <PackageReference Include="Mapster" Version="7.4.0" />
   </ItemGroup>
 

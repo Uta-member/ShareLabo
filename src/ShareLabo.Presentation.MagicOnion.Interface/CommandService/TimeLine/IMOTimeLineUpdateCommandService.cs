@@ -1,7 +1,7 @@
 ﻿using CSStack.TADA.MagicOnionHelper.Abstractions;
-using Mapster;
 using MessagePack;
 using ShareLabo.Application.UseCase.CommandService.TimeLine;
+using System.Collections.Immutable;
 
 namespace ShareLabo.Presentation.MagicOnion.Interface
 {
@@ -13,12 +13,26 @@ namespace ShareLabo.Presentation.MagicOnion.Interface
         {
             public static Req FromDTO(ITimeLineUpdateCommandService.Req dto)
             {
-                return dto.Adapt<Req>();
+                return new Req()
+                {
+                    FilterMembersOptional =
+                        dto.FilterMembersOptional.ToMPOptional(x => x.ToList()),
+                    NameOptional = dto.NameOptional.ToMPOptional(),
+                    OperateInfo = dto.OperateInfo.ToMPDTO(),
+                    TargetId = dto.TargetId,
+                };
             }
 
             public ITimeLineUpdateCommandService.Req ToDTO()
             {
-                return this.Adapt<ITimeLineUpdateCommandService.Req>();
+                return new ITimeLineUpdateCommandService.Req()
+                {
+                    FilterMembersOptional =
+                        FilterMembersOptional.ToOptional(x => x.ToImmutableList()),
+                    NameOptional = NameOptional.ToOptional(),
+                    OperateInfo = OperateInfo.ToDTO(),
+                    TargetId = TargetId,
+                };
             }
 
             [Key(0)]

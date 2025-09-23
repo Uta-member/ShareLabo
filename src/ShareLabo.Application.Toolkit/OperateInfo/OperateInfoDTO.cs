@@ -3,7 +3,7 @@ using ShareLabo.Domain.ValueObject;
 
 namespace ShareLabo.Application.Toolkit
 {
-    public sealed record OperateInfoWriteModel
+    public sealed record OperateInfoDTO
     {
         public OperateInfo ToOperateInfo()
         {

@@ -12,7 +12,7 @@ namespace ShareLabo.Application.UseCase.CommandService.User
 
             public required OAuthType OAuthType { get; init; }
 
-            public required OperateInfoWriteModel OperateInfo { get; init; }
+            public required OperateInfoDTO OperateInfo { get; init; }
 
             public required string UserAccountId { get; init; }
 
