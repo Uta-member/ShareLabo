@@ -6,6 +6,9 @@
             <a class="h3 m-0" style="text-decoration: none;" href="@(ShareLaboPagePath.Helper.Home())">ShareLabo</a>
         </h1>
     </div>
+    <a class="dropdown-item d-flex flex-row align-items-center gap-1" href="@(ShareLaboPagePath.Helper.Logout())">
+        <Icon IconName="logout" />ログアウト
+    </a>
     <div class="d-flex flex-row align-items-center gap-2">
         @if(_userDetail != null)
         {

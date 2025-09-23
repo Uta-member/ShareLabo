@@ -2,9 +2,12 @@ using CSStack.PrimeBlazor.Bootstrap;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
+using ShareLabo.Application.Authentication.OAuthIntegration;
+using ShareLabo.Application.UseCase.QueryService.User;
 using ShareLabo.Presentation.AppBuilder.MagicOnion.Client;
 using ShareLabo.Presentation.Blazor.Client;
 using ShareLabo.Presentation.Blazor.Components;
+using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -41,6 +44,39 @@ builder.Services
             options.ClientId = builder.Configuration["Authentication:Google:ClientId"];
             options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
             options.CallbackPath = "/signin-google";
+            options.Events.OnTicketReceived = async context =>
+            {
+                var email = context.Principal?.FindFirst(ClaimTypes.Email)?.Value;
+                var identifier = context.Principal?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+                if(string.IsNullOrWhiteSpace(identifier))
+                {
+                    return;
+                }
+
+                var userDetailFindByOAuthIdentifierQueryService = context.HttpContext.RequestServices
+                    .GetRequiredService<IUserDetailFindByOAuthIdentifierQueryService>();
+
+                try
+                {
+                    var userDetailRes = await userDetailFindByOAuthIdentifierQueryService.ExecuteAsync(
+                        new IUserDetailFindByOAuthIdentifierQueryService.Req()
+                        {
+                            OAuthType = OAuthType.Google,
+                            OAuthIdentifier = identifier,
+                        });
+
+                    if(!userDetailRes.UserOptional.TryGetValue(out var user))
+                    {
+                        context.Response.Redirect(ShareLaboPagePath.Helper.UserRegister());
+                        context.HandleResponse();
+                    }
+                }
+                catch
+                {
+                    return;
+                }
+            };
         });
 
 builder.Services.AddPrimeBlazorBootstrap();
@@ -89,5 +125,23 @@ app.MapGet(
         await httpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
         return TypedResults.Redirect($"~/{returnUrl}");
     });
+
+app.MapGet(
+    "/Account/UserInfo",
+    (HttpContext ctx) =>
+    {
+        if(ctx.User.Identity?.IsAuthenticated == true)
+        {
+            return Results.Json(
+                new
+                {
+                    IsAuthenticated = true,
+                    Name = ctx.User.Identity.Name,
+                    Claims = ctx.User.Claims.Select(c => new { c.Type, c.Value })
+                });
+        }
+        return Results.Json(new { IsAuthenticated = false });
+    });
+
 
 app.Run();
