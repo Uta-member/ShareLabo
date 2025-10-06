@@ -6,6 +6,7 @@ using ShareLabo.Application.Authentication.OAuthIntegration;
 using ShareLabo.Application.UseCase.QueryService.User;
 using ShareLabo.Presentation.AppBuilder.MagicOnion.Client;
 using ShareLabo.Presentation.Blazor.Client;
+using ShareLabo.Presentation.Blazor.Client.Services;
 using ShareLabo.Presentation.Blazor.Components;
 using System.Security.Claims;
 
@@ -19,6 +20,16 @@ builder.Services
 builder.Services.AddCascadingAuthenticationState();
 
 builder.Services.AddAuthorization();
+
+builder.Services.AddHttpClient("Default", client => client.BaseAddress = new Uri("https://localhost:7181"));
+builder.Services
+    .AddScoped(
+        sp =>
+        {
+            var factory = sp.GetRequiredService<IHttpClientFactory>();
+            return factory.CreateClient("Default");
+        });
+
 builder.Services
     .AddAuthentication(
         options =>
@@ -31,7 +42,6 @@ builder.Services
     .AddCookie(
         options =>
         {
-            options.LoginPath = ShareLaboPagePath.Helper.Login();
             options.LogoutPath = ShareLaboPagePath.Helper.Logout();
             options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
             options.SlidingExpiration = true; // 有効期限の延長を有効にするか
@@ -41,8 +51,8 @@ builder.Services
     .AddGoogle(
         options =>
         {
-            options.ClientId = builder.Configuration["Authentication:Google:ClientId"];
-            options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+            options.ClientId = builder.Configuration["Authentication:Google:ClientId"]!;
+            options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"]!;
             options.CallbackPath = "/signin-google";
             options.Events.OnTicketReceived = async context =>
             {
@@ -54,30 +64,37 @@ builder.Services
                     return;
                 }
 
-                var userDetailFindByOAuthIdentifierQueryService = context.HttpContext.RequestServices
+                var userFindService = context.HttpContext.RequestServices
                     .GetRequiredService<IUserDetailFindByOAuthIdentifierQueryService>();
-
-                try
-                {
-                    var userDetailRes = await userDetailFindByOAuthIdentifierQueryService.ExecuteAsync(
-                        new IUserDetailFindByOAuthIdentifierQueryService.Req()
+                var userFindRes = await userFindService.ExecuteAsync(
+                    new IUserDetailFindByOAuthIdentifierQueryService.Req()
                         {
-                            OAuthType = OAuthType.Google,
                             OAuthIdentifier = identifier,
+                            OAuthType = OAuthType.Google,
                         });
 
-                    if(!userDetailRes.UserOptional.TryGetValue(out var user))
-                    {
-                        context.Response.Redirect(ShareLaboPagePath.Helper.UserRegister());
-                        context.HandleResponse();
-                    }
-                }
-                catch
+                context.Principal?.Identities.First()
+                .AddClaim(
+                    new Claim(ShareLaboClaimTypes.OAuthType, ((int)OAuthType.Google).ToString()));
+
+                if(userFindRes.UserOptional.TryGetValue(out var userDetail))
                 {
-                    return;
+                    context.Principal?.Identities
+                        .First()
+                    .AddClaim(new Claim(ShareLaboClaimTypes.IsProfileRegistered, "true"));
                 }
+                else
+                {
+                    context.Principal?.Identities
+                        .First()
+                    .AddClaim(new Claim(ShareLaboClaimTypes.IsProfileRegistered, "false"));
+                }
+
+                return;
             };
         });
+
+builder.Services.AddScoped<UserProfileService>();
 
 builder.Services.AddPrimeBlazorBootstrap();
 
@@ -141,6 +158,31 @@ app.MapGet(
                 });
         }
         return Results.Json(new { IsAuthenticated = false });
+    });
+
+
+app.MapPost(
+    "/Account/RefreshSignIn",
+    async (HttpContext context) =>
+    {
+        if(context.User.Identity?.IsAuthenticated != true)
+        {
+            return Results.Unauthorized();
+        }
+
+        var identity = (ClaimsIdentity)context.User.Identity;
+        var claims = identity.Claims.ToList();
+
+        // 既存のクレームに加えて、IsProfileRegistered を true に更新
+        claims.RemoveAll(c => c.Type == ShareLaboClaimTypes.IsProfileRegistered);
+        claims.Add(new Claim(ShareLaboClaimTypes.IsProfileRegistered, "true"));
+
+        var newIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+        var newPrincipal = new ClaimsPrincipal(newIdentity);
+
+        await context.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, newPrincipal);
+
+        return Results.Ok();
     });
 
 

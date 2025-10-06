@@ -53,6 +53,12 @@ namespace ShareLabo.Presentation.Blazor.Client.Pages
             }
         }
 
+        protected override async Task OnInitializedAsync()
+        {
+            await base.OnInitializedAsync();
+            var authState = await AuthenticationState;
+        }
+
         [CascadingParameter]
         public required Task<AuthenticationState> AuthenticationState { get; set; }
 

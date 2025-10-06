@@ -13,6 +13,7 @@ namespace ShareLabo.Presentation.Blazor.Client.Services
             _http = http;
         }
 
+
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
         {
             var userInfo = await _http.GetFromJsonAsync<UserInfoDto>("/Account/UserInfo");
@@ -30,6 +31,12 @@ namespace ShareLabo.Presentation.Blazor.Client.Services
             }
 
             return new AuthenticationState(new ClaimsPrincipal(identity));
+        }
+
+
+        public void NotifyAuthenticationStateChanged()
+        {
+            NotifyAuthenticationStateChanged(GetAuthenticationStateAsync());
         }
 
         private class UserInfoDto

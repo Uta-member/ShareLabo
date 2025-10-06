@@ -10,8 +10,6 @@ namespace ShareLabo.Presentation.Blazor.Client
         [Page<Home>]
         public const string Home = "/";
 
-        public const string Login = "/Account/Login";
-
         public const string Logout = "/Account/Logout";
 
         [Page<UserRegisterPage>]

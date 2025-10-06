@@ -1,5 +1,5 @@
 ﻿<BootstrapComponent />
-<Router AppAssembly="typeof(Program).Assembly">
+<Router AppAssembly="typeof(Program).Assembly" OnNavigateAsync="HandleNavigationAsync">
     <Found Context="routeData">
         <AuthorizeRouteView RouteData="routeData" DefaultLayout="typeof(Layout.MainLayout)">
             <NotAuthorized>
@@ -8,3 +8,28 @@
         </AuthorizeRouteView>
     </Found>
 </Router>
+
+
+@code {
+    [Inject]
+    public required NavigationManager Navigation { get; set; }
+
+    [Inject]
+    public required AuthenticationStateProvider AuthenticationStateProvider { get; set; }
+
+    private async Task HandleNavigationAsync(NavigationContext args)
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        var currentUri = Navigation.ToBaseRelativePath(Navigation.Uri).ToLower();
+
+        // プロフィール未登録かつ、プロフィール登録ページ以外ならリダイレクト
+        if (user.Identity?.IsAuthenticated == true &&
+            !user.HasClaim(ShareLaboClaimTypes.IsProfileRegistered, "true") &&
+            !currentUri.StartsWith(ShareLaboPagePath.UserRegister.Trim('/').ToLower()))
+        {
+            Navigation.NavigateTo(ShareLaboPagePath.Helper.UserRegister(), true);
+        }
+    }
+}

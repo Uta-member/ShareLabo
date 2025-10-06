@@ -21,8 +21,11 @@ builder.Services
         });
 
 builder.Services.AddScoped<AuthenticationStateProvider, ApiAuthenticationStateProvider>();
+
 builder.Services.AddAuthorizationCore();
 builder.Services.AddCascadingAuthenticationState();
+
+builder.Services.AddScoped<UserProfileService>();
 
 builder.Services.AddPrimeBlazorBootstrap();
 

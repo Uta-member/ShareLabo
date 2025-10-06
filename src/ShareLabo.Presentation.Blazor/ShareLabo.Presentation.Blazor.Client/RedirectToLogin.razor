@@ -3,6 +3,6 @@
 @code {
     protected override void OnInitialized()
     {
-        NavigationManager.NavigateTo($"{ShareLaboPagePath.Login}?returnUrl={Uri.EscapeDataString(NavigationManager.Uri)}", forceLoad: true);
+        NavigationManager.NavigateTo($"{ShareLaboPagePath.Home}?returnUrl={Uri.EscapeDataString(NavigationManager.Uri)}", forceLoad: true);
     }
 }
