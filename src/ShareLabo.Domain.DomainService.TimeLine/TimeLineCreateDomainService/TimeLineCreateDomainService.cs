@@ -30,7 +30,8 @@ namespace ShareLabo.Domain.DomainService.TimeLine
                     req.UserSession,
                     filterMember,
                     cancellationToken);
-                if(!targetMemberOptional.HasValue)
+                if(!targetMemberOptional.TryGetValue(out var targetMember) ||
+                    targetMember.Status != UserEntity.StatusEnum.Enabled)
                 {
                     throw new ObjectNotFoundException();
                 }

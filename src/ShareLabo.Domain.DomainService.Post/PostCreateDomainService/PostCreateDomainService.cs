@@ -28,7 +28,7 @@ namespace ShareLabo.Domain.DomainService.Post
                 req.UserSession,
                 req.PostUser,
                 cancellationToken);
-            if(!postUserOptional.HasValue)
+            if(!postUserOptional.TryGetValue(out var postUser) || postUser.Status != UserEntity.StatusEnum.Enabled)
             {
                 throw new ObjectNotFoundException("投稿者のユーザが見つかりません");
             }

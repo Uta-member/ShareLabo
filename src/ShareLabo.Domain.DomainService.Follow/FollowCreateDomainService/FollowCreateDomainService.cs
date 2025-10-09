@@ -28,7 +28,8 @@ namespace ShareLabo.Domain.DomainService.Follow
                 req.UserSession,
                 req.FollowId.FollowFromId,
                 cancellationToken);
-            if(!targetFromUserOptional.HasValue)
+            if(!targetFromUserOptional.TryGetValue(out var targetFromUser) ||
+                targetFromUser.Status != UserEntity.StatusEnum.Enabled)
             {
                 throw new ObjectNotFoundException("フォロー元ユーザが存在しません");
             }
@@ -37,7 +38,8 @@ namespace ShareLabo.Domain.DomainService.Follow
                 req.UserSession,
                 req.FollowId.FollowToId,
                 cancellationToken);
-            if(!targetToUserOptional.HasValue)
+            if(!targetToUserOptional.TryGetValue(out var targetToUser) ||
+                targetToUser.Status != UserEntity.StatusEnum.Enabled)
             {
                 throw new ObjectNotFoundException("フォロー先ユーザが存在しません");
             }
