@@ -22,11 +22,7 @@ namespace ShareLabo.Domain.Aggregate.Follow.Tests
         public async Task CreateAsync_正常()
         {
             // Arrange
-            var followId = new FollowIdentifier()
-            {
-                FollowFromId = UserId.Create(new string('a', 8)),
-                FollowToId = UserId.Create(new string('b', 8)),
-            };
+            var followId = FollowIdentifier.Create(UserId.Create(new string('a', 8)), UserId.Create(new string('b', 8)));
             var createCommand = new FollowEntity.CreateCommand()
             {
                 FollowId = followId,
@@ -70,11 +66,7 @@ namespace ShareLabo.Domain.Aggregate.Follow.Tests
         public async Task CreateAsync_同一オブジェクト存在()
         {
             // Arrange
-            var followId = new FollowIdentifier()
-            {
-                FollowFromId = UserId.Create(new string('a', 8)),
-                FollowToId = UserId.Create(new string('b', 8)),
-            };
+            var followId = FollowIdentifier.Create(UserId.Create(new string('a', 8)), UserId.Create(new string('b', 8)));
             var createCommand = new FollowEntity.CreateCommand()
             {
                 FollowId = followId,
@@ -102,12 +94,7 @@ namespace ShareLabo.Domain.Aggregate.Follow.Tests
                     FollowEntity.Reconstruct(
                         new FollowEntity.ReconstructCommand()
                         {
-                            FollowId =
-                                new FollowIdentifier()
-                                        {
-                                            FollowFromId = UserId.Create(new string('a', 8)),
-                                            FollowToId = UserId.Create(new string('b', 8)),
-                                        },
+                            FollowId = followId,
                             FollowStartDateTime = new DateTime(2025, 9, 1),
                         }));
 
@@ -129,11 +116,10 @@ namespace ShareLabo.Domain.Aggregate.Follow.Tests
         public async Task DeleteAsync_正常()
         {
             // Arrange
-            var followId = new FollowIdentifier()
-            {
-                FollowFromId = UserId.Reconstruct(new string('a', 8)),
-                FollowToId = UserId.Reconstruct(new string('b', 8)),
-            };
+            var followId = FollowIdentifier.Reconstruct(
+                UserId.Reconstruct(new string('a', 8)),
+                UserId.Reconstruct(new string('b', 8)));
+
             var operateInfo = new OperateInfo()
             {
                 OperatedDateTime = new DateTime(2025, 9, 1),
@@ -177,11 +163,10 @@ namespace ShareLabo.Domain.Aggregate.Follow.Tests
         public async Task DeleteAsync_存在しないオブジェクト()
         {
             // Arrange
-            var followId = new FollowIdentifier()
-            {
-                FollowFromId = UserId.Reconstruct(new string('a', 8)),
-                FollowToId = UserId.Reconstruct(new string('b', 8)),
-            };
+            var followId = FollowIdentifier.Reconstruct(
+                UserId.Reconstruct(new string('a', 8)),
+                UserId.Reconstruct(new string('b', 8)));
+
             var operateInfo = new OperateInfo()
             {
                 OperatedDateTime = new DateTime(2025, 9, 1),

@@ -30,11 +30,9 @@ namespace ShareLabo.Application.UseCase.CommandService.Implementation.Follow
                     new IFollowCreateDomainService<TFollowSession, TUserSession>.Req()
                     {
                         FollowId =
-                            new FollowIdentifier()
-                                    {
-                                        FollowFromId = UserId.Reconstruct(req.FollowId.FollowFromId),
-                                        FollowToId = UserId.Reconstruct(req.FollowId.FollowToId),
-                                    },
+                            FollowIdentifier.Create(
+                                        UserId.Reconstruct(req.FollowId.FollowFromId),
+                                        UserId.Reconstruct(req.FollowId.FollowToId)),
                         FollowSession = sessions.GetSession<TFollowSession>(),
                         FollowStartDateTime = req.FollowStartDateTime,
                         OperateInfo = req.OperateInfo.ToOperateInfo(),

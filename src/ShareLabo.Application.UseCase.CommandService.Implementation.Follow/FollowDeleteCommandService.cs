@@ -28,11 +28,9 @@ namespace ShareLabo.Application.UseCase.CommandService.Follow
                     new IFollowDeleteDomainService<TFollowSession>.Req()
                     {
                         FollowId =
-                            new FollowIdentifier()
-                                    {
-                                        FollowFromId = UserId.Reconstruct(req.FollowId.FollowFromId),
-                                        FollowToId = UserId.Reconstruct(req.FollowId.FollowToId),
-                                    },
+                            FollowIdentifier.Reconstruct(
+                                        UserId.Reconstruct(req.FollowId.FollowFromId),
+                                        UserId.Reconstruct(req.FollowId.FollowToId)),
                         FollowSession = sessions.GetSession<TFollowSession>(),
                         OperateInfo = req.OperateInfo.ToOperateInfo(),
                     }));

@@ -47,11 +47,7 @@ namespace ShareLabo.Domain.DomainService.Follow.Tests
                     Status = UserEntity.StatusEnum.Enabled,
                 });
 
-            var followId = new FollowIdentifier()
-            {
-                FollowFromId = userAId,
-                FollowToId = userBId,
-            };
+            var followId = FollowIdentifier.Create(userAId, userBId);
             var req = new IFollowCreateDomainService<DummyFollowSession, DummyUserSession>.Req
             {
                 FollowId = followId,
@@ -117,11 +113,7 @@ namespace ShareLabo.Domain.DomainService.Follow.Tests
                     Status = UserEntity.StatusEnum.Enabled,
                 });
 
-            var followId = new FollowIdentifier()
-            {
-                FollowFromId = userAId,
-                FollowToId = userBId,
-            };
+            var followId = FollowIdentifier.Create(userAId, userBId);
             var req = new IFollowCreateDomainService<DummyFollowSession, DummyUserSession>.Req
             {
                 FollowId = followId,
@@ -187,11 +179,7 @@ namespace ShareLabo.Domain.DomainService.Follow.Tests
                     Status = UserEntity.StatusEnum.Enabled,
                 });
 
-            var followId = new FollowIdentifier()
-            {
-                FollowFromId = userAId,
-                FollowToId = userBId,
-            };
+            var followId = FollowIdentifier.Create(userAId, userBId);
             var req = new IFollowCreateDomainService<DummyFollowSession, DummyUserSession>.Req
             {
                 FollowId = followId,

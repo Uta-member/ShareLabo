@@ -9,11 +9,7 @@ namespace ShareLabo.Domain.Aggregate.Follow.Tests
         {
             var fromId = UserId.Create(new string('a', 8));
             var toId = UserId.Create(new string('b', 8));
-            var followId = new FollowIdentifier()
-            {
-                FollowFromId = fromId,
-                FollowToId = toId,
-            };
+            var followId = FollowIdentifier.Create(fromId, toId);
             var followStartDateTime = new DateTime(2025, 9, 1);
 
             var createCommand = new FollowEntity.CreateCommand()
@@ -33,11 +29,7 @@ namespace ShareLabo.Domain.Aggregate.Follow.Tests
         {
             var fromId = UserId.Reconstruct(new string('a', 7));
             var toId = UserId.Reconstruct(new string('b', 7));
-            var followId = new FollowIdentifier()
-            {
-                FollowFromId = fromId,
-                FollowToId = toId,
-            };
+            var followId = FollowIdentifier.Reconstruct(fromId, toId);
             var followStartDateTime = new DateTime(2025, 9, 1);
 
             var createCommand = new FollowEntity.ReconstructCommand()

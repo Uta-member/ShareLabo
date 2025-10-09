@@ -42,15 +42,13 @@ namespace ShareLabo.Infrastructure.PGSQL.Repository.Follow
             return dbFollows.Select(
                 dbFollow => FollowEntity.Reconstruct(
                     new FollowEntity.ReconstructCommand()
-                {
-                    FollowId =
-                        new FollowIdentifier
-                                {
-                                    FollowFromId = UserId.Reconstruct(dbFollow.FromUserId),
-                                    FollowToId = UserId.Reconstruct(dbFollow.ToUserId),
-                                },
-                    FollowStartDateTime = dbFollow.FollowStartDateTime,
-                }))
+                    {
+                        FollowId =
+                            FollowIdentifier.Reconstruct(
+                                        UserId.Reconstruct(dbFollow.FromUserId),
+                                        UserId.Reconstruct(dbFollow.ToUserId)),
+                        FollowStartDateTime = dbFollow.FollowStartDateTime,
+                    }))
                 .ToImmutableList();
         }
 
@@ -76,11 +74,9 @@ namespace ShareLabo.Infrastructure.PGSQL.Repository.Follow
                 new FollowEntity.ReconstructCommand()
                 {
                     FollowId =
-                        new FollowIdentifier
-                            {
-                                FollowFromId = UserId.Reconstruct(dbFollow.FromUserId),
-                                FollowToId = UserId.Reconstruct(dbFollow.ToUserId),
-                            },
+                        FollowIdentifier.Reconstruct(
+                                UserId.Reconstruct(dbFollow.FromUserId),
+                                UserId.Reconstruct(dbFollow.ToUserId)),
                     FollowStartDateTime = dbFollow.FollowStartDateTime,
                 });
         }

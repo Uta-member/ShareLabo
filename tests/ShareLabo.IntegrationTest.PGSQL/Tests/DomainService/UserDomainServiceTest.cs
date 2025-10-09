@@ -177,11 +177,7 @@ namespace ShareLabo.IntegrationTest.PGSQL
                         UserSession = transaction,
                     });
 
-                var followId = new FollowIdentifier()
-                {
-                    FollowFromId = userId,
-                    FollowToId = userBId,
-                };
+                var followId = FollowIdentifier.Create(userId, userBId);
                 var followStartDateTime = new DateTime(2025, 9, 1);
                 await followCreateDomainService.ExecuteAsync(
                     new IFollowCreateDomainService<ShareLaboPGSQLTransaction, ShareLaboPGSQLTransaction>.Req()

@@ -41,11 +41,7 @@ namespace ShareLabo.Domain.DomainService.Follow.Tests
                     Status = UserEntity.StatusEnum.Enabled,
                 });
 
-            var followId = new FollowIdentifier()
-            {
-                FollowFromId = userAId,
-                FollowToId = userBId,
-            };
+            var followId = FollowIdentifier.Reconstruct(userAId, userBId);
 
             var req = new IFollowDeleteDomainService<DummyFollowSession>.Req()
             {
