@@ -34,6 +34,6 @@ namespace ShareLabo.Domain.ValueObject
 
         public static int MinLength => 1;
 
-        public string Value { get; set; }
+        public string Value { get; }
     }
 }
