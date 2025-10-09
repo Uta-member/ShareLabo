@@ -32,9 +32,9 @@ namespace ShareLabo.Domain.Aggregate.Follow
         {
         }
 
-        public FollowIdentifier FollowId { get; init; }
+        public FollowIdentifier FollowId { get; }
 
-        public DateTime FollowStartDateTime { get; init; }
+        public DateTime FollowStartDateTime { get; }
 
         public override FollowIdentifier Identifier => FollowId;
 
