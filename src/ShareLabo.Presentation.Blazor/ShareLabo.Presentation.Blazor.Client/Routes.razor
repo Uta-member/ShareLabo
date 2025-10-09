@@ -9,11 +9,9 @@
     </Found>
 </Router>
 
-
 @code {
     [Inject]
     public required NavigationManager Navigation { get; set; }
-
     [Inject]
     public required AuthenticationStateProvider AuthenticationStateProvider { get; set; }
 
@@ -21,15 +19,18 @@
     {
         var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
         var user = authState.User;
+        var currentUri = Navigation.ToBaseRelativePath(Navigation.Uri).ToLowerInvariant();
 
-        var currentUri = Navigation.ToBaseRelativePath(Navigation.Uri).ToLower();
+        // 例外ルート（登録ページ）はリダイレクト対象から除外
+        var isUserRegisterPage = currentUri.StartsWith(ShareLaboPagePath.UserRegister.Trim('/').ToLowerInvariant());
 
-        // プロフィール未登録かつ、プロフィール登録ページ以外ならリダイレクト
+        // 認証済み かつ プロフィール未登録 かつ 登録ページ以外 → 登録へ
         if (user.Identity?.IsAuthenticated == true &&
             !user.HasClaim(ShareLaboClaimTypes.IsProfileRegistered, "true") &&
-            !currentUri.StartsWith(ShareLaboPagePath.UserRegister.Trim('/').ToLower()))
+            !isUserRegisterPage)
         {
-            Navigation.NavigateTo(ShareLaboPagePath.Helper.UserRegister(), true);
+            // SPA内遷移でOK（forceLoad=false）
+            Navigation.NavigateTo(ShareLaboPagePath.Helper.UserRegister(), forceLoad: false);
         }
     }
 }
