@@ -31,7 +31,8 @@ namespace ShareLabo.Domain.Aggregate.User
                 req.Session,
                 entity.AccountId,
                 cancellationToken);
-            if(targetEntityOptional.HasValue)
+            if(targetEntityOptional.TryGetValue(out var targetEntity) &&
+                targetEntity.Status != UserEntity.StatusEnum.Deleted)
             {
                 throw new ObjectAlreadyExistException();
             }
@@ -87,6 +88,15 @@ namespace ShareLabo.Domain.Aggregate.User
                 throw new ObjectNotFoundException();
             }
             entity = entity.Update(req.Command);
+            var targetEntityOptional = await Repository.FindByAccountIdAsync(
+                req.Session,
+                entity.AccountId,
+                cancellationToken);
+            if(targetEntityOptional.TryGetValue(out var targetEntity) &&
+                targetEntity.Status != UserEntity.StatusEnum.Deleted)
+            {
+                throw new ObjectAlreadyExistException();
+            }
             await Repository.SaveAsync(req.Session, entity, req.OperateInfo, cancellationToken);
         }
     }
